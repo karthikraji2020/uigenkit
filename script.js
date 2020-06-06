@@ -25,15 +25,13 @@ sizeRangeValue.innerText = `${sizeRange.value}`;
 radiusRangeValue.innerHTML = `${radiusRange.value}`;
 distanceRangeValue.innerHTML = `${distanceRange.value}`;
 blurRangeValue.innerHTML = `${blurRange.value}`;
-intensityRangeValue.innerHTML = `${intensityRange.value}`;
+intensityRangeValue.innerHTML = `${intensityRange.value/10}`;
 
 boxContent.style.boxShadow = checkDirection();
 boxContent.style.width  = sizeRange.value;
 boxContent.style.height  = sizeRange.value;
 addcopycss();
-changeBgColor(colorCodeInHex.value);
 const rgbToHex = function (rgb) {
-    debugger;
     let RGB = rgb.split("rgb(")[1].split(")").join("").split(",");
     let darray ='';
     for (let index = 0; index < RGB.length; index++) {
@@ -91,7 +89,7 @@ blurRange.oninput = function() {
 }
 
 intensityRange.oninput = function() {
-  intensityRangeValue.innerHTML = `${this.value}`;
+  intensityRangeValue.innerHTML = `${this.value/10}`;
   boxContent.style.boxShadow =  `${this.value}px`;
   addcopycss();
 }
@@ -109,7 +107,10 @@ function CopyColorToClipboard(content) {
     alert("Color Code Copied " + content.innerText);
     window.getSelection().removeAllRanges(); // to deselect
 }
-
+// sizeRange.trigger('input');
+debugger;
+const e = new Event("input");
+sizeRange.dispatchEvent(e);
 function addcopycss() {
     let boxShadowvalues= checkDirection();
     copyCssContent.textContent = `border-radius:${radiusRangeValue.innerHTML}px;\n 
@@ -117,7 +118,6 @@ function addcopycss() {
     boxShadow : ${boxShadowvalues}`;
     boxContent.style.boxShadow =  `${boxShadowvalues}`;
     boxContent.style.borderRadius =  `${radiusRangeValue.innerHTML}px`;
-
  }
 
  function  ratioCalucations () {
@@ -125,8 +125,8 @@ function addcopycss() {
   let blurRatio =Number(sizeRangeValue.innerHTML)/5;
   return ratio ;
  }
+
  function changeBgColor(colorValue) {
-    debugger;
     if(!colorValue.includes('#') && !colorValue.includes('rgba('))
     {
         colorCodeInHex.value= rgbToHex(colorValue);
@@ -136,6 +136,52 @@ function addcopycss() {
     document.querySelector('#content-wrapper').style.backgroundColor =  `${colorValue}`;
  }
 
+ // Debouncing in Javascript
+let counter = 0;
+// const getData = (code) => {
+  function getData(code) {
+  // calls an API and gets Data
+  console.log("Fetching Data .."+code, counter++);
+}
+
+const debounce = function (fn, d) {
+  let timer;
+  return function () {
+    let context = this,
+      args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      getData.apply(context, args);
+    }, d);
+  }
+}
+
+function betterFunction(code) {
+  debounce(getData(code), 4000);
+} 
+  
+
+ // Debouncing in Javascript
+// let counter = 0;
+// const getData = (colorCode) => {
+//   // calls an API and gets Data
+//   console.log("Fetching Data .."+colorCode, counter++);
+// }
+
+// const debounce = function (fn, delay) {
+//   let timer;
+//   return function () {
+//     let context = this, args = arguments;
+//     clearTimeout(timer);
+//     timer = setTimeout(() => {
+//       getData.apply(context, args); 
+//     }, delay);
+//   }
+// }
+
+// // const betterFunction = debounce(getData, 300);
+// const betterFunction=(colorCode) => debounce(getData(colorCode), 1700);
+
 function changePositionTo(pos) {
   debugger
   selectedDirection=pos;
@@ -144,78 +190,71 @@ function changePositionTo(pos) {
 
  function checkDirection () 
  {
-    var containerBg;
-    let ratio =Number(sizeRangeValue.innerHTML)/10;
-    let blurRatio =Number(sizeRangeValue.innerHTML)/5;
-    // let containerBg = getBackgroundColor(containerContent);
-    var data=  getBackgroundColor(containerContent);
-    if(!data.includes('rgba('))
-    {
-       containerBg = data.replace('rgb(','rgba(').replace(')',',0.2)');
-    } else {
-      containerBg=data;
-    }
-    // let containerBg = data.replace('rgb','rgba').replace(')',',.6)');
     debugger;
-    if(!isInset)
-    {
-     let boxshadowWithInset = new Array();
-     boxshadowWithInset = getBoxShadow();
-     boxshadowWithInset.unshift("inset");
-     debugger;
-     return 
-    }
-   else 
-   {
-     
-   }
-    switch (selectedDirection) {
-        case '135deg':
-            return `${ratio}px ${ratio}px ${blurRatio}px ${containerBg}, -${ratio}px -${ratio}px ${blurRatio}px #470101 `;
-        break;
-        case '225deg':
-            return `-${ratio}px ${ratio}px ${blurRatio}px ${containerBg}, -${ratio}px ${ratio}px ${blurRatio}px #470101 `;
-        break;
-        case '315deg':
-            return `-${ratio}px -${ratio}px ${blurRatio}px ${containerBg}, ${ratio}px ${ratio}px ${blurRatio}px #470101 `;
-        break;
-        case '45deg':
-            return `${ratio}px -${ratio}px ${blurRatio}px ${containerBg}, ${ratio}px -${ratio}px ${blurRatio}px #470101 `;
-        break;
-        default:
-        return "daet";
-    }
-  
+    let boxshadow,boxshadowWithInset,firstInsetData,data1,secondInsetData ;
+    boxshadow = getBoxShadow();
+    firstInsetData ="inset"+boxshadow.split('), ')[0]+') ,';
+    data1 =boxshadow.split('), ')[1];
+    secondInsetData ="inset "+data1;
+    boxshadowWithInset = firstInsetData+secondInsetData;
 
+    //checking whether inset Enabled 
+    if(isInset) {
+      return boxshadow;
+    } else {
+      return boxshadowWithInset;
+    }
  }
-
+ function toggleInset () { 
+   isInset = isInset? false : true
+   addcopycss();
+ }
  function getBoxShadow () {
-  var containerBg;
+  var data,test,firstPointShadowColor,secondPointShadowColor;
   let ratio =Number(sizeRangeValue.innerHTML)/10;
   let blurRatio =Number(sizeRangeValue.innerHTML)/5;
-  // let containerBg = getBackgroundColor(containerContent);
-  var data=  getBackgroundColor(containerContent);
-  if(!data.includes('rgba('))
-  {
-     containerBg = data.replace('rgb(','rgba(').replace(')',',0.2)');
-  } else {
-    containerBg=data;
-  }
+  data=  getBackgroundColor(containerContent);
+  test= intensityRangeValue.innerHTML;
+    if(!data.includes('rgba(')) {
+      firstPointShadowColor = data.replace('rgb(','rgba(').replace(')',`,${intensityRangeValue.innerHTML})`);
+      // secondPointShadowColor = data.replace('rgb(','rgba(').replace(')',`,${intensityRangeValue.innerHTML * 2})`);
+      let aa =rgbToHex(data);
+      let ba =invertColor(aa);
+      debugger;
+      secondPointShadowColor = ba;
+ // Returns FF00FF
+
+    } else {
+      firstPointShadowColor=data;
+      secondPointShadowColor=data;
+    }
+
     switch (selectedDirection) {
       case '135deg':
-          return ` ${ratio}px ${ratio}px ${blurRatio}px ${containerBg}, -${ratio}px -${ratio}px ${blurRatio}px #470101 `;
+          return ` ${ratio}px ${ratio}px ${blurRatio}px ${firstPointShadowColor}, -${ratio}px -${ratio}px ${blurRatio}px ${secondPointShadowColor}`;
       break;
       case '225deg':
-          return ` -${ratio}px ${ratio}px ${blurRatio}px ${containerBg}, -${ratio}px ${ratio}px ${blurRatio}px #470101 `;
+          return ` -${ratio}px ${ratio}px ${blurRatio}px ${firstPointShadowColor}, -${ratio}px ${ratio}px ${blurRatio}px ${secondPointShadowColor}`;
       break;
       case '315deg':
-          return ` -${ratio}px -${ratio}px ${blurRatio}px ${containerBg}, ${ratio}px ${ratio}px ${blurRatio}px #470101 `;
+          return ` -${ratio}px -${ratio}px ${blurRatio}px ${firstPointShadowColor}, ${ratio}px ${ratio}px ${blurRatio}px ${secondPointShadowColor}`;
       break;
       case '45deg':
-          return ` ${ratio}px -${ratio}px ${blurRatio}px ${containerBg}, ${ratio}px -${ratio}px ${blurRatio}px #470101 `;
+          return ` ${ratio}px -${ratio}px ${blurRatio}px ${firstPointShadowColor}, ${ratio}px -${ratio}px ${blurRatio}px ${secondPointShadowColor}`;
       break;
       default:
       return "daet";
-}
+  }
  }
 
+ function invertColor(hexTripletColor) {
+  debugger;
+      var color = hexTripletColor;
+      color = color.substring(1); // remove #
+      color = parseInt(color, 16); // convert to integer
+      color = 0xFFFFFF ^ color; // invert three bytes
+      color = color.toString(16); // convert to hex
+      color = ("000000" + color).slice(-6); // pad with leading zeros
+      color = "#" + color; // prepend #
+      return color;
+  }
