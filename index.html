@@ -103,6 +103,7 @@ label {
 <body>
     <div class="container" id="content-wrapper">
         <div class="wrpper-grid">
+            <button onclick="toggleInset()">toggle</button>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="position-wrapper">
@@ -126,7 +127,7 @@ label {
                                     <!-- <div id="bgColorOne" onchange="changeBgColor(this.value)" > </div> -->
                                 </div>
                                 <div class="col-4">
-                                    <input type="text" id="colorCodeInHex" class="form-control" value="#29289" onchange="changeBgColor(this.value)">
+                                    <input type="text" id="colorCodeInHex" class="form-control" value="#292892" onchange="changeBgColor(this.value)">
                                 </div>
                             </div>
                         
@@ -193,10 +194,12 @@ label {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.js"></script>
 <script>
     $(document).ready(function(){
-        $('#bgColorOne').colorpicker();
         // $('[data-toggle="tooltip"]').tooltip();  
         // $('#toolTip').tooltip({ boundary: 'window' })
+        $('#bgColorOne').colorpicker({color:'#292892'});
+        // $('#sizeRange').trigger();
     }); 
+
 </script>
 </body>
 </html>
