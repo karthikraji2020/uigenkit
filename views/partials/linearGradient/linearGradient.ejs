@@ -1,0 +1,39 @@
+    <!-- linear-gradient New -->
+    <div class="header" id="test">
+        <div class="inner-header flex" >
+          <div class="container home-banner" id ="dynamicBackground">
+            <div class="d-flex justify-content-center">
+                <div class="col-md-8">
+                  <h3 class="orientation text-light"> choose orientation</h3>
+                  <div class="row">
+                    <div class="btn-group btn-group-toggle text-light" id="directionBtnGroup" data-toggle="buttons">
+                      <label class="btn btn-light active">
+                        <input type="radio" name="directions" id="up" autocomplete="off" value="to up" > <i class="fa fa-arrow-up"></i>
+                      </label>
+                      <label class="btn btn-light">
+                        <input type="radio" name="directions" id="right" autocomplete="off" value="to right">  <i class="fa fa-arrow-right"></i>
+                      </label>
+                      <label class="btn btn-light">
+                        <input type="radio" name="directions" id="down" autocomplete="off" value="to down">  <i class="fa fa-arrow-down"></i>
+                      </label>
+                      <label class="btn btn-light">
+                        <input type="radio" name="directions" id="left" autocomplete="off" value="to left">  <i class="fa fa-arrow-left"></i>
+                      </label>
+                    </div>
+                  </div>
+                  <div>Selected directions  <span id="selectedVal"></span></div>
+  
+              <input id="bgColorOne" type="button" class="btn btn-dark" value="rgb(255, 128, 0)" onchange="changBgColorOne(this.value)">
+              <input id="bgColorTwo" type="button" class="btn btn-dark" value="rgb(5, 128, 210)" onchange="changBgColorTwo(this.value)">
+              <button onclick="applyColor()">applyColor </button>
+                        <!-- Button to Open the Modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="addcopycss()">
+                Get Css
+              </button>
+   
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  <script src="/js/linearGradient.js"></script>

@@ -1,0 +1,76 @@
+
+<div class="header" id="test">
+    <div class="inner-header flex">
+      <div class="container home-banner">
+        <div class="row">
+       <div class="colorFormat">
+          <!-- <h3 class="text-dark">colorFormat </h3> -->
+          <div class="row orientation">
+            <div class="row">
+              <div class="float-left">
+                <h3 class="text-dark">colorFormat </h3>
+              </div>
+              <div class="float-right">
+                <div class="btn-group btn-group-toggle text-light" id="colorFormatBtnGroup" data-toggle="buttons">
+                  <label class="btn btn-dark">
+                    <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="rgb" autocomplete="off" value="rgb" >RGB
+                  </label>
+                  <label class="btn btn-dark active">
+                    <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="hex" autocomplete="off" value="hex">HEX
+                  </label>
+                  <label class="btn btn-dark">
+                    <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="rgba" autocomplete="off" value="rgba"> RGBA
+                  </label>
+                </div>
+              </div>
+            </div>
+           
+          </div>
+          <!-- <div>Selected directions  <span id="selectedVal"></span></div> -->
+         <!--   <div>
+            <span>
+              RGB
+              <input
+                type="radio"
+                name="colorFormat"
+                onclick="handleClick(this);"
+                value="rgb"
+              />
+            </span>
+            <span> 
+            RGBA :<input type="radio" name="colorFormat" onclick="handleClick(this);" value="rgba">        
+          </span>
+            <span>
+              HEX
+              <input
+                type="radio"
+                name="colorFormat"
+                onclick="handleClick(this);"
+                value="hex"
+                checked
+              />
+            </span>
+          </div>-->
+        </div> 
+
+
+        <div class="showQuote">
+          <div class="grid grid1" onclick="CopyColorToClipboard(this)">
+            <section class="grid1ColorCode"></section>
+          </div>
+          <div class="grid grid2" onclick="CopyColorToClipboard(this)">
+            <section class="grid2ColorCode"></section>
+          </div>
+          <div class="grid grid3" onclick="CopyColorToClipboard(this)">
+            <section class="grid3ColorCode"></section>
+          </div>
+          <div class="grid grid4" onclick="CopyColorToClipboard(this)">
+            <section class="grid4ColorCode"></section>
+          </div>
+        </div>
+        <button class="btn btn-dark" onclick="getTheme()">genarate</button>
+        <!-- <div class="color-picker"></div> -->
+        </div>
+      </div>
+    </div>
+  </div>

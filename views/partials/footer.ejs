@@ -1,0 +1,98 @@
+<footer class="py-5 page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 footer-child copyright">
+          UiGenaratorKit © 2020 All Rights Reserved
+        </div>
+        <div class="col-12 col-md-6 footer-child footer-links">
+          <a href="" class="mr-3">Privacy Policy</a>
+          <a href="">FAQ</a>
+          <div>
+            <small>Made with <i class="fas fa-heart text-red"></i> by <a href="http://linkedin.com/" target="_blank">Karthik Raji</a>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Css Styles</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        <a href="javascript:void(0)" data-toggle="tooltip" title="click To Get Css!"> dsfa
+        </a>
+
+          <div class="copycss" onclick="CopyColorToClipboard(this)">
+
+          </div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.js"></script>
+  <script src="/js/script.js"></script>
+  <script>
+    const pickr = Pickr.create({
+    el: '.color-picker',
+    theme: 'classic', // or 'monolith', or 'nano'
+    default: '#42445a',
+    swatches: [
+        'rgba(244, 67, 54, 1)',
+        // 'rgba(233, 30, 99, 0.95)',
+        // 'rgba(156, 39, 176, 0.9)',
+        // 'rgba(103, 58, 183, 0.85)',
+        // 'rgba(63, 81, 181, 0.8)',
+        // 'rgba(33, 150, 243, 0.75)',
+        // 'rgba(3, 169, 244, 0.7)',
+        // 'rgba(0, 188, 212, 0.7)',
+        // 'rgba(0, 150, 136, 0.75)',
+        // 'rgba(76, 175, 80, 0.8)',
+        // 'rgba(139, 195, 74, 0.85)',
+        // 'rgba(205, 220, 57, 0.9)',
+        // 'rgba(255, 235, 59, 0.95)',
+        // 'rgba(255, 193, 7, 1)'
+    ],
+
+    components: {
+
+        // Main components
+        preview: true,
+        opacity: true,
+        hue: true,
+
+        // Input / output Options
+        interaction: {
+            hex: true,
+            rgba: true,
+            // hsla: true,
+            // hsva: true,
+            // cmyk: true,
+            input: true,
+            clear: true,
+            save: true
+        }
+    }
+});
+
+pickr.on('change', (color,instance) => {
+  let rgbaColor = color.toRGBA().toString();
+  console.log(rgbaColor);
+  changeBgColor(rgbaColor);
+});
+  </script>

@@ -1,0 +1,90 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: Gotham Rounded, sans-serif;
+  font-weight: normal;
+}
+
+/* body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-color: black;
+    color:white;
+} */
+
+.box-wrapper {
+  height: 80vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.position-wrapper {
+    position: relative;
+    min-height: 80vh;
+}
+.position-wrapper .top-right {
+    position: absolute;
+    top:0;
+    right:0;
+    cursor:pointer;
+}
+.position-wrapper .top-left {
+    position: absolute;
+    top:0;
+    left:0;
+    cursor:pointer;
+}
+.position-wrapper .bottom-right {
+    position: absolute;
+    bottom:0;
+    right:0;
+    cursor:pointer;
+}
+.position-wrapper .bottom-left {
+    position: absolute;
+    bottom:0;
+    left:0;
+    cursor:pointer;
+}
+.control-box {
+  min-height: 60vh;
+  /* width: 100vh; */
+  margin: 0;
+  border:1px solid #fff;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+.box {
+    /* background: #fff; */
+    align-self: center;
+}
+
+label {
+    font-weight: bold;
+}
+
+.copy-css {
+    min-height: 15vh;
+    background: #fff;
+    color:#000;
+
+}
+
+#content-wrapper {
+    /* background: rgb(255, 22, 22) ;  */
+    margin-top: 3.5rem;
+} 
+
+#bgColorOne {
+    height: 2rem;
+    width: 2rem;
+    border:1px solid #fff;
+}
