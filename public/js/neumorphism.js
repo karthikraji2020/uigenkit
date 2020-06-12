@@ -15,7 +15,7 @@ const distanceRangeValue = document.querySelector("#distanceRangeValue");
 const blurRangeValue = document.querySelector("#blurRangeValue");
 const intensityRangeValue = document.querySelector("#intensityRangeValue");
 var selectedDirection = '135deg';
-var isInset = false;
+var isInset = true;
 
 // sizeRangeValue.innerHTML = sizeRange.value;
 // boxContent.style.width  = sizeRange.value;
@@ -239,3 +239,4 @@ function changePositionTo(pos) {
       color = "#" + color; // prepend #
       return color;
   }
+  toggleInset.apply();

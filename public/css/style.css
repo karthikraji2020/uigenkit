@@ -109,8 +109,7 @@ nav.scrolled {
 .home-banner {
   z-index: 1;
   background-color: rgb(255, 255, 255);
-  margin-top: 3rem;
-  /* height: 40rem; */
+  margin: 3rem 0;
   padding: 4rem;
   border: 1.5rem solid #454545;
   border-radius: 2rem;
@@ -239,7 +238,7 @@ section {
   color: white;
 } */
 footer {
-  background-color: rgba(26, 9, 102, 0.741);
+  background-color: #454545;
   color: white;
 }
 .page-footer .footer-links {
@@ -250,4 +249,8 @@ footer {
   .page-footer .footer-child {
     text-align: center;
   }
+}
+
+.colorPalette,.neumorphism,.linearGradient{ 
+  background-image:linear-gradient(134deg, #ffa20d 50%,#fff 50%)
 }
