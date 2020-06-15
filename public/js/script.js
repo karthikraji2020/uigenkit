@@ -13,6 +13,11 @@
 // selectedDirection=btnValue;
 // headerBackground.style.backgroundImage=res;
 });
+$('.navbar').click(function(){
+  console.log(this);
+  console.log(this.classList,"classlist");
+  $(this).addClass('active').siblings().removeClass('active');
+})
 var gridsArrray = [];// alternative for this 
 // var alternativeGridsArray=["grid1", "grid2", "grid3","grid4"];
 // gridsArrray=[]

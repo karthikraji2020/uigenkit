@@ -254,3 +254,6 @@ footer {
 .colorPalette,.neumorphism,.linearGradient{ 
   background-image:linear-gradient(134deg, #ffa20d 50%,#fff 50%)
 }
+.linearGradientInnerContainer {
+  height: 30vh;
+}

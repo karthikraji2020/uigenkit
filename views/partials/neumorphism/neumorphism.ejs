@@ -11,7 +11,9 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="position-wrapper">
-                            <div class="top-right" onclick="changePositionTo('135deg')"> top-right</div>
+                            <div class="top-right text-warning" onclick="changePositionTo('135deg')"> 
+                                <i class='fa fa-lightbulb'></i>
+                            </div>
                             <div class="top-left" onclick="changePositionTo('225deg')">left</div>
                             <div class="bottom-right" onclick="changePositionTo('315deg')">bottom</div>
                             <div class="bottom-left" onclick="changePositionTo('45deg')">left</div>
@@ -28,7 +30,7 @@
                                     <label for="sizeRange" class="col-4 col-form-label">Pick a Color :</label>
                                     <div class="col-2">
                                       <div class="color-picker"></div>
-                                        <input id="bgColorOne"  onchange="changeBgColor(this.value)">
+                                        <input id="bgColorOne" hidden  onchange="changeBgColor(this.value)">
                                         <!-- <div id="bgColorOne" onchange="changeBgColor(this.value)" > </div> -->
                                     </div>
                                     <div class="col-6">

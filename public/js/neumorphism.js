@@ -79,13 +79,14 @@ radiusRange.oninput = function() {
 
 distanceRange.oninput = function() {
   distanceRangeValue.innerHTML = `${this.value}`;
-  boxContent.style.boxShadow =  `${this.value}px`;
+  boxContent.style.boxShadow = checkDirection();
   addcopycss();
 }
 
 blurRange.oninput = function() {
   blurRangeValue.innerHTML = `${this.value}`;
-  boxContent.style.boxShadow =  `${this.value}px`;
+  // boxContent.style.boxShadow =  `${this.value}px`;
+  boxContent.style.boxShadow =  checkDirection();
   addcopycss();
 
 }
@@ -192,8 +193,10 @@ function changePositionTo(pos) {
  }
  function getBoxShadow () {
   var data,test,firstPointShadowColor,secondPointShadowColor;
-  let ratio =Number(sizeRangeValue.innerHTML)/10;
-  let blurRatio =Number(sizeRangeValue.innerHTML)/5;
+  let ratio =Number(distanceRangeValue.innerHTML);
+  let blurRatio =Number(blurRangeValue.innerHTML);
+  // let ratio =Number(sizeRange.innerHTML)/10;
+  // let blurRatio =Number(blurRangeValue.innerHTML);
   data=  getBackgroundColor(containerContent);
   test= intensityRangeValue.innerHTML;
     if(!data.includes('rgba(')) {
@@ -201,8 +204,10 @@ function changePositionTo(pos) {
       // secondPointShadowColor = data.replace('rgb(','rgba(').replace(')',`,${intensityRangeValue.innerHTML * 2})`);
       let aa =rgbToHex(data);
       let ba =invertColor(aa);
+      let result = hexToRGBA(ba);
       debugger;
-      secondPointShadowColor = ba;
+      // secondPointShadowColor = result.replace(')',`,${intensityRangeValue.innerHTML})`);
+      secondPointShadowColor = result;
  // Returns FF00FF
 
     } else {
@@ -239,4 +244,11 @@ function changePositionTo(pos) {
       color = "#" + color; // prepend #
       return color;
   }
+
+  function hexToRGBA(hex, opacity) {
+    return 'rgba(' + (hex = hex.replace('#', '')).match(new RegExp('(.{' + hex.length/3 + '})', 'g')).map(function(l) { return parseInt(hex.length%2 ? l+l : l, 16) }).concat(opacity||1).join(',') + ')';
+}
   toggleInset.apply();
+  setTimeout(()=>{
+    changePositionTo('135deg');
+  },1000)
