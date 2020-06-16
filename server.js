@@ -31,6 +31,9 @@ app.get("/solidcolor", function(req, res) {
 // app.get("/about", function(req, res) {
 //     res.render("./partials/about");
 // });
-app.listen(3000, function() {
-    console.log("server is listening!!!");
-});
+// app.listen(3000, function() {
+//     console.log("server is listening!!!");
+// });
+
+const port = process.env.PORT || '3000';
+app.listen(port, () => console.log(`Server started on Port ${port}`));
