@@ -1,8 +1,8 @@
-var express = require('express');
-var ejs = require('ejs');
-var path = require('path');
-var app = express();
-var expressLayouts = require('express-ejs-layouts');
+const express = require('express');
+const ejs = require('ejs');
+const path = require('path');
+const app = express();
+const expressLayouts = require('express-ejs-layouts');
 
 app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -35,5 +35,5 @@ app.get("/solidcolor", function(req, res) {
 //     console.log("server is listening!!!");
 // });
 
-const port = process.env.PORT || '3000';
+const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server started on Port ${port}`));
