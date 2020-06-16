@@ -25,7 +25,7 @@ app.get("/lineargradient", function(req, res) {
     res.render("./partials/linearGradient/linearGradient");
 });
 
-app.get("/solidcolor", function(req, res) {
+app.get("/colorpalette", function(req, res) {
     res.render("./partials/colorPalette/colorPalette");
 });
 // app.get("/about", function(req, res) {
