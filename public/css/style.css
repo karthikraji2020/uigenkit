@@ -246,13 +246,16 @@ section {
         text-align: center;
         cursor: pointer;
       } */
-.card-group .card:hover {
-  background: rgb(161, 161, 161);
-  transition: 0.3s linear;
-  padding: 0 4px;
-  padding-top: 0rem;
+      /* :!(a,a *) */
+.socialPalette.card-group .card.py-5:hover {
+  transition: 0.3s all;
+  cursor: pointer !important;
+}
+
+.socialPalette.card-group .card .card-text{
+  color:#fff;
   text-align: center;
-  cursor: pointer;
+  font-weight: bold;
 }
 /* 
 .orientation {
@@ -352,3 +355,84 @@ background: white;
 color: #cb2027;
 background: white;
 }
+:root {
+  --lightblue: #f6f9fc;
+  --red: #d64041;
+}
+
+a,
+a:hover {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.bg-lightblue {
+  background: var(--lightblue);
+}
+
+.text-red {
+  color: var(--red);
+}
+.bg-red {
+  background: var(--red);
+}
+.container-fluid-max {
+  max-width: 1440px;
+}
+
+.cover {
+  background: no-repeat center/cover;
+}
+
+/* HEADER
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page-header {
+  transition: background 0.5s ease-in-out;
+}
+
+.page-header .navbar {
+  padding: 1rem 0;
+}
+
+.page-header .navbar-toggler {
+  /* the variable is inherited from BS4 built-in variables */
+  border-color: var(--white); 
+}
+
+.facebook {
+  background-color: #3B5998;
+  color: white;
+  }
+  
+  .twitter {
+  background-color: #55ACEE;
+  color: white;
+  }
+  
+  .google {
+  background-color: #dd4b39;
+  color: white;
+  }
+  
+  .linkedin {
+  background-color: #007bb5;
+  color: white;
+  }
+  
+  .youtube {
+  background-color: #bb0000;
+  color: white;
+  }
+  
+  .instagram {
+  background-color: #125688;
+  color: white;
+  }
+  
+  .pinterest {
+  background-color: #cb2027;
+  color: white;
+  }

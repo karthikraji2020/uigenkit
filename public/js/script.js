@@ -115,3 +115,7 @@ var rgbToHex = function (rgb) {
   return `#${darray}`;
 };
 
+/*
+for(let i=0;i<document.querySelectorAll('td.cb').length;i++){ colorObj.push({brandName:document.querySelectorAll('td.cb')[i].title.split(" ")[0],colorFormats:document.querySelectorAll('td.cb')[i].dataset})console.log(document.querySelectorAll('td.cb')[i])}
+
+for(let i=0;i<document.querySelectorAll('td.cb').length;i++){ console.log(document.querySelectorAll('td.cb')[i])}*/ 

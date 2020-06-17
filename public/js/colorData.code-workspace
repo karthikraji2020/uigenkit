@@ -1,0 +1,326 @@
+[
+  {
+    "brandName": "Facebook",
+    "colorFormats": {
+      "hex": "3b5999",
+      "hashhex": "#3b5999",
+      "rgb": "rgb(59,89,153)",
+      "rgba": "rgba(59,89,153 ,1)"
+    }
+  },
+  {
+    "brandName": "Messenger",
+    "colorFormats": {
+      "hex": "0084ff",
+      "hashhex": "#0084ff",
+      "rgb": "rgb(0,132,255)",
+      "rgba": "rgba(0,132,255 ,1)"
+    }
+  },
+  {
+    "brandName": "Twitter",
+    "colorFormats": {
+      "hex": "55acee",
+      "hashhex": "#55acee",
+      "rgb": "rgb(85,172,238)",
+      "rgba": "rgba(85,172,238 ,1)"
+    }
+  },
+  {
+    "brandName": "LinkedIn",
+    "colorFormats": {
+      "hex": "0077B5",
+      "hashhex": "#0077B5",
+      "rgb": "rgb(0,119,181)",
+      "rgba": "rgba(0,119,181 ,1)"
+    }
+  },
+  {
+    "brandName": "Skype",
+    "colorFormats": {
+      "hex": "00AFF0",
+      "hashhex": "#00AFF0",
+      "rgb": "rgb(0,175,240)",
+      "rgba": "rgba(0,175,240 ,1)"
+    }
+  },
+  {
+    "brandName": "Dropbox",
+    "colorFormats": {
+      "hex": "007ee5",
+      "hashhex": "#007ee5",
+      "rgb": "rgb(0,126,229)",
+      "rgba": "rgba(0,126,229 ,1)"
+    }
+  },
+  {
+    "brandName": "Wordpress",
+    "colorFormats": {
+      "hex": "21759b",
+      "hashhex": "#21759b",
+      "rgb": "rgb(33,117,155)",
+      "rgba": "rgba(33,117,155 ,1)"
+    }
+  },
+  {
+    "brandName": "Vimeo",
+    "colorFormats": {
+      "hex": "1ab7ea",
+      "hashhex": "#1ab7ea",
+      "rgb": "rgb(26,183,234)",
+      "rgba": "rgba(26,183,234 ,1)"
+    }
+  },
+  {
+    "brandName": "SlideShare",
+    "colorFormats": {
+      "hex": "0077b5",
+      "hashhex": "#0077b5",
+      "rgb": "rgb(0,119,181)",
+      "rgba": "rgba(0,119,181 ,1)"
+    }
+  },
+  {
+    "brandName": "VK",
+    "colorFormats": {
+      "hex": "4c75a3",
+      "hashhex": "#4c75a3",
+      "rgb": "rgb(76,117,163)",
+      "rgba": "rgba(76,117,163 ,1)"
+    }
+  },
+  {
+    "brandName": "Tumblr",
+    "colorFormats": {
+      "hex": "34465d",
+      "hashhex": "#34465d",
+      "rgb": "rgb(52,70,93)",
+      "rgba": "rgba(52,70,93 ,1)"
+    }
+  },
+  {
+    "brandName": "Yahoo",
+    "colorFormats": {
+      "hex": "410093",
+      "hashhex": "#410093",
+      "rgb": "rgb(65,0,147)",
+      "rgba": "rgba(65,0,147 ,1)"
+    }
+  },
+  {
+    "brandName": "Google",
+    "colorFormats": {
+      "hex": "dd4b39",
+      "hashhex": "#dd4b39",
+      "rgb": "rgb(221,75,57)",
+      "rgba": "rgba(221,75,57 ,1)"
+    }
+  },
+  {
+    "brandName": "Pinterest",
+    "colorFormats": {
+      "hex": "bd081c",
+      "hashhex": "#bd081c",
+      "rgb": "rgb(189,8,28)",
+      "rgba": "rgba(189,8,28 ,1)"
+    }
+  },
+  {
+    "brandName": "Youtube",
+    "colorFormats": {
+      "hex": "cd201f",
+      "hashhex": "#cd201f",
+      "rgb": "rgb(205,32,31)",
+      "rgba": "rgba(205,32,31 ,1)"
+    }
+  },
+  {
+    "brandName": "StumbleUpon",
+    "colorFormats": {
+      "hex": "eb4924",
+      "hashhex": "#eb4924",
+      "rgb": "rgb(235,73,36)",
+      "rgba": "rgba(235,73,36 ,1)"
+    }
+  },
+  {
+    "brandName": "Reddit",
+    "colorFormats": {
+      "hex": "ff5700",
+      "hashhex": "#ff5700",
+      "rgb": "rgb(255,87,0)",
+      "rgba": "rgba(255,87,0 ,1)"
+    }
+  },
+  {
+    "brandName": "Quora",
+    "colorFormats": {
+      "hex": "b92b27",
+      "hashhex": "#b92b27",
+      "rgb": "rgb(185,43,39)",
+      "rgba": "rgba(185,43,39 ,1)"
+    }
+  },
+  {
+    "brandName": "Yelp",
+    "colorFormats": {
+      "hex": "af0606",
+      "hashhex": "#af0606",
+      "rgb": "rgb(175,6,6)",
+      "rgba": "rgba(175,6,6 ,1)"
+    }
+  },
+  {
+    "brandName": "Weibo",
+    "colorFormats": {
+      "hex": "df2029",
+      "hashhex": "#df2029",
+      "rgb": "rgb(223,32,41)",
+      "rgba": "rgba(223,32,41 ,1)"
+    }
+  },
+  {
+    "brandName": "ProductHunt",
+    "colorFormats": {
+      "hex": "da552f",
+      "hashhex": "#da552f",
+      "rgb": "rgb(218,85,47)",
+      "rgba": "rgba(218,85,47 ,1)"
+    }
+  },
+  {
+    "brandName": "HackerNews",
+    "colorFormats": {
+      "hex": "ff6600",
+      "hashhex": "#ff6600",
+      "rgb": "rgb(255,102,0)",
+      "rgba": "rgba(255,102,0 ,1)"
+    }
+  },
+  {
+    "brandName": "Soundcloud",
+    "colorFormats": {
+      "hex": "ff3300",
+      "hashhex": "#ff3300",
+      "rgb": "rgb(255,51,0)",
+      "rgba": "rgba(255,51,0 ,1)"
+    }
+  },
+  {
+    "brandName": "Blogger",
+    "colorFormats": {
+      "hex": "f57d00",
+      "hashhex": "#f57d00",
+      "rgb": "rgb(245,125,0)",
+      "rgba": "rgba(245,125,0 ,1)"
+    }
+  },
+  {
+    "brandName": "WhatsApp",
+    "colorFormats": {
+      "hex": "25D366",
+      "hashhex": "#25D366",
+      "rgb": "rgb(37,211,102)",
+      "rgba": "rgba(37,211,102 ,1)"
+    }
+  },
+  {
+    "brandName": "WeChat",
+    "colorFormats": {
+      "hex": "09b83e",
+      "hashhex": "#09b83e",
+      "rgb": "rgb(9,184,62)",
+      "rgba": "rgba(9,184,62 ,1)"
+    }
+  },
+  {
+    "brandName": "Line",
+    "colorFormats": {
+      "hex": "00c300",
+      "hashhex": "#00c300",
+      "rgb": "rgb(0,195,0)",
+      "rgba": "rgba(0,195,0 ,1)"
+    }
+  },
+  {
+    "brandName": "Medium",
+    "colorFormats": {
+      "hex": "02b875",
+      "hashhex": "#02b875",
+      "rgb": "rgb(2,184,117)",
+      "rgba": "rgba(2,184,117 ,1)"
+    }
+  },
+  {
+    "brandName": "Vine",
+    "colorFormats": {
+      "hex": "00b489",
+      "hashhex": "#00b489",
+      "rgb": "rgb(0,180,137)",
+      "rgba": "rgba(0,180,137 ,1)"
+    }
+  },
+  {
+    "brandName": "Slack",
+    "colorFormats": {
+      "hex": "3aaf85",
+      "hashhex": "#3aaf85",
+      "rgb": "rgb(58,175,133)",
+      "rgba": "rgba(58,175,133 ,1)"
+    }
+  },
+  {
+    "brandName": "Instagram",
+    "colorFormats": {
+      "hex": "e4405f",
+      "hashhex": "#e4405f",
+      "rgb": "rgb(228,64,95)",
+      "rgba": "rgba(228,64,95 ,1)"
+    }
+  },
+  {
+    "brandName": "Dribbble",
+    "colorFormats": {
+      "hex": "ea4c89",
+      "hashhex": "#ea4c89",
+      "rgb": "rgb(234,76,137)",
+      "rgba": "rgba(234,76,137 ,1)"
+    }
+  },
+  {
+    "brandName": "Flickr",
+    "colorFormats": {
+      "hex": "ff0084",
+      "hashhex": "#ff0084",
+      "rgb": "rgb(255,0,132)",
+      "rgba": "rgba(255,0,132 ,1)"
+    }
+  },
+  {
+    "brandName": "FourSquare",
+    "colorFormats": {
+      "hex": "f94877",
+      "hashhex": "#f94877",
+      "rgb": "rgb(249,72,119)",
+      "rgba": "rgba(249,72,119 ,1)"
+    }
+  },
+  {
+    "brandName": "Behance",
+    "colorFormats": {
+      "hex": "131418",
+      "hashhex": "#131418",
+      "rgb": "rgb(19,20,24)",
+      "rgba": "rgba(19,20,24 ,1)"
+    }
+  },
+  {
+    "brandName": "SnapChat",
+    "colorFormats": {
+      "hex": "FFFC00",
+      "hashhex": "#FFFC00",
+      "rgb": "rgb(255,252,0)",
+      "rgba": "rgba(255,252,0 ,1)"
+    }
+  }
+]
