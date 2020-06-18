@@ -33,19 +33,19 @@ boxContent.style.height  = sizeRange.value;
 addcopycss();
 debugger;
 
-const rgbToHex = function (rgb) {
-    let RGB = rgb.split("rgb(")[1].split(")").join("").split(",");
-    let darray ='';
-    for (let index = 0; index < RGB.length; index++) {
-      const element = RGB[index];
-      var hex = Number(element).toString(16);
-      if (hex.length < 2) {
-        hex = "0" + hex;
-      }
-      darray+=hex;
-    }
-    return `#${darray}`;
-  };
+// const rgbToHex = function (rgb) {
+//     let RGB = rgb.split("rgb(")[1].split(")").join("").split(",");
+//     let darray ='';
+//     for (let index = 0; index < RGB.length; index++) {
+//       const element = RGB[index];
+//       var hex = Number(element).toString(16);
+//       if (hex.length < 2) {
+//         hex = "0" + hex;
+//       }
+//       darray+=hex;
+//     }
+//     return `#${darray}`;
+//   };
   // sizeRange(sizeRange.value);
  sizeRange.oninput = function() {
   sizeRangeValue.innerHTML = `${this.value}`;

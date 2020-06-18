@@ -3,6 +3,8 @@ const ejs = require('ejs');
 const path = require('path');
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
+const fs = require('fs');
+// let socialData = require('.colorData.json');
 
 app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -14,7 +16,7 @@ app.get("/", function(req, res) {
     // res.render("../partials/home", {async: false});
 });
 
-app.get("/home", function(req, res) {
+app.get("/home", function(req, res,next) {
     res.render("./partials/home");
 });
 
@@ -26,14 +28,16 @@ app.get("/lineargradient", function(req, res) {
 });
 
 app.get("/colorpalette", function(req, res) {
+// let jsonData = {}
+// fs.readFile(socialData, 'utf-8', (err, data) => {
+//   if (err) throw err
+//   jsonData = JSON.parse(data);
+//   console.log(jsonData);
+// })
+
     res.render("./partials/colorPalette/colorPalette");
 });
-// app.get("/about", function(req, res) {
-//     res.render("./partials/about");
-// });
-// app.listen(3000, function() {
-//     console.log("server is listening!!!");
-// });
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server started on Port ${port}`));

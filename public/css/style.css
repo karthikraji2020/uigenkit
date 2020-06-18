@@ -98,17 +98,17 @@ nav.scrolled {
   align-items: center;
   text-align: center;
 }
-.navbar a:hover:not(.active){
+.navbar .nav-item:hover:not(.active){
   color: #000;
   border: none;
-  padding: 0.25rem 0;
+  /* padding: 0.25rem 0; */
   border-bottom: 2px solid #ffffff;
   transition: 0.7s;
 }
-.navbar .active {
+.navbar .nav-item.active {
   color: #000;
   border: none;
-  padding: 0.25rem 0;
+  /* padding: 0.25rem 0; */
   border-bottom: 2px solid #ffffff;
   transition: 0.7s;
 }

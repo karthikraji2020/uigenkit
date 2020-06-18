@@ -35,9 +35,9 @@ headerBackground.style.backgroundImage=res;
   });
  
 });
-$(document).ready(function(){
-$('[data-toggle="tooltip"]').tooltip();   
-}); 
+// $(document).ready(function(){
+// $('[data-toggle="tooltip"]').tooltip();   
+// }); 
 
 function changBgColorOne(colorValue) {
   headerBackground.style.backgroundImage =  `linear-gradient(${selectedDirection},${colorValue},${bgColorTwo.value})`;
@@ -53,20 +53,20 @@ function addcopycss() {
 
 function applyColor() {
   var incrementDirection = parseInt(`${directionInDeg}`)+30+'deg';
-  headerBackground.style.backgroundImage= `linear-gradient(${incrementDirection}, red , yellow)`;
+  headerBackground.style.backgroundImage= `linear-gradient(${incrementDirection}, #ff0000 , #ffff00)`;
 }
 
-function CopyColorToClipboard(content) {
-    var range = document.createRange();
-    range.selectNode(content);
-    window.getSelection().removeAllRanges(); // clear current selection
-    window.getSelection().addRange(range); // to select text
-    document.execCommand("copy");
-    alert("Color Code Copied " + content.innerText);
-$('.toast').toast('show');
+// function CopyColorToClipboard(content) {
+//     var range = document.createRange();
+//     range.selectNode(content);
+//     window.getSelection().removeAllRanges(); // clear current selection
+//     window.getSelection().addRange(range); // to select text
+//     document.execCommand("copy");
+//     alert("Color Code Copied " + content.innerText);
+// $('.toast').toast('show');
 
-    window.getSelection().removeAllRanges(); // to deselect
-}
+//     window.getSelection().removeAllRanges(); // to deselect
+// }
 
 // $(document).ready(function(){.split("linear-gradient(")[1].split(',')[0]
 //   $(window).scroll(function(){
