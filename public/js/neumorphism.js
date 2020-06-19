@@ -2,7 +2,8 @@ const boxContent = document.querySelector('.box');
 const copyCssContent = document.querySelector('.copy-css');
 // const containerContent = document.querySelector('#content-wrapper');
 const colorCodeInHex = document.querySelector('#colorCodeInHex');
-var containerContent = document.getElementById('content-wrapper');
+// var containerContent = document.getElementById('content-wrapper');
+var containerContent = document.querySelector('.position-wrapper');
 const sizeRange = document.querySelector("#sizeRange");
 const radiusRange = document.querySelector("#radiusRange");
 const distanceRange = document.querySelector("#distanceRange");
@@ -16,6 +17,8 @@ const blurRangeValue = document.querySelector("#blurRangeValue");
 const intensityRangeValue = document.querySelector("#intensityRangeValue");
 var selectedDirection = '135deg';
 var isInset = true;
+const copyButton = document.getElementById("copy");
+const textButton = document.querySelector(".copy-css");
 
 // sizeRangeValue.innerHTML = sizeRange.value;
 // boxContent.style.width  = sizeRange.value;
@@ -138,7 +141,7 @@ function addcopycss() {
     // colorCodeInHex.value=colorValue;
     colorCodeInHex.value=document.querySelector('.pcr-result').value;
     // containerContent.style.backgroundImage =  `linear-gradient(${selectedDirection},${colorValue},${bgColorTwo.value})`;
-    document.querySelector('#content-wrapper').style.backgroundColor =  `${colorValue}`;
+    document.querySelector('.position-wrapper').style.backgroundColor =  `${colorValue}`;
  }
 
  // Debouncing in Javascript
@@ -252,3 +255,17 @@ function changePositionTo(pos) {
   setTimeout(()=>{
     changePositionTo('135deg');
   },1000)
+
+  const copyText = (e) => {
+    debugger;
+    window.getSelection().selectAllChildren(textButton);
+    document.execCommand("copy");
+    e.target.setAttribute("tooltip", "Copied! ✅");
+  };
+  
+  const resetTooltip = (e) => {
+    e.target.setAttribute("tooltip", "Copy to clipboard");
+  };
+  
+  copyButton.addEventListener("click", (e) => copyText(e));
+  copyButton.addEventListener("mouseover", (e) => resetTooltip(e));

@@ -48,38 +48,27 @@
         <button class="btn btn-dark" onclick="getTheme()">genarate</button>
         <!-- <div class="color-picker"></div> -->
         </div>
+        <br>
+        <h2 class="bg-dark text-white">Social Media Colors</h2>
+        <!-- ejs for each -->
         <div class="card-group socialPalette">
-          <div class="card facebook py-5">
-            <div class="card-body text-center">
-              <p class="card-text">Facebook</p>
+        <% data.forEach((element, index) => { %>
+            <div class="col-md-3 my-1" >
+              <div class="card " style="background-color:<%=element.colorFormats.rgb%>">
+                <div class="card-body text-center"  >
+                  <p  class="card-text sr-only sr-only-focusable"><%= element.colorFormats.rgb %></p>
+                  <p class="card-text " ><%= element.brandName %></p>
+                </div>
+                <div class="card-footer">
+                  <p  class="card-text" onclick="CopyColorToClipboard(this)"><%= element.colorFormats.hashhex %></p>
+                  <p  class="card-text" onclick="CopyColorToClipboard(this)"><%= element.colorFormats.rgba %></p>
+                  <p  class="card-text" onclick="CopyColorToClipboard(this)"><%= element.colorFormats.rgb %></p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="card google py-5">
-            <div class="card-body text-center">
-              <p class="card-text">google</p>
-            </div>
-          </div>
-          <div class="card linkedin py-5">
-            <div class="card-body text-center">
-              <p class="card-text">linkedin</p>
-            </div>
-          </div>
-          <div class="card youtube py-5">
-            <div class="card-body text-center">
-              <p class="card-text">youtube</p>
-            </div>
-          </div>
-          <div class="card instagram py-5">
-            <div class="card-body text-center">
-              <p class="card-text">instagram</p>
-            </div>
-          </div>
-          <div class="card pinterest py-5">
-            <div class="card-body text-center">
-              <p class="card-text">pinterest</p>
-            </div>
-          </div>
-        </div>
+        <% }) %>
+      </div>
+        
       </div>
     </div>
   </div>

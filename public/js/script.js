@@ -1,17 +1,37 @@
+
+
 $(document).ready(function() {
   var path = window.location.pathname,pages;
   var pathname = path.split('/')[1];
   pages = ['home', 'neumorphism', 'lineargradient','colorpalette'];
-  pages.map(item=>{
-  if(item===pathname) {
-    var navlist = document.querySelectorAll('li.nav-item');
-    for (let index = 0; index < navlist.length; index++) {
-      const currenGridElement = navlist[index];
-      const currentPath = navlist[index].innerText.replace(' ','').toLowerCase();
-      currentPath===item? currenGridElement.classList.add("active"): '';
+  if (pathname==='') {
+     document.querySelector('li.nav-item').classList.add("active");
+  } else {
+    pages.map(item=>{
+      if(item===pathname) {
+        var navlist = document.querySelectorAll('li.nav-item');
+        for (let index = 0; index < navlist.length; index++) {
+          const currenGridElement = navlist[index];
+          const currentPath = navlist[index].innerText.replace(' ','').toLowerCase();
+          currentPath===item? currenGridElement.classList.add("active"): '';
+        }
+      }
     }
-  }
-});
+    )}
+//   pages.map(item=>{
+//   if(item===pathname) {
+//     var navlist = document.querySelectorAll('li.nav-item');
+//     for (let index = 0; index < navlist.length; index++) {
+//       const currenGridElement = navlist[index];
+//       const currentPath = navlist[index].innerText.replace(' ','').toLowerCase();
+//       currentPath===item? currenGridElement.classList.add("active"): '';
+//     }
+//   }
+// }
+// );
+
+
+
 });
 
 
@@ -24,7 +44,6 @@ function CopyColorToClipboard(containerid) {
   alert("Color Code Copied " + containerid.innerText);
   window.getSelection().removeAllRanges(); // to deselect
 }
-
 var rgbToHex = function (rgb) {
   let RGB = rgb.split("rgb(")[1].split(")").join("").split(",");
   let darray ='';
@@ -38,3 +57,5 @@ var rgbToHex = function (rgb) {
   }
   return `#${darray}`;
 };
+
+

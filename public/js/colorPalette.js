@@ -53,6 +53,7 @@ function getTheme() {
       }
     }
   }
+  //take copy and do the
 }
 
 function handleClick(colorFormat) {

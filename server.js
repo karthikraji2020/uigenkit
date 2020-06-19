@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const fs = require('fs');
-// let socialData = require('.colorData.json');
+let socialData = require('./public/data/colorData.json');
 
 app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -34,8 +34,7 @@ app.get("/colorpalette", function(req, res) {
 //   jsonData = JSON.parse(data);
 //   console.log(jsonData);
 // })
-
-    res.render("./partials/colorPalette/colorPalette");
+    res.render("./partials/colorPalette/colorPalette",{data:socialData});
 });
 
 

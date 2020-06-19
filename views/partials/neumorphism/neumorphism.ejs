@@ -10,20 +10,6 @@
             <div class="wrpper-grid">
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="position-wrapper">
-                            <div class="top-right text-warning" onclick="changePositionTo('135deg')"> 
-                                <i class='fa fa-lightbulb'></i>
-                            </div>
-                            <div class="top-left" onclick="changePositionTo('225deg')">left</div>
-                            <div class="bottom-right" onclick="changePositionTo('315deg')">bottom</div>
-                            <div class="bottom-left" onclick="changePositionTo('45deg')">left</div>
-                            <div class="box-wrapper">
-                                <div class="box">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
                         <div class="control-box">
                             <form>
                                 <div class="form-group row">
@@ -92,30 +78,46 @@
                                 <div class="form-group row">
                                     <label for="radiusRange" class="col-3 col-form-label">Types :</label>
                                     <div class="col-8">
-                                        <div class="btn-group btn-group-toggle text-light" id="colorFormatBtnGroup" data-toggle="buttons">
-                                            <label class="btn btn-dark">
-                                              <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="rgb" autocomplete="off" value="rgb" >RGB
-                                            </label>
-                                            <label class="btn btn-dark active">
-                                              <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="hex" autocomplete="off" value="hex">HEX
-                                            </label>
-                                            <label class="btn btn-dark">
-                                              <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="rgba" autocomplete="off" value="rgba"> RGBA
-                                            </label>
-                                          </div>
                                    <button class="btn btn-dark" type="button" onclick="toggleInset()">Inset</button>
                                     </div>
                                 </div>
                             </form>
-                            <a href="javascript:void(0)" data-toggle="tooltip"  title="click To Get Css!">
-                                <div class="copy-css" onclick="CopyColorToClipboard(this)">
+                            <!-- <a href="javascript:void(0)" data-toggle="tooltip"  title="click To Get Css!"> -->
+                                <div class="copy-css" tooltip="Copy to clipboard">
                                 </div>
-                            </a>
+                                <button id="copy">
+                                    copy
+                                    <!-- <i class="fa fa-copy"></i> -->
+                                </button>
+                            <!-- </a> -->
+                        </div>
+                      
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="position-wrapper">
+                            <div class="top-left" onclick="changePositionTo('135deg')">
+                                <i class='fa fa-lightbulb-o text-warning'></i>
+                            </div>
+                            <div class="top-right" onclick="changePositionTo('45deg')"> 
+                                <i class='fa fa-lightbulb-o text-warning'></i>
+                            </div>
+                            <div class="bottom-right" onclick="changePositionTo('315deg')">
+                                <i class='fa fa-lightbulb-o text-warning'></i>
+                            </div>
+                            <div class="bottom-left" onclick="changePositionTo('225deg')">
+                                <i class='fa fa-lightbulb-o text-warning'></i>
+                            </div>
+                            <div class="box-wrapper">
+                                <div class="box">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
           </div>
+
+         
         </div>
     </div>
 </div>

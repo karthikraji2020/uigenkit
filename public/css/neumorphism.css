@@ -1,20 +1,3 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-  font-family: Gotham Rounded, sans-serif;
-  font-weight: normal;
-}
-
-/* body {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    background-color: black;
-    color:white;
-} */
-
 .box-wrapper {
   height: 80vh;
   margin: 0 auto;
@@ -27,29 +10,34 @@
     position: relative;
     min-height: 80vh;
 }
-.position-wrapper .top-right {
-    position: absolute;
-    top:0;
-    right:0;
-    cursor:pointer;
-}
 .position-wrapper .top-left {
     position: absolute;
     top:0;
     left:0;
     cursor:pointer;
+    transform: rotate(135deg);
 }
+.position-wrapper .top-right{
+    position: absolute;
+    top:0;
+    right:0;
+    cursor:pointer;
+    transform: rotate(225deg);
+}
+
 .position-wrapper .bottom-right {
     position: absolute;
     bottom:0;
     right:0;
     cursor:pointer;
+    transform: rotate(315deg);
 }
 .position-wrapper .bottom-left {
     position: absolute;
     bottom:0;
     left:0;
     cursor:pointer;
+    transform: rotate(45deg);
 }
 .control-box {
   min-height: 60vh;
@@ -88,3 +76,58 @@ label {
     width: 2rem;
     border:1px solid #fff;
 }
+
+#copy {
+    position: relative;
+    box-sizing: border-box;
+    background-color: #482ff7;
+    color: #ffffff;
+    /* width: 180px;
+    min-height: 44px; */
+    font-size: 1rem;
+    font-family: "Jost", sans-serif;
+    font-weight: 500;
+    padding: 5px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 13px 13px 20px #caced1, -13px -13px 20px #ffffff;
+  }
+  #copy:before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    bottom: -20px;
+    left: 22px;
+    clip-path: polygon(50% 40%, 0% 100%, 100% 100%);
+  }
+  #copy:after {
+    content: attr(tooltip);
+    width: 140px;
+    bottom: -48px;
+    left: 20px;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+  #copy:before, #copy:after {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    box-sizing: border-box;
+    background-color: #000000;
+    color: #ffffff;
+    transform: translateY(-10px);
+    transition: all 300ms ease;
+  }
+  #copy:hover:before, #copy:hover:after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+::selection {
+    background-color: lightblue;
+    color:black;
+  }
