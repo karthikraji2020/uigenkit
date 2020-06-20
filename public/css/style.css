@@ -99,17 +99,15 @@ nav.scrolled {
   text-align: center;
 }
 .navbar .nav-item:hover:not(.active){
-  color: #000;
+  background-image: linear-gradient(90deg, #ffffff 50%, #ff9d00 50%);
   border: none;
-  /* padding: 0.25rem 0; */
-  border-bottom: 2px solid #ffffff;
-  transition: 0.7s;
+  transition: background-image 500ms ease-out 1s;
+  /* transition: 0.7s all ease-in; */
 }
 .navbar .nav-item.active {
-  color: #000;
+  background: linear-gradient(90deg, #ffffff 50%, #ff9d00 50%);
   border: none;
-  /* padding: 0.25rem 0; */
-  border-bottom: 2px solid #ffffff;
+  /* border-bottom: 2px solid #ffffff; */
   transition: 0.7s;
 }
 .waves {
@@ -247,22 +245,12 @@ section {
         cursor: pointer;
       } */
       /* :!(a,a *) */
-.socialPalette.card-group .card.py-5:hover {
+.socialPalette.card-group .card:hover {
   transition: 0.3s all;
   cursor: pointer !important;
 }
 
 .socialPalette.card-group .card .card-text{
-  color:#fff;
-  text-align: center;
-  font-weight: bold;
-}
-.socialPalette.card-deck .card.py-5:hover {
-  transition: 0.3s all;
-  cursor: pointer !important;
-}
-
-.socialPalette.card-deck .card .card-text{
   color:#fff;
   text-align: center;
   font-weight: bold;

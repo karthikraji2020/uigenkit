@@ -1,3 +1,49 @@
+var colorData;
+fetch('./data/colorData.json')
+  .then(response => response.json())
+  .then(obj =>     {
+    colorData=obj;
+    renderCards(obj);
+  }
+  )
+  
+  function renderCards(colorData) {
+    var returnData='';
+    // var msgContainer = document.createDocumentFragment();
+    colorData.forEach(element => {
+      returnData +=  ` <div class="col-md-3 my-1" >
+      <div class="card " style="background-color:${element.colorFormats.rgb}">
+        <div class="card-body text-center"  >
+          <p class="card-text ">${element.brandName} </p>
+        </div>
+        <div class="card-footer">
+        ${colorWithFormat(element,currentValue)}
+        
+        </div>
+      </div>
+    </div>
+      `
+    });
+    debugger;
+  document.querySelector(".card-group.socialPalette").innerHTML=returnData;
+  }
+ 
+function colorWithFormat(element,format) {
+
+  switch (format) {
+    case 'hex':
+    return ` <p class="card-text" onclick="CopyColorToClipboard(this)">${element.colorFormats.hashhex}</p> `
+    break;
+    case 'rgba':
+    return ` <p class="card-text" onclick="CopyColorToClipboard(this)">${element.colorFormats.rgba}</p> `
+    break;
+    case 'rgb':
+    return ` <p class="card-text" onclick="CopyColorToClipboard(this)">${element.colorFormats.rgb}</p> `
+    break;
+
+}
+}
+
 var gridsArrray = [];// alternative for this 
 // var alternativeGridsArray=["grid1", "grid2", "grid3","grid4"];
 // gridsArrray=[]
@@ -22,6 +68,8 @@ $('#colorFormatBtnGroup input').on('click', function() {
     // thisBtn.addClass('active').siblings().removeClass('active');
     // var btnText = thisBtn.text();
     var btnValue = thisBtn.val();
+  renderCards(colorData,btnValue);
+
     $('#selectedVal').text(btnValue);
     // var chDirection= headerBackground.style.backgroundImage;
     // currentDirection = chDirection.split(",")[0].split('(')[1];
@@ -82,4 +130,3 @@ function getRandomColorInHEXFormat() {
   let bgColor = "#" + parseInt(Math.random() * 0xffffff).toString(16);
   return bgColor; // #HEXCODE
 }
-
