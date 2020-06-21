@@ -7,7 +7,8 @@ var bgColorTwo =document.querySelector('#bgColorTwo');
 var selectedDirection="to left";
 var currentDirection="";
 var directionInDeg='160deg';
-
+const  bgStopPointOne =document.querySelector('.bgStopPointOne');
+const  bgStopPointTwo =document.querySelector('.bgStopPointTwo');
 $(function () {
         // Get click event, assign button to var, and get values from that var
         $('#directionBtnGroup input').on('click', function() {
@@ -36,57 +37,29 @@ $(function () {
 
 }); 
 setTimeout(() => {
-  draw('#ff9d00','#fff')
+  draw('rgb(54, 238, 213)','rgb(5, 1, 110)')
 }, 2000);
 $(window).resize(function() {
   // your size calculation code here
   // $("#dimensions").html(myWidth);
-  draw('#ff9d00','#fff')
+  draw('rgb(54, 238, 213)','rgb(5, 1, 110)')
 
 }).resize();
 function encodeURL() {
 // var dynamicBackground = document.querySelector('#dynamicBackground');
 var dynamicBackground = document.querySelector('#thecanvas');
-var imgLinear = document.querySelector('#imgLinear');
-//         const dataUrl = getDataUrl(imgLinear);
-//  console.log("dasfdsa te4st"+dataUrl);
 var dd= dynamicBackground.toDataURL();
 debugger;
 var a = document.createElement("a"); //Create <a>
 a.href =  dd; //Image Base64 Goes here
 // a.href = "data:image/png;base64," + dd; //Image Base64 Goes here
 let randomID = Math.floor(Math.random() * 10000000) + 1  ;
-a.download = `UiGenaratorKit_LinearGradientColorBackGround${randomID}.png`; //File name Here
+let timeInMiliSec= Date.now(); 
+a.download = `UiGenaratorKit_LinearGradientColorBackGround${timeInMiliSec}.png`; //File name Here
 a.click(); //Downloaded file
 }
 
-function toDataURL(src, callback, outputFormat) {
-var img = new Image();
-img.crossOrigin = 'Anonymous';
-img.onload = function() {
-var canvas = document.createElement('CANVAS');
-var ctx = canvas.getContext('2d');
-var dataURL;
-canvas.height = this.naturalHeight;
-canvas.width = this.naturalWidth;
-ctx.drawImage(this, 0, 0);
-dataURL = canvas.toDataURL(outputFormat);
-callback(dataURL);
-};
-img.src = src;
-if (img.complete || img.complete === undefined) {
-img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-img.src = src;
-}
-}
 
-// toDataURL(
-//   'https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0',
-//   function(dataUrl) {
-//     debugger;
-//     console.log('RESULT:', dataUrl)
-//   }
-// )
 function getDataUrl(img) {
 // Create canvas
 const canvas = document.createElement('canvas');
@@ -98,13 +71,6 @@ canvas.height = img.height;
 ctx.drawImage(img, 0, 0);
 return canvas.toDataURL('image/png',1.0);
 }
-// Select the image
-const img = document.querySelector('#imgLinear');
-// img.addEventListener('load', function (event) {
-// const dataUrl = getDataUrl(img);
-// console.log('RESULT  sssss:', dataUrl)
-// });
-
 // $(document).ready(function(){
 // $('[data-toggle="tooltip"]').tooltip();   
 // }); 
@@ -131,13 +97,15 @@ function draw(bgone,bgtwo){
         ctx.fill();
       }
 
-     
+
 function changBgColorOne(colorValue) {
+  bgStopPointOne.value=document.querySelector('.pcr-result').value;
   draw(colorValue,bgColorTwo.value);
   headerBackground.style.backgroundImage =  `linear-gradient(${selectedDirection},${colorValue},${bgColorTwo.value})`;
 }
 
 function changBgColorTwo(colorValue) {
+  bgStopPointTwo.value=document.querySelector('.pcr-result').value;
   draw(bgColorOne.value,colorValue);
   headerBackground.style.backgroundImage =  `linear-gradient(${selectedDirection},${bgColorOne.value},${colorValue})`;
 }
@@ -168,3 +136,55 @@ function applyColor() {
 // 	$('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
 // });
 // });
+   
+const linearGradientPointOne = Pickr.create({
+el: '.bgOneColor-picker',
+theme: 'nano', // or 'monolith', or 'nano'
+default: 'rgb(54, 238, 213)',
+position: 'bottom-middle',
+comparison: false,
+components: {
+    // Main components
+    preview: true,
+    opacity: true,
+    hue: true,
+
+    // Input / output Options
+      interaction: {
+          hex: true,
+          rgba: true,
+          input: true,
+          save: true
+      }
+}
+});
+const linearGradientPointTwo = Pickr.create({
+el: '.bgTwoColor-picker',
+theme: 'nano', // or 'monolith', or 'nano'
+default: 'rgb(5, 1, 110)',
+comparison: false,
+components: {
+    // Main components
+    preview: true,
+    opacity: true,
+    hue: true,
+    // Input / output Options
+    interaction: {
+        hex: true,
+        rgba: true,
+        input: true,
+        save: true
+    }
+}
+
+});
+
+linearGradientPointOne.on('change', (color,instance) => {
+let rgbaColor = color.toRGBA().toString();
+changBgColorOne(rgbaColor);
+});
+
+linearGradientPointTwo.on('change', (color,instance) => {
+let rgbaColor = color.toRGBA().toString();
+changBgColorTwo(rgbaColor);
+});

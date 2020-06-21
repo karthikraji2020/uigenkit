@@ -269,3 +269,29 @@ function changePositionTo(pos) {
   
   copyButton.addEventListener("click", (e) => copyText(e));
   copyButton.addEventListener("mouseover", (e) => resetTooltip(e));
+
+  const pickr = Pickr.create({
+  el: '.color-picker',
+  theme: 'nano', // or 'monolith', or 'nano'
+  default: '#42445a',
+  comparison: false,
+  components: {
+      // Main components
+      preview: true,
+      opacity: true,
+      hue: true,
+      // Input / output Options
+      interaction: {
+          hex: true,
+          rgba: true,
+          input: true,
+          save: true
+      }
+  }
+});
+
+pickr.on('change', (color,instance) => {
+let rgbaColor = color.toRGBA().toString();
+// console.log(rgbaColor);  
+changeBgColor(rgbaColor);
+});

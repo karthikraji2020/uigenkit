@@ -12,14 +12,19 @@ fetch('./data/colorData.json')
     // var msgContainer = document.createDocumentFragment();
     colorData.forEach(element => {
       returnData +=  ` <div class="col-md-3 my-1" >
-      <div class="card " style="background-color:${element.colorFormats.rgb}">
+      <div class="card" style="background-color:${element.colorFormats.rgb}">
+     
         <div class="card-body text-center"  >
-          <p class="card-text ">${element.brandName} </p>
-        </div>
+        <p class="card-text ">${element.brandName} </p>
         <div class="card-footer">
         ${colorWithFormat(element,currentValue)}
-        
+        <div class="overlay">
+        <a  onclick="downloadImage('${element.colorFormats.rgb}','${element.brandName}')" class="icon" title="Download As Image">
+          <i class="fa fa-download"></i>
+        </a>
         </div>
+        </div>
+      </div>
       </div>
     </div>
       `
@@ -27,6 +32,17 @@ fetch('./data/colorData.json')
     debugger;
   document.querySelector(".card-group.socialPalette").innerHTML=returnData;
   }
+  function downloadImage(obj,name) {
+    draw(obj);
+    var dynamicBackground = document.querySelector('#thecanvas');
+    var dd= dynamicBackground.toDataURL();
+    debugger;
+    var a = document.createElement("a"); //Create <a>
+    a.href =  dd; //Image Base64 Goes here
+    let timeInMiliSec= Date.now(); 
+    a.download = `UiGenaratorKit_SocialColorBackGround${name}_${timeInMiliSec}.png`; //File name Here
+    a.click(); //Downloaded file
+    }
  
 function colorWithFormat(element,format) {
 
@@ -43,6 +59,20 @@ function colorWithFormat(element,format) {
 
 }
 }
+setTimeout(() => {
+  draw('rgb(54, 238, 213)')
+}, 1000);
+$(window).resize(function() {
+  draw('rgb(54, 238, 213)')
+}).resize();
+function draw(bgone){
+  var canvas = document.getElementById("colorPalette");
+          var ctx = canvas.getContext("2d");
+          ctx.fillStyle = bgone;
+          ctx.fillRect(0,0,1280,650);
+          ctx.fill();
+      }
+
 
 var gridsArrray = [];// alternative for this 
 // var alternativeGridsArray=["grid1", "grid2", "grid3","grid4"];

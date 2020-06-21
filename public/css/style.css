@@ -410,4 +410,36 @@ a:hover {
   color: white;
   }
   
-  
+  /* The overlay effect (full height and width) - lays on top of the container and over the image */
+  .card-footer .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 20%;
+  width: 100%;
+  opacity: 0;
+  transition: .3s ease;
+  background-color: rgba(0, 0, 0, 0.527);
+}
+
+/* When you mouse over the container, fade in the overlay icon*/
+.card:hover .overlay {
+  opacity: 1;
+}
+
+/* The icon inside the overlay is positioned in the middle vertically and horizontally */
+.icon {
+  color: white !important;
+  font-size: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* When you move the mouse over the icon, change color */
+.fa-download:hover {
+  color: #eee;
+}
