@@ -2,6 +2,8 @@
     <div class="linearGradient">
         <div class="inner-header flex" >
           <div class="container home-banner" id ="dynamicBackground">
+            <!-- <h2 class="bg-dark text-white">linearGradient</h2> -->
+
       <div style="display: none;">
         <canvas width="1280px" height="650px"  style="background-image: linear-gradient(90deg, #ffff8f 50%, #ff9d00 50%); " id="thecanvas"></canvas>
             </div>
@@ -11,10 +13,10 @@
                   <h3 class="orientation text-light"> choose orientation</h3>
                   <div class="row">
                     <div class="btn-group btn-group-toggle text-light" id="directionBtnGroup" data-toggle="buttons">
-                      <label class="btn btn-light active">
+                      <label class="btn btn-light ">
                         <input type="radio" name="directions" id="up" autocomplete="off" value="to up" > <i class="fa fa-arrow-up"></i>
                       </label>
-                      <label class="btn btn-light">
+                      <label class="btn btn-light active">
                         <input type="radio" name="directions" id="right" autocomplete="off" value="to right">  <i class="fa fa-arrow-right"></i>
                       </label>
                       <label class="btn btn-light">
@@ -25,16 +27,29 @@
                       </label>
                     </div>
                   </div>
-                  <div>Selected directions  <span id="selectedVal"></span></div>
+                  <div>Selected directions  <span id="selectedVal" class="text-white"></span></div>
   
               <input id="bgColorOne"   type="button" class="bgStopPointOne btn btn-dark" value="rgb(54, 238, 213)" onchange="changBgColorOne(this.value)" disabled>
               <input id="bgColorTwo"  type="button" class="bgStopPointTwo btn btn-dark" value="rgb(5, 1, 110)" onchange="changBgColorTwo(this.value)" disabled>
              
-               <span>
-                <span class="bgOneColor-picker"></span>
-                <span class="bgTwoColor-picker"></span>
-               </span>
-        
+               <div class="row my-1">
+                <div class="col-1">
+                  <button class="goBackward btn btn-dark" onclick="goBackward()"><i class="fa fa-backward"></i></button>
+               </div>
+                <div class="col-5">
+                  <label for="" class="text-white">Pick Color Stop 1</label>
+                  <span class="bgOneColor-picker"></span>
+                 </div>
+                 <div class="col-5">
+                  <label for="" class="text-white">pick Color Stop 2</label>
+                  <span class="bgTwoColor-picker"></span>
+                 </div>
+                
+                 <div class="col-1">
+                    <button class="goForward btn btn-dark" onclick="goForward()" ><i class="fa fa-forward"></i></button>
+                 </div>
+               </div>
+               
 
               <!-- <button onclick="applyColor()">applyColor </button> -->
                         <!-- Button to Open the Modal -->

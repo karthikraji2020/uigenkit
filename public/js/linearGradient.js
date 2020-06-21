@@ -4,11 +4,67 @@ var newcolorBackground =document.querySelector('#newcolor');
 var copyCssWrapper =document.querySelector('.copycss');
 var bgColorOne=document.querySelector('#bgColorOne');
 var bgColorTwo =document.querySelector('#bgColorTwo');
-var selectedDirection="to left";
+var selectedDirection="to right";
 var currentDirection="";
 var directionInDeg='160deg';
 const  bgStopPointOne =document.querySelector('.bgStopPointOne');
 const  bgStopPointTwo =document.querySelector('.bgStopPointTwo');
+var currentIndex = 0;
+const goForwardBtn = document.querySelector(".goForward");
+const goBackwardBtn  = document.querySelector(".goBackward");
+var colorData;
+fetch('./data/linearColor.json')
+  .then(response => response.json())
+  .then(obj =>     {
+    colorData=obj;
+    debugger;
+    // renderCards(obj);
+    console.log(obj);
+  }
+  )
+
+  // 
+
+     
+   
+      function goForward() {
+        currentIndex +=1;
+        let validIndex=(currentIndex <= colorData.length-1);
+        if(validIndex) {
+            // showQuote.innerHTML = colorData[currentIndex].colorStopOne;
+            let bgcolorstopone=colorData[currentIndex].colorStopOne;
+            let bgcolorstoptwo=colorData[currentIndex].colorStopTwo;
+            changBgColorOne(bgcolorstopone);
+            changBgColorTwo(bgcolorstoptwo);
+            // draw(bgcolorstopone,bgcolorstoptwo);
+            if(goBackwardBtn.hasAttribute('disabled'))
+            {
+                goBackwardBtn.removeAttribute('disabled');
+            }
+        }
+        else {
+            goForwardBtn.setAttribute('disabled',!validIndex);
+        }
+      }
+      function goBackward() {
+        currentIndex -=1;
+        let validIndex=(currentIndex  >= 0);
+        if(validIndex) {
+            let bgcolorstopone=colorData[currentIndex].colorStopOne;
+            let bgcolorstoptwo=colorData[currentIndex].colorStopTwo;
+            changBgColorOne(bgcolorstopone);
+            changBgColorTwo(bgcolorstoptwo);
+            // draw(bgcolorstopone,bgcolorstoptwo);
+            if(goForwardBtn.hasAttribute('disabled'))
+            {
+                goForwardBtn.removeAttribute('disabled');
+            }
+        }
+        else {
+            goBackwardBtn.setAttribute('disabled',true);
+        }
+      }
+
 
 $(function () {
         // Get click event, assign button to var, and get values from that var

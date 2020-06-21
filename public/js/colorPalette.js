@@ -34,7 +34,7 @@ fetch('./data/colorData.json')
   }
   function downloadImage(obj,name) {
     draw(obj);
-    var dynamicBackground = document.querySelector('#thecanvas');
+    var dynamicBackground = document.querySelector('#colorPalette');
     var dd= dynamicBackground.toDataURL();
     debugger;
     var a = document.createElement("a"); //Create <a>
