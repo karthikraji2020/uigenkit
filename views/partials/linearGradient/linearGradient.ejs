@@ -29,17 +29,19 @@
   
               <input id="bgColorOne"   type="button" class="bgStopPointOne btn btn-dark" value="rgb(54, 238, 213)" onchange="changBgColorOne(this.value)" disabled>
               <input id="bgColorTwo"  type="button" class="bgStopPointTwo btn btn-dark" value="rgb(5, 1, 110)" onchange="changBgColorTwo(this.value)" disabled>
-              <!-- <input hidden class="color-picker"/> -->
-               <!-- <input id="bgColorOne" hidden  onchange="changeBgColor(this.value)"> -->
-              <span class="bgOneColor-picker"></span>
-              <span class="bgTwoColor-picker"></span>
+             
+               <span>
+                <span class="bgOneColor-picker"></span>
+                <span class="bgTwoColor-picker"></span>
+               </span>
+        
 
               <!-- <button onclick="applyColor()">applyColor </button> -->
                         <!-- Button to Open the Modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="addcopycss()">
+              <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal" onclick="addcopycss()">
                 Get Css
               </button>
-              <button type="button" class="btn btn-primary" title="Download as Image" onclick="encodeURL()">
+              <button type="button" class="btn btn-dark " title="Download as Image" onclick="encodeURL()">
                <i class="fa fa-download"></i>
               </button>
                   </div>

@@ -9,11 +9,11 @@ var currentDirection="";
 var directionInDeg='160deg';
 const  bgStopPointOne =document.querySelector('.bgStopPointOne');
 const  bgStopPointTwo =document.querySelector('.bgStopPointTwo');
+
 $(function () {
         // Get click event, assign button to var, and get values from that var
         $('#directionBtnGroup input').on('click', function() {
         var thisBtn = $(this);
-        // thisBtn.addClass('active').siblings().removeClass('active');
         var btnText = thisBtn.text();
         var btnValue = thisBtn.val();
         $('#selectedVal').text(btnValue);
@@ -34,25 +34,25 @@ $(function () {
         console.log(event.color.toString());
         $('.home-banner').css('background-color', event.color.toString());
       });
-
 }); 
+
+
 setTimeout(() => {
   draw('rgb(54, 238, 213)','rgb(5, 1, 110)')
 }, 2000);
-$(window).resize(function() {
-  // your size calculation code here
-  // $("#dimensions").html(myWidth);
-  draw('rgb(54, 238, 213)','rgb(5, 1, 110)')
 
+
+$(window).resize(function() {
+  draw('rgb(54, 238, 213)','rgb(5, 1, 110)')
 }).resize();
+
+
 function encodeURL() {
-// var dynamicBackground = document.querySelector('#dynamicBackground');
 var dynamicBackground = document.querySelector('#thecanvas');
 var dd= dynamicBackground.toDataURL();
 debugger;
 var a = document.createElement("a"); //Create <a>
 a.href =  dd; //Image Base64 Goes here
-// a.href = "data:image/png;base64," + dd; //Image Base64 Goes here
 let randomID = Math.floor(Math.random() * 10000000) + 1  ;
 let timeInMiliSec= Date.now(); 
 a.download = `UiGenaratorKit_LinearGradientColorBackGround${timeInMiliSec}.png`; //File name Here
@@ -71,9 +71,8 @@ canvas.height = img.height;
 ctx.drawImage(img, 0, 0);
 return canvas.toDataURL('image/png',1.0);
 }
-// $(document).ready(function(){
-// $('[data-toggle="tooltip"]').tooltip();   
-// }); 
+
+
 function draw(bgone,bgtwo){
   var canvas = document.getElementById("thecanvas");
           var ctx = canvas.getContext("2d");
@@ -114,29 +113,7 @@ function addcopycss() {
   copyCssWrapper.textContent = `background:${bgColorOne.value};\n background-image:${headerBackground.style.backgroundImage};`
 }
 
-function applyColor() {
-  var incrementDirection = parseInt(`${directionInDeg}`)+30+'deg';
-  headerBackground.style.backgroundImage= `linear-gradient(${incrementDirection}, #ff0000 , #ffff00)`;
-}
 
-// function CopyColorToClipboard(content) {
-//     var range = document.createRange();
-//     range.selectNode(content);
-//     window.getSelection().removeAllRanges(); // clear current selection
-//     window.getSelection().addRange(range); // to select text
-//     document.execCommand("copy");
-//     alert("Color Code Copied " + content.innerText);
-// $('.toast').toast('show');
-
-//     window.getSelection().removeAllRanges(); // to deselect
-// }
-
-// $(document).ready(function(){.split("linear-gradient(")[1].split(',')[0]
-//   $(window).scroll(function(){
-// 	$('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
-// });
-// });
-   
 const linearGradientPointOne = Pickr.create({
 el: '.bgOneColor-picker',
 theme: 'nano', // or 'monolith', or 'nano'
@@ -148,16 +125,17 @@ components: {
     preview: true,
     opacity: true,
     hue: true,
-
     // Input / output Options
       interaction: {
           hex: true,
           rgba: true,
           input: true,
-          save: true
+          // save: true
       }
 }
 });
+
+
 const linearGradientPointTwo = Pickr.create({
 el: '.bgTwoColor-picker',
 theme: 'nano', // or 'monolith', or 'nano'
@@ -173,7 +151,7 @@ components: {
         hex: true,
         rgba: true,
         input: true,
-        save: true
+        // save: true
     }
 }
 

@@ -99,16 +99,18 @@ nav.scrolled {
   text-align: center;
 }
 .navbar .nav-item:hover:not(.active){
-  background-image: linear-gradient(90deg, #ffffff 50%, #ff9d00 50%);
+  /* background-image: linear-gradient(90deg, #ffffff 50%, #ff9d00 50%); */
+  background: #fff;
   border: none;
-  transition: background-image 500ms ease-out 1s;
-  /* transition: 0.7s all ease-in; */
+  transition: 0.8s;
+  cursor: pointer;
 }
 .navbar .nav-item.active {
-  background: linear-gradient(90deg, #ffffff 50%, #ff9d00 50%);
+  /* background: linear-gradient(90deg, #ffffff 50%, #ff9d00 50%); */
+  background: #fff;
   border: none;
-  /* border-bottom: 2px solid #ffffff; */
-  transition: 0.7s;
+  transition: 0.8s;
+  cursor: pointer !important; 
 }
 .waves {
   position: relative;

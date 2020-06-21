@@ -18,19 +18,6 @@ $(document).ready(function() {
       }
     }
     )}
-//   pages.map(item=>{
-//   if(item===pathname) {
-//     var navlist = document.querySelectorAll('li.nav-item');
-//     for (let index = 0; index < navlist.length; index++) {
-//       const currenGridElement = navlist[index];
-//       const currentPath = navlist[index].innerText.replace(' ','').toLowerCase();
-//       currentPath===item? currenGridElement.classList.add("active"): '';
-//     }
-//   }
-// }
-// );
-
-
 
 });
 

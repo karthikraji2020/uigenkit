@@ -1,9 +1,7 @@
 const boxContent = document.querySelector('.box');
 const copyCssContent = document.querySelector('.copy-css');
-// const containerContent = document.querySelector('#content-wrapper');
 const colorCodeInHex = document.querySelector('#colorCodeInHex');
-// var containerContent = document.getElementById('content-wrapper');
-var containerContent = document.querySelector('.position-wrapper');
+var containerContent = document.querySelector('.box');
 const sizeRange = document.querySelector("#sizeRange");
 const radiusRange = document.querySelector("#radiusRange");
 const distanceRange = document.querySelector("#distanceRange");
@@ -141,7 +139,7 @@ function addcopycss() {
     // colorCodeInHex.value=colorValue;
     colorCodeInHex.value=document.querySelector('.pcr-result').value;
     // containerContent.style.backgroundImage =  `linear-gradient(${selectedDirection},${colorValue},${bgColorTwo.value})`;
-    document.querySelector('.position-wrapper').style.backgroundColor =  `${colorValue}`;
+    document.querySelector('.box').style.backgroundColor =  `${colorValue}`;
  }
 
  // Debouncing in Javascript
@@ -167,11 +165,19 @@ const debounce = function (fn, d) {
 function betterFunction(code) {
   debounce(getData(code), 4000);
 } 
-function changePositionTo(pos) {
-  debugger
+function changePositionTo(pos,thisObj) {
   selectedDirection=pos;
+  if(thisObj!==''&& thisObj !== undefined) {
+    $('.position-wrapper .active').removeClass('active');
+    $(thisObj).addClass('active');
+  }
   addcopycss();
 }
+// $('.position-wrapper').click(function(){
+
+// })
+// $('.icon-layout li.active').removeClass('active');
+// $(this).addClass('active');
 
  function checkDirection () 
  {
@@ -191,7 +197,7 @@ function changePositionTo(pos) {
     }
  }
  function toggleInset () { 
-   isInset = isInset? false : true
+   isInset = isInset? false : true;
    addcopycss();
  }
  function getBoxShadow () {
@@ -251,10 +257,11 @@ function changePositionTo(pos) {
   function hexToRGBA(hex, opacity) {
     return 'rgba(' + (hex = hex.replace('#', '')).match(new RegExp('(.{' + hex.length/3 + '})', 'g')).map(function(l) { return parseInt(hex.length%2 ? l+l : l, 16) }).concat(opacity||1).join(',') + ')';
 }
+
   toggleInset.apply();
   setTimeout(()=>{
     changePositionTo('135deg');
-  },1000)
+  },500)
 
   const copyText = (e) => {
     debugger;
@@ -285,7 +292,7 @@ function changePositionTo(pos) {
           hex: true,
           rgba: true,
           input: true,
-          save: true
+          // save: true
       }
   }
 });
