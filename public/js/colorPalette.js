@@ -32,6 +32,40 @@ fetch('./data/colorData.json')
     debugger;
   document.querySelector(".card-group.socialPalette").innerHTML=returnData;
   }
+  function customPalette() {
+    let grid1ColorCode= document.querySelector(".grid1ColorCode");
+    let grid2ColorCode= document.querySelector(".grid2ColorCode");
+    let grid3ColorCode= document.querySelector(".grid3ColorCode");
+    let grid4ColorCode= document.querySelector(".grid4ColorCode");
+
+    document.querySelector("#customPalette").innerHTML=
+    `       <div class="card shadow">
+                  <div class="card-body">
+                  <h6 class="g1">test </h6>
+                  <h6 class="g2">test </h6>
+                  <h6 class="g3">test </h6>
+                  <h6 class="g4">test </h6>
+                </div>
+                <div class="card-footer">
+                  <button class="btn btn-dark float-right"> save</button>
+                  </div>
+                </div>`;
+                let g1= document.querySelector(".g1");
+                let g2= document.querySelector(".g2");
+                let g3= document.querySelector(".g3");
+                let g4= document.querySelector(".g4");
+                g1.style.backgroundColor = grid1ColorCode.innerHTML;
+                g2.style.backgroundColor = grid2ColorCode.innerHTML;
+                g3.style.backgroundColor = grid3ColorCode.innerHTML;
+                g4.style.backgroundColor = grid4ColorCode.innerHTML;
+
+                g1.innerHTML = grid1ColorCode.innerHTML;
+                g2.innerHTML = grid2ColorCode.innerHTML;
+                g3.innerHTML = grid3ColorCode.innerHTML;
+                g4.innerHTML = grid4ColorCode.innerHTML;
+
+  }
+
   function downloadImage(obj,name) {
     draw(obj);
     var colorPaletteBackground = document.querySelector('#colorPalette');
@@ -110,6 +144,7 @@ $('#colorFormatBtnGroup input').on('click', function() {
   // headerBackground.style.backgroundImage=res;
   });
 function getTheme() {
+
   for (let index = 0; index < gridsArrray.length; index++) {
     const currenGridElement = gridsArrray[index];
     let getColorCode = getRandomColorInHEXFormat();
@@ -130,6 +165,7 @@ function getTheme() {
           break;
       }
     }
+    customPalette();
   }
   //take copy and do the
 }
@@ -154,6 +190,7 @@ function handleClick(colorFormat) {
       currenGridElementDOM.children[0].innerHTML = currenGridElementDOM.style.backgroundColor.replace('rgb','rgba').replace(')',',1)');
     }
   }
+  customPalette();
 }
 
 function getRandomColorInHEXFormat() {

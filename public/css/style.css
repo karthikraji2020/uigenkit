@@ -201,6 +201,7 @@ h2.headerTitle{
   justify-content: center;
   place-content: center;
   align-items: center;
+  display: none;
 }
 .showQuote .grid {
   /* width: calc(33.33% - 6px); */
@@ -412,3 +413,8 @@ background: white;
   white-space: pre;
 }
 
+#customPalette .card-body h6 {
+  color:#fff;
+  padding:1rem;
+  margin: 0 !important;
+}
