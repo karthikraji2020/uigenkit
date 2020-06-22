@@ -34,13 +34,13 @@ fetch('./data/colorData.json')
   }
   function downloadImage(obj,name) {
     draw(obj);
-    var dynamicBackground = document.querySelector('#colorPalette');
-    var dd= dynamicBackground.toDataURL();
+    var colorPaletteBackground = document.querySelector('#colorPalette');
+    var base64URL= colorPaletteBackground.toDataURL();
     debugger;
     var a = document.createElement("a"); //Create <a>
-    a.href =  dd; //Image Base64 Goes here
+    a.href =  base64URL; //Image Base64 Goes here
     let timeInMiliSec= Date.now(); 
-    a.download = `UiGenaratorKit_SocialColorBackGround${name}_${timeInMiliSec}.png`; //File name Here
+    a.download = `UiGenaratorKit_SocialColorBackGround${name}_${timeInMiliSec}.jpg`; //File name Here
     a.click(); //Downloaded file
     }
  

@@ -1,4 +1,6 @@
 
+// const copyButton = document.getElementById("copy");
+// const textButton = document.querySelector(".copycss");
 
 $(document).ready(function() {
   var path = window.location.pathname,pages;
@@ -28,9 +30,10 @@ function CopyColorToClipboard(containerid) {
   window.getSelection().removeAllRanges(); // clear current selection
   window.getSelection().addRange(range); // to select text
   document.execCommand("copy");
+  // window.getSelection().removeAllRanges(); // to deselect
   alert("Color Code Copied " + containerid.innerText);
-  window.getSelection().removeAllRanges(); // to deselect
 }
+
 var rgbToHex = function (rgb) {
   let RGB = rgb.split("rgb(")[1].split(")").join("").split(",");
   let darray ='';
@@ -44,5 +47,21 @@ var rgbToHex = function (rgb) {
   }
   return `#${darray}`;
 };
+
+
+
+  // const copyText = (e) => {
+  //   debugger;
+  //   window.getSelection().selectAllChildren(textButton);
+  //   document.execCommand("copy");
+  //   e.target.setAttribute("tooltip", "Copied! ✅");
+  // };
+
+  // const resetTooltip = (e) => {
+  //   e.target.setAttribute("tooltip", "Copy to clipboard");
+  // };
+
+  // copyButton.addEventListener("click", (e) => copyText(e));
+  // copyButton.addEventListener("mouseover", (e) => resetTooltip(e));
 
 

@@ -34,7 +34,7 @@ app.get("/colorpalette", function(req, res) {
 //   jsonData = JSON.parse(data);
 //   console.log(jsonData);
 // })
-    res.render("./partials/colorPalette/colorPalette",{data:socialData});
+    res.render("./partials/colorPalette/colorPalette");
 });
 
 

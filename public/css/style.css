@@ -7,6 +7,7 @@ body {
   margin: 0;
   scroll-behavior: smooth;
   font-family: "Roboto", "Lato", sans-serif;
+  overflow-x: hidden;
 }
 h1 {
   font-family: "Roboto", "Lato", sans-serif;
@@ -23,16 +24,13 @@ a:hover {
   color: #fff;
 }
 
-.scrolled a {
-  font-weight: 700;
-  color: #ff9d00;
-}
 p {
   font-family: "Lato", sans-serif;
   letter-spacing: 1px;
   font-size: 14px;
   color: #333333;
 }
+
 .header {
   position: relative;
   text-align: center;
@@ -54,32 +52,18 @@ p {
 nav {
   background: linear-gradient(90deg, #ffffff 50%, #ff9d00 50%);
 }
-nav.scrolled {
-  background: white;
-  color: #ff9d00;
-}
-/* logo  */
-.logo {
-  width: 50px;
-  fill: white;
-  font-weight: bold;
-  padding-right: 15px;
-  display: inline-block;
-  vertical-align: middle;
-}
+/* 
 .brandname {
   width: 150px;
   padding-right: 15px;
   font-weight: 800;
-}
+} */
 .d-flex.bg-transprant {
   font-weight: 600;
 }
 .inner-header {
   min-height: 65vh;
   width: 100%;
-  /* margin: 0; */
-  /* margin-top: 3rem; */
   padding: 0;
 }
 .header .inner-header:first-child ,
@@ -245,19 +229,8 @@ section {
   padding-top: 0rem;
   text-align: center;
   cursor: pointer;
-  /* display: flex;
-        justify-content: center;
-        place-content: center; */
 }
-/* .card .grid:hover{
-        background: rgb(161, 161, 161);
-        transition: .3s linear;
-        padding: 0 4px;
-        padding-top: 0rem;
-        text-align: center;
-        cursor: pointer;
-      } */
-      /* :!(a,a *) */
+
 .socialPalette.card-group .card:hover {
   transition: 0.3s all;
   cursor: pointer !important;
@@ -268,11 +241,7 @@ section {
   text-align: center;
   font-weight: bold;
 }
-/* 
-.orientation {
-  background-color: rgba(26, 9, 102, 0.741);
-  color: white;
-} */
+
 footer {
   background-color: #454545;
   color: white;
@@ -287,25 +256,17 @@ footer {
   }
 }
 
-/* .colorPalette,.neumorphism,.linearGradient{ 
-  background-image:linear-gradient(134deg, #ffa20d 50%,#fff 50%)
-} */
+
 .colorPalette,.neumorphism,.linearGradient{ 
   background: linear-gradient(90deg, #ff9d00 50%, #ffffff 50%);
 }
 
-/* .neumorphism{
-  background: linear-gradient(90deg, #ffffff 50%, #ff9d00 50%);
 
-} */
 .linearGradientInnerContainer {
   height: 30vh;
 }
 .social{
-  /* position: absolute;
-top:50%;
-left:50%;
-transform: translate(-50%,-50%); */
+
 }
 .social .fa {
 padding: 1.5rem;
@@ -316,11 +277,7 @@ text-decoration: none;
 margin: 5px 2px;
 border-radius:50%;
 border:3px solid #ccc;
-/* box-shadow: 1px 9px 9px rgba(173, 167, 167, 0.3), inset 2px 10px 10px rgb(146, 145, 145); */
-/* box-shadow:1px 7px 5px #ccc,inset 1px 5px 4px #ccc; */
-/* box-shadow: 1px 7px 5px #231b1b, inset 1px 5px 4px #a5a5a5; */
 box-shadow: 1px 9px 9px #231b1b, inset 2px 10px 10px rgb(146, 145, 145);
-/* border-radius:150px; */
  background:rgb(78, 78, 78); 
 }
 
@@ -328,8 +285,6 @@ box-shadow: 1px 9px 9px #231b1b, inset 2px 10px 10px rgb(146, 145, 145);
 transition:.7s;
 transform: scale(.91); 
 box-shadow: 1px 9px 9px #231b1b, inset 2px 10px 10px rgb(146, 145, 145);
-/* box-shadow:1px 7px 5px #ccc,inset 1px 5px 4px #ccc; */
-
 }
 
 
@@ -348,48 +303,7 @@ background: white;
 :root {
   --lightblue: #f6f9fc;
   --red: #d64041;
-}
 
-a,
-a:hover {
-  color: inherit;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-.bg-lightblue {
-  background: var(--lightblue);
-}
-
-.text-red {
-  color: var(--red);
-}
-.bg-red {
-  background: var(--red);
-}
-.container-fluid-max {
-  max-width: 1440px;
-}
-
-.cover {
-  background: no-repeat center/cover;
-}
-
-/* HEADER
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-.page-header {
-  transition: background 0.5s ease-in-out;
-}
-
-.page-header .navbar {
-  padding: 1rem 0;
-}
-
-.page-header .navbar-toggler {
-  /* the variable is inherited from BS4 built-in variables */
-  border-color: var(--white); 
 }
 
   .google {
@@ -414,6 +328,8 @@ a:hover {
   background-color: rgba(0, 0, 0, 0.527);
 }
 
+
+
 /* When you mouse over the container, fade in the overlay icon*/
 .card:hover .overlay {
   opacity: 1;
@@ -435,3 +351,64 @@ a:hover {
 .fa-download:hover {
   color: #eee;
 }
+.modal-body {
+  overflow-x: auto;
+}
+::selection {
+  background-color: lightblue;
+  color:black;
+}
+
+#copy {
+  position: relative;
+  box-sizing: border-box;
+  background-color: #ff9900;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: .6rem;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 13px 13px 20px #caced1, -13px -13px 20px #ffffff;
+}
+#copy:before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  bottom: -20px;
+  left: 22px;
+  clip-path: polygon(50% 40%, 0% 100%, 100% 100%);
+}
+#copy:after {
+  content: attr(tooltip);
+  width: 140px;
+  bottom: -48px;
+  left: 20px;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+#copy:before, #copy:after {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  box-sizing: border-box;
+  background-color: #000000;
+  color: #ffffff;
+  transform: translateY(-10px);
+  transition: all 300ms ease;
+}
+
+#copy:hover:before, #copy:hover:after {
+  opacity: 1;
+  transform: translateY(0);
+  
+}
+.copycss {
+  text-align: left;
+  white-space: pre;
+}
+

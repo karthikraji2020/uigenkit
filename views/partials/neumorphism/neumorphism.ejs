@@ -79,16 +79,11 @@
                                 <div class="form-group row">
                                     <label for="radiusRange" class="col-3 col-form-label">Types :</label>
                                     <div class="col-8">
-                                   <button class="btn btn-dark" type="button" onclick="toggleInset()">Inset</button>
+                                   <button class="btn btn-dark" type="button" id="shapeType" onclick="toggleInset(this)">Inset</button>
                                     </div>
                                 </div>
                             </form>
-                                <div class="copy-css" tooltip="Copy to clipboard">
-                                </div>
-                                <button id="copy">
-                                    copy
-                                    <!-- <i class="fa fa-copy"></i> -->
-                                </button>
+                               
                         </div>
                       
                     </div>
@@ -111,6 +106,20 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-11">
+                        <div class="copy-css" tooltip="Copy to clipboard">
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <br>
+                        <button id="copy">
+                            copy
+                            <!-- <i class="fa fa-copy"></i> -->
+                        </button>
                     </div>
                 </div>
             </div>

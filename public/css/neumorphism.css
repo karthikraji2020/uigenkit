@@ -72,12 +72,7 @@ label {
     font-weight: bold;
 }
 
-.copy-css {
-    min-height: 15vh;
-    background: #fff;
-    color:#000;
 
-}
 
 #content-wrapper {
     /* background: rgb(255, 22, 22) ;  */
@@ -89,55 +84,13 @@ label {
     width: 2rem;
     border:1px solid #fff;
 }
+.copy-css {
+  text-align: left;
+  white-space: pre;
+  background: #212121;
+  color: #FFF;
+  padding:.5rem;
+}
 
-#copy {
-    position: relative;
-    box-sizing: border-box;
-    background-color: #ff9900;
-    color: #ffffff;
-    font-size: 1rem;
-    font-weight: 500;
-    padding: .6rem;
-    border: 0;
-    border-radius: 15px;
-    outline: none;
-    cursor: pointer;
-    user-select: none;
-    box-shadow: 13px 13px 20px #caced1, -13px -13px 20px #ffffff;
-  }
-  #copy:before {
-    content: "";
-    width: 16px;
-    height: 16px;
-    bottom: -20px;
-    left: 22px;
-    clip-path: polygon(50% 40%, 0% 100%, 100% 100%);
-  }
-  #copy:after {
-    content: attr(tooltip);
-    width: 140px;
-    bottom: -48px;
-    left: 20px;
-    padding: 5px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-  }
-  #copy:before, #copy:after {
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    box-sizing: border-box;
-    background-color: #000000;
-    color: #ffffff;
-    transform: translateY(-10px);
-    transition: all 300ms ease;
-  }
-  #copy:hover:before, #copy:hover:after {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-::selection {
-    background-color: lightblue;
-    color:black;
-  }
+
+ 

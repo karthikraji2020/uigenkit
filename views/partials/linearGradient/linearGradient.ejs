@@ -5,7 +5,7 @@
             <!-- <h2 class="bg-dark text-white">linearGradient</h2> -->
 
       <div style="display: none;">
-        <canvas width="1280px" height="650px"  style="background-image: linear-gradient(90deg, #ffff8f 50%, #ff9d00 50%); " id="thecanvas"></canvas>
+        <canvas width="1280px" height="600px"  style="background-image: linear-gradient(90deg, #ffff8f 50%, #ff9d00 50%); " id="thecanvas"></canvas>
             </div>
             <div class="d-flex justify-content-center">
                 <div class="col-md-8">
@@ -32,36 +32,39 @@
               <input id="bgColorOne"   type="button" class="bgStopPointOne btn btn-dark" value="rgb(54, 238, 213)" onchange="changBgColorOne(this.value)" disabled>
               <input id="bgColorTwo"  type="button" class="bgStopPointTwo btn btn-dark" value="rgb(5, 1, 110)" onchange="changBgColorTwo(this.value)" disabled>
              
-               <div class="row my-1">
-                <div class="col-1">
-                  <button class="goBackward btn btn-dark" onclick="goBackward()"><i class="fa fa-backward"></i></button>
-               </div>
-                <div class="col-5">
-                  <label for="" class="text-white">Pick Color Stop 1</label>
-                  <span class="bgOneColor-picker"></span>
-                 </div>
-                 <div class="col-5">
-                  <label for="" class="text-white">pick Color Stop 2</label>
-                  <span class="bgTwoColor-picker"></span>
-                 </div>
-                
-                 <div class="col-1">
-                    <button class="goForward btn btn-dark" onclick="goForward()" ><i class="fa fa-forward"></i></button>
-                 </div>
-               </div>
-               
 
               <!-- <button onclick="applyColor()">applyColor </button> -->
                         <!-- Button to Open the Modal -->
               <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal" onclick="addcopycss()">
-                Get Css
+                Get Css <i class="fa fa-css3"> </i>
               </button>
-              <button type="button" class="btn btn-dark " title="Download as Image" onclick="encodeURL()">
+              <button type="button" class="btn btn-dark" title="Download as Image" onclick="downloadAsImage()">
                <i class="fa fa-download"></i>
               </button>
                   </div>
                 </div>
             </div>
+            <div class="row my-1">
+              <div class="col-1">
+                <button class="goBackward btn btn-dark" onclick="goBackward()"><i class="fa fa-backward"></i></button>
+             </div>
+              <div class="col-4">
+                <label for="" class="text-white">Pick Color Stop 1</label>
+                <span class="bgOneColor-picker"></span>
+               </div>
+              <div class="col-2 text-white">
+                <h6 class="gradientName"> Vision of Granduer</h6>
+              </div>
+               <div class="col-4">
+                <label for="" class="text-white">pick Color Stop 2</label>
+                <span class="bgTwoColor-picker"></span>
+               </div>
+              
+               <div class="col-1">
+                  <button class="goForward btn btn-dark" onclick="goForward()" ><i class="fa fa-forward"></i></button>
+               </div>
+             </div>
+             
           </div>
         </div>
       </div>
@@ -78,21 +81,24 @@
             
             <!-- Modal body -->
             <div class="modal-body">
-            <a href="javascript:void(0)" data-toggle="tooltip" title="click To Get Css!"> 
-            </a>
-    
-              <div class="copycss" onclick="CopyColorToClipboard(this)">
-    
+              <div class="copycss"  tooltip="Copy to clipboard" >
               </div>
+            
+            
             </div>
             
             <!-- Modal footer -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="copy">
+                copy
+                <!-- <i class="fa fa-copy"></i> -->
+            </button>
+              <!-- <button type="button" class="btn btn-secondary"  data-dismiss="modal" >Close</button> -->
             </div>
             
           </div>
         </div>
       </div>
+        
    
   <script src="/js/linearGradient.js"></script>
