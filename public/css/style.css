@@ -413,8 +413,35 @@ background: white;
   white-space: pre;
 }
 
-#customPalette .card-body h6 {
+#customPalette .card-body h6 ,.custom.card-body h6{
   color:#fff;
   padding:1rem;
   margin: 0 !important;
+  
+}
+#directionBtnGroup .fa {
+  transform: rotate(45deg);
+}
+.custom .layer1{
+  background: rgb(224, 224, 224);
+}
+.custom .layer2{
+  background: rgb(206, 206, 206);
+}
+.custom .layer3{
+  background: rgba(168, 168, 168, 0.822);
+
+}
+.custom .layer4{
+  background: rgba(143, 142, 142, 0.815);
+}
+h6 figcaption {
+  background: rgba(51, 51, 51, 0.233);
+
+  opacity: 0;
+  cursor: pointer;
+
+}
+.card-body.custom h6:hover figcaption {
+  opacity: 1;
 }

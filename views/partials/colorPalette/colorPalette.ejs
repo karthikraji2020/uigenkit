@@ -54,14 +54,36 @@
         <button class="btn btn-dark" onclick="getTheme()">genarate</button>
         <button class="btn btn-dark" onclick="customPalette()">customPalette</button>
 
-       
         <!-- <div class="color-picker"></div> -->
         </div>
         <div class="row">
-          <div class="col-sm-8"></div>
+          <div class="col-sm-3">
+            <div class="createPalette-color-picker">
+            </div>
+          </div>
           <div class="col-sm-4">
             <div class="card-deck" id="customPalette">
             </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="card shadow">
+              <div class="card-body custom">
+              <h6 class="layer1" onclick="showPicker(this)">-</h6>
+              <h6 class="layer2" onclick="showPicker(this)">-</h6>
+              <h6 class="layer3" onclick="showPicker(this)">-</h6>
+              <h6 class="layer4" onclick="showPicker(this)">-</h6>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-dark float-right" onclick="savePalette('custom')"> sssave</button>
+              </div>
+            </div>
+            <!-- <div class="card-deck" id="customPalette">
+            </div> -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="card-group customColorPalette">
+      
           </div>
         </div>
         <br>
@@ -72,6 +94,7 @@
       </div>
       <div style="display: none;">
         <canvas width="1280px" height="650px" id="colorPalette"></canvas>
+        <aside id="colorConversion"> </aside>
       </div>
       </div>
     </div>

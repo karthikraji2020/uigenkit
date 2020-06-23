@@ -90,6 +90,7 @@ label {
   background: #212121;
   color: #FFF;
   padding:.5rem;
+  overflow-x: auto;
 }
 
 

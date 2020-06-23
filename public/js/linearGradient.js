@@ -70,14 +70,16 @@ $(function () {
     var btnValue = thisBtn.val();
     $("#selectedVal").text(btnValue);
     var chDirection = headerBackground.style.backgroundImage;
+    // if rbg no
     currentDirection = chDirection.split(",")[0].split("(")[1];
-    var res = chDirection.replace(/to right|to left|to up|to down/gi, function (
-      x
+    // var res = chDirection.replace(/to right|to left|to top|to bottom/gi, function (
+    var res = chDirection.replace(/45deg|135deg|225deg|315deg|to right/gi, function (
     ) {
       return btnValue;
     });
     selectedDirection = btnValue;
     headerBackground.style.backgroundImage = res;
+    draw(bgStopPointOne.value,  bgStopPointTwo.value);
   });
   // Basic instantiation:
   $("#bgColorOne").colorpicker();
@@ -96,7 +98,7 @@ $(window)
 
 function downloadAsImage() {
   var dynamicBackground = document.querySelector("#thecanvas");
-  var dd = dynamicBackground.toDataURL();
+  var dd = dynamicBackground.toDataURL('image/jpg', 1.0);
   var a = document.createElement("a"); //Create <a>
   a.href = dd; //Image Base64 Goes here
   let timeInMiliSec = Date.now();
@@ -114,25 +116,28 @@ function draw(bgone, bgtwo) {
   // let  myWidth = 500;
   // let myHeight = 700;
   // ctx.rect(0, 0, canvas.width, canvas.height);
-  if(selectedDirection=="to left" || selectedDirection=="135deg") {
-    ctx.rect(myWidth, myHeight,0, 0);
-  }
-  if(selectedDirection=="to right" || selectedDirection=="315deg") {
-    ctx.rect(0, 0, myWidth, myHeight);
-  }
-  if(selectedDirection=="to top" || selectedDirection=="225deg") {
-    ctx.rect(0, myWidth, myHeight,0);
-  }
-  if(selectedDirection=="to down" || selectedDirection=="45deg") {
-    ctx.rect(myWidth, 0, 0, myHeight);
-  }
-  // ctx.rect(0, 0, myWidth, myHeight);
+  var grd = ctx.createLinearGradient(0, 0, myWidth, myHeight);
 
-  // ctx.rect(0, 0, myWidth, myHeight);
+  if( selectedDirection=="135deg") {
+    // ctx.rect(myWidth, myHeight,0, 0);
+    var grd = ctx.createLinearGradient(0, 0, myWidth, myHeight);
+  }
+  if( selectedDirection=="315deg") {
+    // ctx.rect(0, 0, myWidth, myHeight);
+    var grd = ctx.createLinearGradient(myWidth, myHeight,0, 0);
+  }
+  if(selectedDirection=="225deg") {
+    // ctx.rect(0, myWidth, myHeight,0);
+    var grd = ctx.createLinearGradient(0, myWidth, myHeight,0);
+  }
+  if( selectedDirection=="45deg") {
+    // ctx.rect(myWidth, 0, 0, myHeight);
+    var grd = ctx.createLinearGradient(myWidth, 0, 0, myHeight);
+  }
+  ctx.rect(0, 0, myWidth, myHeight);
   // add linear gradient
 
   // var grd = ctx.createLinearGradient(0, 0, myWidth, myHeight);
-  var grd = ctx.createLinearGradient(0, 0, myWidth, myHeight);
   // light blue
   grd.addColorStop(0, bgone);
   // dark blue
