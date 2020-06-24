@@ -9,6 +9,25 @@ body {
   font-family: "Roboto", "Lato", sans-serif;
   overflow-x: hidden;
 }
+.loading {
+  border: 2px solid #ccc;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border-top-color: #1ecd97;
+  border-left-color: #1ecd97;
+  animation: spin 1s infinite ease-in;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 h1 {
   font-family: "Roboto", "Lato", sans-serif;
   font-weight: 300;
@@ -445,3 +464,12 @@ h6 figcaption {
 .card-body.custom h6:hover figcaption {
   opacity: 1;
 }
+
+.loader {
+  display: none;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+

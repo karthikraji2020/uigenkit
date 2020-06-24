@@ -4,7 +4,8 @@ const path = require('path');
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const fs = require('fs');
-// let socialData = require('./public/data/colorData.json');
+const socialMediaColor = require('./public/data/socialMediaColor.json');
+const linearGradientColor = require('./public/data/linearGradientColor.json');
 const customPalette = require('./public/data/custompalette.json');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -39,13 +40,26 @@ app.get("/lineargradient", function(req, res) {
 app.get("/colorpalette", function(req, res) {
     res.render("./partials/colorPalette/colorPalette");
 });
+// app.get("/createCustomPalette", function(req, res) {
+//     res.render("./partials/colorPalette/createCustomPalette");
+// });
 
 app.get("/custompalette", function(req, res) {
     readDataAndSortwithDate('./public/data/custompalette.json',res);
 });
+app.get("/socialmediapalette", function(req, res) {
+    res.send(socialMediaColor);
+});
+app.get("/lineargradientcolors", function(req, res) {
+    res.send(linearGradientColor);
+});
+// app.post("/likes", function(req, res) {
+//     let layers =req.body.obj.split(',');
+//     console.log(layers);
+//     res.render("./partials/colorPalette/likes",{layers});
+// });
+//   res.redirect('/')
 app.post("/custompalette", function(req, res) {
-            // Defining new user 
-    
         // STEP 2: Adding new data to users object 
         customPalette.push(req.body); 
         // STEP 3: Writing to a file 
@@ -68,11 +82,16 @@ function readDataAndSortwithDate(filePath,res) {
         if (err) throw err; 
         // Converting to JSON 
         const paletteData = JSON.parse(data); 
-        // paletteData.sort((a,b)=>a.getTime()-b.getTime());
-        let sortedArray = paletteData.sort(function(a, b) {
+            // console.log(`Difference in hours: ${hours}`);
+        let t1= Date.now();
+        let sortedArray = paletteData.sort((a,b)=>b.likes-a.likes);
+      
+        // sortedArray.map(x=>{
+        //     console.log(`likes ${x.likes}`);})
+        sortedArray.sort(function(a, b) {
             a = new Date(a.createdAt);
             b = new Date(b.createdAt);
-            return a>b ? -1 : a<b ? 1 : 0;
+            return ((a>b) ? -1 : (a<b) ? 1 : 0);
         });
 
         sortedArray.forEach(element => {
@@ -80,14 +99,19 @@ function readDataAndSortwithDate(filePath,res) {
             let d2 = moment();
             let days = d2.diff(d1, 'days');
             let result;
+            let months = d2.diff(d1, 'months');
+            let years = d2.diff(d1, 'years');
             let hours = d2.diff(d1, 'hours');
-            // console.log(`Difference in hours: ${hours}`);
-            result= hours>24 ? `${days} days ago` :  `${hours} hrs ago` ;
             let minutes = d2.diff(d1, 'minutes');
+            result= months>12 ? `${years} years ago` :  `${months} months ago` ;
+            result= hours>24 ? `${days} days ago` :  `${hours} hrs ago` ;
             result =minutes>60 ? `${hours} hours ago` :  `${minutes} mins ago` ;
-            // console.log(`Difference in minutes: ${minutes}`);
             element.createdAt= result;
         });
+        // sortedArray.map(x=>{
+        //     console.log(`likes ${x.likes}`);})
+        let t2= Date.now();
+        console.log(`Difference in ms: ${t2-t1}`);
         res.send(sortedArray);
     }); 
 }

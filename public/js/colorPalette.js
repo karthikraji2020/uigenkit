@@ -1,8 +1,17 @@
+// import apiURL from './public/js/environmentConfig.js';
+// const apiURL =require('/js/environmentConfig.js')
 var colorData;
 var customPaletteData;
 var createPalette;
 var selectedLayer;
-fetch('./data/colorData.json')
+var isLike=false;
+const likedPaletteId=[];
+const apiURL = `https://uigenaratorkit.herokuapp.com/`;
+// const apiURL = `http://localhost:3000/`;
+var pageIndex =1;
+
+// fetch('./data/colorData.json')
+fetch(`${apiURL}socialmediapalette`)
   .then(response => response.json())
   .then(obj =>     {
     colorData=obj;
@@ -31,14 +40,13 @@ fetch('./data/colorData.json')
       },
     },
   });
-
   createPalette.on("change", (color, instance) => {
     changeSelectedlayerBg();
   });
   createPalette.hide();
   loadPaletteColors();
   function loadPaletteColors( ) {
-    fetch('http://localhost:3000/custompalette',{
+    fetch(`${apiURL}custompalette`,{
       headers : { 
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -48,34 +56,97 @@ fetch('./data/colorData.json')
     .then(response => response.json())
     .then(obj =>     {
       customPaletteData=obj;
-      renderPalettes(obj);
+      loadPartialData(0,12);
     })
   }
 
+  function loadPartialData(startIndex,endIndex) {
+    let initalData= customPaletteData.slice(startIndex, endIndex);
+    renderPalettes(initalData);
+  }
 
   
   function renderPalettes(customPaletteData) {
     var returnData='';
-    customPaletteData.forEach(element => {
-      returnData +=  ` <div class="col-sm-3 col-md-3 col-lg-3 my-1" >
-      <div class="card shadow" >
+    customPaletteData.forEach((element,index) => {
+      returnData +=  ` <div class="col-sm-12 col-md-4 col-lg-3 my-1" >
+      <form id="form_${index}" action="/likes" method="POST">
+    <input type="text" hidden name="obj" value="${element.hex.layer1},${element.hex.layer2},${element.hex.layer3},${element.hex.layer4}">
+      <div class="card shadow">
       <div class="card-body custom" title="click to copy ClipBoard">
       ${palettecolorWithFormat(element,currentValue)}
     </div>
     <div class="card-footer">
-         <div class="float-left">
-         <i class="fa fa-clock-o"> </i> <small class="text-muted">${element.createdAt}</small></div>
-      <button type="button" class="btn btn-dark float-right" title="Download as Image" onclick="downloadAsImage()">
+         <div class="float-left" title="likes">
+      ${renderLikes(element,index)}
+         </div>
+         <div class="float-right">
+         <i class="fa fa-clock-o"></i><small class="text-muted"> ${element.createdAt}</small>
+         </div>
+      <button type="button" class="btn btn-light btn-sm btn-outline-secondary" title="Download as Image" onclick="downloadPaletteAsImage('${element.hex.layer1}','${element.hex.layer2}','${element.hex.layer3}','${element.hex.layer4}')">
       <i class="fa fa-download"></i>
      </button>
       </div>
     </div>
+    </form>
     </div>
       `
     });
     debugger;
-  document.querySelector(".card-group.customColorPalette").innerHTML=returnData;
+  // document.querySelector(".card-group.customColorPalette").innerHTML=returnData;
+  let withLoadMore="";
+  if(customPaletteData.length >=12){
+     withLoadMore = `
+     <div class="btn btn-dark float-right" onclick="loadMore()">
+        load More....
+      </div>
+  `
   }
+
+  document.querySelector(".card-group.customColorPalette").innerHTML=returnData;
+  document.querySelector(".col-sm-3.load-more").innerHTML=withLoadMore;
+  }
+function loadMore() {
+ // 1* 12 =12
+ // 2* 12 =24
+ let si;
+ let ei;
+  pageIndex += 1;
+  ei =pageIndex*12;
+  // si= ei-12;
+  si=0;
+  loadPartialData(si,ei);
+}
+  function renderLikes(element,index) {
+    if(element.isLiked) {
+      return `<small onclick="paletteLiked('${element.id}',this)"><i class="fa fa-heart text-danger"></i><small id="likesCount"> ${element.likes}</small></small>`
+    }
+    else
+    {
+      return `<small onclick="paletteLiked('${element.id}')"><i class="fa fa-heart-o text-danger"></i> <small id="likesCount"> ${element.likes}</small></small>`
+    }
+  }
+
+  function paletteLiked(id,thisObj) {
+    isLike=isLike?false:true;
+    if(!isLike && likedPaletteId.includes(id)){
+      thisObj.firstElementChild.className= "fa fa-heart-o text-danger"
+      let likesCount = thisObj.lastElementChild.innerHTML;
+      thisObj.lastElementChild.innerHTML= Number(likesCount)-1;
+      likedPaletteId.push(id);
+      const filteredItems = likedPaletteId.filter(item => item !== id);
+      likedPaletteId=filteredItems;
+    }
+
+    if(isLike && !likedPaletteId.includes(id)){
+      thisObj.firstElementChild.className= "fa fa-heart text-danger"
+      let likesCount = thisObj.lastElementChild.innerHTML;
+      thisObj.lastElementChild.innerHTML= Number(likesCount)+1;
+      likedPaletteId.push(id);
+    }
+     
+  }
+
   function renderCards(colorData) {
     var returnData='';
     colorData.forEach(element => {
@@ -99,7 +170,7 @@ fetch('./data/colorData.json')
     debugger;
   document.querySelector(".card-group.socialPalette").innerHTML=returnData;
   }
-
+  spinner();
   function customPalette() {
     let grid1ColorCode= document.querySelector(".grid1ColorCode");
     let grid2ColorCode= document.querySelector(".grid2ColorCode");
@@ -109,19 +180,22 @@ fetch('./data/colorData.json')
     document.querySelector("#customPalette").innerHTML=
     `       <div class="card shadow">
                   <div class="card-body">
+                <h4 class="card-title text-left text-capitalize"> random Palette</h4>
                   <h6 class="g1" onclick="showPicker(this)"> </h6>
                   <h6 class="g2" onclick="showPicker(this)"> </h6>
                   <h6 class="g3" onclick="showPicker(this)"> </h6>
                   <h6 class="g4" onclick="showPicker(this)"> </h6>
                 </div>
-                <div class="card-footer">
-                  <button class="btn btn-dark float-right" onclick="savePalette('random')"> save</button>
+                <div class="card-footer ">
+                <button class="btn btn-dark float-right mx-2" onclick="savePalette('random')" title="Save Palette"> save</button> 
+                  <button class="btn btn-secondary float-right" onclick="getTheme()" title="Genarate Palette">Genarate Palette <i class="fa fa-random "></i></button>
                   </div>
                 </div>`;
                 let g1= document.querySelector(".g1");
                 let g2= document.querySelector(".g2");
                 let g3= document.querySelector(".g3");
                 let g4= document.querySelector(".g4");
+
                 g1.style.backgroundColor = grid1ColorCode.innerHTML;
                 g2.style.backgroundColor = grid2ColorCode.innerHTML;
                 g3.style.backgroundColor = grid3ColorCode.innerHTML;
@@ -194,10 +268,9 @@ function colorWithFormat(element,format) {
 
 
 function showPicker(obj) {
-  console.log(obj.className);
   selectedLayer= obj.className;
   createPalette.show();
-  createPalette.setColorRepresentation(obj.innerHTML)
+  createPalette.setColorRepresentation(obj.innerHTML);
 
 }
 
@@ -221,6 +294,8 @@ function showPicker(obj) {
       let newPalette = { 
         id: Date.now(),
         createdAt:Date.now(),
+        isLiked:true,
+        likes:1,
         hex:{
           layer1: layer1.innerHTML, 
           layer2: layer2.innerHTML, 
@@ -241,9 +316,10 @@ function showPicker(obj) {
         }
     }; 
      
-      postData('http://localhost:3000/custompalette', newPalette)
+      postData(`${apiURL}custompalette`, newPalette)
       .then(data => {
-        renderPalettes(data);
+        customPaletteData=data;
+        loadPartialData(0,12);
       })
     }else {
       alert('Please set All Four Layers Of Colors')
@@ -392,5 +468,39 @@ function handleClick(colorFormat) {
 
 function getRandomColorInHEXFormat() {
   let bgColor = "#" + parseInt(Math.random() * 0xffffff).toString(16);
+  if(bgColor.length<=6 ) {
+    return getRandomColorInHEXFormat();
+  }
   return bgColor; // #HEXCODE
 }
+
+function downloadPaletteAsImage(layer1,layer2,layer3,layer4) {
+  drawPalette(layer1,layer2,layer3,layer4);
+  let colorCanvasPaletteBackground = document.querySelector('#paletteCanvas');
+  let base64URL= colorCanvasPaletteBackground.toDataURL();
+  debugger;
+  let a = document.createElement("a"); //Create <a>
+  a.href =  base64URL; //Image Base64 Goes here
+  let timeInMiliSec= Date.now(); 
+  a.download = `UiGenaratorKit_ColorPaletteBackGround_${timeInMiliSec}.jpg`; //File name Here
+  a.click(); //Downloaded file
+  }
+
+  function drawPalette(layer1,layer2,layer3,layer4){
+            let canvas = document.getElementById("paletteCanvas");
+          if (canvas.getContext) 
+          {
+            var ctx = canvas.getContext('2d');
+            ctx.fillStyle=layer1;    // color of fill
+            ctx.fillRect(0, 0, canvas.width, canvas.height/4); // create rectangle  
+            ctx.fillStyle=layer2;    // color of fill
+            ctx.fillRect(0, (canvas.height/4)*2,  canvas.width, canvas.height/4); // create rectangle 
+            ctx.fillStyle=layer3;    // color of fill
+            ctx.fillRect(0, (canvas.height/4)*3, canvas.width, canvas.height/4); // create rectangle  
+            ctx.fillStyle=layer4;    // color of fill
+            ctx.fillRect(0, canvas.height/4,  canvas.width, canvas.height/4); // create rectangle   
+            ctx.fill();
+          }
+        }
+        
+       

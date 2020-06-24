@@ -16,9 +16,14 @@ var colorData;
 
 const copyButton = document.getElementById("copy");
 const textButton = document.querySelector(".copycss");
+
+// const apiURL =require('./environmentConfig')
+const apiURL = `https://uigenaratorkit.herokuapp.com/`;
+// const apiURL = `http://localhost:3000/`;
 // load data
 function getData() {
-  fetch("./data/linearColor.json")
+  // fetch("./data/linearColor.json")
+  fetch(`${apiURL}lineargradientcolors`)
     .then((response) => response.json())
     .then((obj) => {
       colorData = obj;

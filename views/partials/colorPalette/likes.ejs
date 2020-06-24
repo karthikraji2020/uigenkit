@@ -1,0 +1,47 @@
+
+
+
+<div class="colorPalette">
+    <div class="inner-header flex">
+      <div class="container home-banner">
+        <h2 class="headerTitle">Create color pallete</h2>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="createPalette-color-picker">
+                </div>
+              </div>
+            <div class="col-sm-10">
+                <div class="card shadow">
+                  <div class="card-body custom">
+                  <h6 class="layer1" onclick="showPicker(this)" style="background:<%- layers[0] %>;"><%- layers[0] %></h6>
+                  <h6 class="layer2" onclick="showPicker(this)" style="background:<%- layers[1] %>;"><%- layers[1] %></h6>
+                  <h6 class="layer3" onclick="showPicker(this)" style="background:<%- layers[2] %>;"><%- layers[2] %></h6>
+                  <h6 class="layer4" onclick="showPicker(this)" style="background:<%- layers[3] %>;"><%- layers[3] %></h6>
+                </div>
+                <div class="card-footer">
+                  <button class="btn btn-dark float-right" onclick="savePalette('custom')" href="/colorpalette">save</button>
+                  </div>
+                </div>
+                <!-- <div class="card-deck" id="customPalette">
+                </div> -->
+              </div>
+        </div>
+        
+       </div>
+     </div>
+ </div>
+ <div style="display: none;">
+    <canvas  width="1280px" height="650px" id="paletteCanvas"></canvas> 
+    <canvas width="1280px" height="650px" id="colorPalette"></canvas>
+    <aside id="colorConversion"> </aside>
+  </div>
+  
+ <script>
+      let layer1,layer2,layer3,layer4;
+       layer1 =document.querySelector('.layer1');
+       layer2 =document.querySelector('.layer2');
+       layer3 =document.querySelector('.layer3');
+       layer4 =document.querySelector('.layer4');
+    
+ </script>
+ <script src="/js/colorPalette.js"></script>
