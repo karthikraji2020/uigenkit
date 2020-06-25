@@ -1,6 +1,7 @@
 
 // const copyButton = document.getElementById("copy");
 // const textButton = document.querySelector(".copycss");
+document.querySelector('.footer-year').innerText= new Date().getFullYear();
 
 $(document).ready(function() {
   var path = window.location.pathname,pages;

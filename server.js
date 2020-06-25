@@ -10,6 +10,12 @@ const customPalette = require('./public/data/custompalette.json');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const moment = require('moment');
+//dataPaths
+
+const customPaletteDataPath = `./public/data/custompalette.json`;
+
+
+
 //middlewares 
 app.use(cors());
 // parse requests of content-type - application/x-www-form-urlencoded
@@ -23,7 +29,6 @@ app.set('view engine', 'ejs');
 app.get("/", function(req, res) {
     res.render("./partials/home");
 });
-
 
 
 app.get("/home", function(req, res,next) {
@@ -45,14 +50,58 @@ app.get("/colorpalette", function(req, res) {
 // });
 
 app.get("/custompalette", function(req, res) {
-    readDataAndSortwithDate('./public/data/custompalette.json',res);
+    readDataAndSortwithDate(`${customPaletteDataPath}`,res);
 });
 app.get("/socialmediapalette", function(req, res) {
-    res.send(socialMediaColor);
+    res.status(200).send(socialMediaColor);
 });
 app.get("/lineargradientcolors", function(req, res) {
-    res.send(linearGradientColor);
+    res.status(200).send(linearGradientColor);
 });
+
+ // UPDATE
+app.put("/updatelikesbyid/:paletteid", function(req, res) {
+    let paletteid =req.params.paletteid;
+    let likes =req.body.likes;
+    let isLiked =req.body.isLiked;
+
+      customPalette.forEach(element => {
+        if(element.id == paletteid) {
+          element.likes= likes;
+          element.isLiked= isLiked;
+         }
+    });
+
+      // STEP 3: Writing to a file 
+      fs.writeFile(`${customPaletteDataPath}`, JSON.stringify(customPalette, null, 2), err => { 
+        // Checking for errors 
+        if (err) throw err;  
+        console.log("Done update"); // Success 
+    }); 
+    readDataAndSortwithDate(`${customPaletteDataPath}`,res);
+
+});
+
+
+
+
+ // UPDATE
+ app.get('/users/:id', (req, res) => {
+
+    readFile(data => {
+
+        console.log(filteredItems);
+
+        writeFile(JSON.stringify(data, null, 2), () => {
+            res.status(200).send(`users id:${userId} updated`);
+        });
+    },
+        true);
+});
+
+
+    // variables
+
 // app.post("/likes", function(req, res) {
 //     let layers =req.body.obj.split(',');
 //     console.log(layers);
@@ -63,12 +112,12 @@ app.post("/custompalette", function(req, res) {
         // STEP 2: Adding new data to users object 
         customPalette.push(req.body); 
         // STEP 3: Writing to a file 
-        fs.writeFile("./public/data/custompalette.json", JSON.stringify(customPalette), err => { 
+        fs.writeFile(`${customPaletteDataPath}`, JSON.stringify(customPalette, null, 2), err => { 
             // Checking for errors 
             if (err) throw err;  
             console.log("Done writing"); // Success 
         }); 
-        readDataAndSortwithDate('./public/data/custompalette.json',res);
+        readDataAndSortwithDate(`${customPaletteDataPath}`,res);
 });
 
 
@@ -112,6 +161,6 @@ function readDataAndSortwithDate(filePath,res) {
         //     console.log(`likes ${x.likes}`);})
         let t2= Date.now();
         console.log(`Difference in ms: ${t2-t1}`);
-        res.send(sortedArray);
+        res.status(200).send(sortedArray);
     }); 
 }

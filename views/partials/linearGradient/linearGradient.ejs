@@ -2,16 +2,16 @@
     <div class="linearGradient">
         <div class="inner-header flex" >
           <div class="container home-banner" id ="dynamicBackground">
-            <!-- <h2 class="bg-dark text-white">linearGradient</h2> -->
-
+        <!-- <h2 class="headerTitle">LinearGradient</h2> -->
       <div style="display: none;">
         <canvas width="1280px" height="600px"  style="background-image: linear-gradient(90deg, #ffff8f 50%, #ff9d00 50%); " id="thecanvas"></canvas>
             </div>
-            <div class="d-flex justify-content-center">
-                <div class="col-md-8">
+            <div class="d-flex justify-content-center" >
+                <div class="col-md-8" >
                   <div class="linearGradientInnerContainer">
                   <h3 class="orientation text-light"> choose orientation</h3>
                   <div class="row">
+                    <div class="col-sm-4 offset-sm-4 my-2">
                     <div class="btn-group btn-group-toggle text-light" id="directionBtnGroup" data-toggle="buttons">
                       <label class="btn btn-light active" title="to bottom right">
                         <input type="radio" name="directions" id="right" autocomplete="off" value="135deg">  <i class="fa fa-arrow-right"></i>
@@ -27,6 +27,8 @@
                       </label>
                     </div>
                   </div>
+                </div>
+
                   <div>Selected directions  <span id="selectedVal" class="text-white"></span></div>
   
               <input id="bgColorOne"   type="button" class="bgStopPointOne btn btn-dark" value="rgb(54, 238, 213)" onchange="changBgColorOne(this.value)" disabled>
@@ -45,22 +47,22 @@
                 </div>
             </div>
             <div class="row my-1">
-              <div class="col-1">
+              <div class="col-sm-1">
                 <button class="goBackward btn btn-dark" onclick="goBackward()"><i class="fa fa-backward"></i></button>
              </div>
-              <div class="col-4">
+              <div class="col-sm-4">
                 <label for="" class="text-white">Pick Color Stop 1</label>
                 <span class="bgOneColor-picker"></span>
                </div>
-              <div class="col-2 text-white">
+              <div class="col-sm-2 text-white">
                 <h6 class="gradientName"> Vision of Granduer</h6>
               </div>
-               <div class="col-4">
-                <label for="" class="text-white">pick Color Stop 2</label>
-                <span class="bgTwoColor-picker"></span>
+               <div class="col-sm-4">
+                 <label for="" class="text-white">pick Color Stop 2</label>
+                 <span class="bgTwoColor-picker"></span>
                </div>
               
-               <div class="col-1">
+               <div class="col-sm-1">
                   <button class="goForward btn btn-dark" onclick="goForward()" ><i class="fa fa-forward"></i></button>
                </div>
              </div>

@@ -1,51 +1,35 @@
-<script type="text/javascript">
-  function spinner() {
-      document.getElementsByClassName("loader")[0].style.display = "block";
-  }
-</script>  
-<div class="loader">
-  <div class="loading">
-  </div>
-</div>
 
-
-<div class="colorPalette" id="test">
+<div class="colorPalette">
     <div class="inner-header flex">
       <div class="container home-banner">
-        <!-- <h2 class="bg-dark text-white">color pallete</h2> -->
         <h2 class="headerTitle">color pallete</h2>
-
+        <div class="row">
+          <div class="col-sm-6">
+            <h3 class="text-dark text-left">colorFormat </h3>
+          </div>
+          <div class="col-sm-6">
+            <div class="btn-group  btn-group-toggle text-light " id="colorFormatBtnGroup" data-toggle="buttons">
+              <label class="btn btn-dark">
+                <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="rgb" autocomplete="off" value="rgb" >RGB
+              </label>
+              <label class="btn btn-dark active">
+                <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="hex" autocomplete="off" value="hex">HEX
+              </label>
+              <label class="btn btn-dark">
+                <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="rgba" autocomplete="off" value="rgba"> RGBA
+              </label>
+            </div>
+          </div>
+        </div>
         <div class="row">
        <div class="colorFormat">
 
           <!-- <h3 class="text-dark">colorFormat </h3> linear-gradient(235deg, #fe9f06 25%,#fff 2%,#fe9f06 100%)-->
-          <div class="row orientation">
-
-            <div class="row">
-
-              <div class="float-left">
-                <h3 class="text-dark">colorFormat </h3>
-              </div>
-              <div class="float-right">
-                <div class="btn-group btn-group-toggle text-light" id="colorFormatBtnGroup" data-toggle="buttons">
-                  <label class="btn btn-dark">
-                    <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="rgb" autocomplete="off" value="rgb" >RGB
-                  </label>
-                  <label class="btn btn-dark active">
-                    <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="hex" autocomplete="off" value="hex">HEX
-                  </label>
-                  <label class="btn btn-dark">
-                    <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="rgba" autocomplete="off" value="rgba"> RGBA
-                  </label>
-                </div>
-              </div>
-            </div>
-           
-          </div>
+        
           <!-- <div>Selected directions  <span id="selectedVal"></span></div> -->
         
         </div> 
-
+        
 
         <div class="showQuote">
           <div class="grid grid1" onclick="CopyColorToClipboard(this)">
@@ -62,20 +46,28 @@
           </div>
         </div>
         </div>
-        <div class="row">
-          <div class="col-sm-5">
-            <div class="card-deck" id="customPalette">
+        <div class="row my-2">
+          <div class="col-sm-6 offset-sm-3">
+          <div class="bg-light shadow">
+            <div class="df-switch" onclick="togglePalette()">
+              <button type="button" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+                <div class="inner-handle"></div>
+                <div class="handle"></div>
+              </button>
             </div>
           </div>
+          </div>
+        </div>
+       
+        <div class="row">
           <div class="col-sm-2">
             <div class="createPalette-color-picker">
             </div>
           </div>
-          <div class="col-sm-5">
-
-            <div class="card shadow">
-              <!-- <div class="card-header custom">
-              </div> -->
+          <div class="col-sm-8 offset-sm-1">
+            <div class="card shadow" id="randomPaletteGenarator">
+            </div>
+            <div class="card shadow" id="customPaletteGenarator">
               <div class="card-body custom">
                 <h4 class="card-title text-left text-capitalize">custom Palette</h4>
               <h6 class="layer1" onclick="showPicker(this)">-</h6>
@@ -85,6 +77,7 @@
             </div>
             <div class="card-footer">
               <button class="btn btn-dark float-right" onclick="savePalette('custom')" title="Save Palette"> save</button>
+              <button class="btn btn-danger float-right mx-2" onclick="resetCustomPaletteGenarator()" title="Clear Palette"> Clear</button>
               </div>
             </div>
             <!-- <div class="card-deck" id="customPalette">
@@ -102,7 +95,6 @@
          </div>
        </div>
         <br>
-<button  class="sbtn btn btn-secondary btn-c" onclick="spinner()">Log in</button>
 
         <h2 class="bg-dark text-white">Social Media Colors</h2>
         <!-- ejs for each -->

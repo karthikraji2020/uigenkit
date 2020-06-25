@@ -1,4 +1,12 @@
 @import url(//fonts.googleapis.com/css?family=Lato:300:400);
+:root {
+  --lightblue: #f6f9fc;
+  --red: #d64041;
+  --bgpatternone: #d64041;
+
+}
+
+
 html {
   scroll-behavior: smooth;
 }
@@ -9,25 +17,7 @@ body {
   font-family: "Roboto", "Lato", sans-serif;
   overflow-x: hidden;
 }
-.loading {
-  border: 2px solid #ccc;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border-top-color: #1ecd97;
-  border-left-color: #1ecd97;
-  animation: spin 1s infinite ease-in;
-}
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
 h1 {
   font-family: "Roboto", "Lato", sans-serif;
   font-weight: 300;
@@ -71,12 +61,7 @@ p {
 nav {
   background: linear-gradient(90deg, #ffffff 50%, #ff9d00 50%);
 }
-/* 
-.brandname {
-  width: 150px;
-  padding-right: 15px;
-  font-weight: 800;
-} */
+
 .d-flex.bg-transprant {
   font-weight: 600;
 }
@@ -285,9 +270,9 @@ footer {
 .linearGradientInnerContainer {
   height: 30vh;
 }
-.social{
+/* .social{
 
-}
+} */
 .social .fa {
 padding: 1.5rem;
 width: 1.5rem;
@@ -320,11 +305,6 @@ background: white;
 
 
 
-:root {
-  --lightblue: #f6f9fc;
-  --red: #d64041;
-
-}
 
   .google {
   background-color: #dd4b39;
@@ -432,11 +412,14 @@ background: white;
   white-space: pre;
 }
 
-#customPalette .card-body h6 ,.custom.card-body h6{
+#randomPaletteGenarator .card-body h6 ,.custom.card-body h6{
   color:#fff;
   padding:1rem;
   margin: 0 !important;
   
+}
+#randomPaletteGenarator {
+  display: none;
 }
 #directionBtnGroup .fa {
   transform: rotate(45deg);
@@ -465,11 +448,115 @@ h6 figcaption {
   opacity: 1;
 }
 
-.loader {
-  display: none;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%, -50%);
-}
 
+.df-switch {
+  margin-top: 2rem;
+  padding: 2rem 2rem 1rem;
+  text-align: center;
+}
+.btn-toggle {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.btn-toggle {
+  margin: 0 4rem;
+  padding: 0;
+  position: relative;
+  border: none;
+  height: 1.5rem;
+  width: 5rem;
+  border-radius: 1.5rem;
+  color: #6b7381;
+  background: #474747;
+}
+.btn-toggle:focus,
+.btn-toggle.focus,
+.btn-toggle:focus.active,
+.btn-toggle.focus.active {
+  outline: none;
+}
+.btn-toggle:before,
+.btn-toggle:after {
+  line-height: 1.5rem;
+  width: 4rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: absolute;
+  bottom: 0;
+  transition: opacity 0.25s;
+}
+.btn-toggle:before {
+  content: 'CUSTOM';
+  left: -5rem;
+  color: #0c0c0c;
+}
+.btn-toggle:after {
+  content: 'random';
+  right: -5rem;
+  opacity: 0.5;
+  color: #ff9000;
+}
+.btn-toggle > .inner-handle {
+  border-radius: 13px;
+  width: 65px;
+  height: 13px;
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  background-color: #474747;
+  box-shadow: inset 1px 1px 2px -1px black;
+}
+.btn-toggle.active > .inner-handle {
+  background-color: #eb9a31;
+}
+.btn-toggle > .handle:before {
+  content: "";
+  position: absolute;
+  height: 34px;
+  width: 34px;
+  top: 35%;
+  left: 11px;
+  background-image: radial-gradient(circle at center, #474747 5px, transparent 5px);
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+}
+.btn-toggle.active > .handle:before {
+  background-image: radial-gradient(circle at center, #ff9000 5px, transparent 5px);
+}
+.btn-toggle > .handle {
+  position: absolute;
+  top: -0.2875rem;
+  left: 0.3875rem;
+  width: 2.125rem;
+  height: 2.125rem;
+  border-radius: 1.125rem;
+  background: #fff;
+  transition: left 0.25s;
+  border: 1px solid #ccc;
+}
+.btn-toggle.active {
+  transition: background-color 0.25s;
+}
+.btn-toggle.active > .handle {
+  left: 2.4175rem;
+  transition: left 0.25s;
+}
+.btn-toggle.active:before {
+  opacity: 0.5;
+}
+.btn-toggle.active:after {
+  opacity: 1;
+  color: #ff9000;
+}
+.btn-toggle.active {
+  background-color: #ff9000;
+}
+.fixed-middle-right{
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translate(0,-50%);
+}
