@@ -1,8 +1,9 @@
 @import url(//fonts.googleapis.com/css?family=Lato:300:400);
 :root {
-  --lightblue: #f6f9fc;
+  --text-color-white: #ffffff;
   --red: #d64041;
-  --bgpatternone: #d64041;
+  --bg-primary-pattern-one:  linear-gradient(90deg, #ff9d00 50%, #ffffff 50%);
+  --bg-primary-pattern-two:  linear-gradient(90deg, #ffffff 50%, #ff9d00 50%);
 
 }
 
@@ -50,16 +51,16 @@ p {
 .header-colorpalette,.header-neumorphism{
   position: relative;
   text-align: center;
-  background: linear-gradient(90deg, #ffffff 50%, #ff9d00 50%);
+  background: var(--bg-primary-pattern-two);
+
   color: white;
 }
 .header-lineargradient {
-  /* background: linear-gradient(90deg, rgba(249, 168, 38,1) 50%, #ffffff 50%); */
-  background: linear-gradient(90deg, #ff9d00 50%, #ffffff 50%);
+  background: var(--bg-primary-pattern-one);
 }
 
 nav {
-  background: linear-gradient(90deg, #ffffff 50%, #ff9d00 50%);
+  background:  var(--bg-primary-pattern-two);
 }
 
 .d-flex.bg-transprant {
@@ -77,7 +78,7 @@ nav {
   margin-top: 3rem;
 }
 .header .inner-header:first-child {
-  background: linear-gradient(90deg, #ff9d00 50%, #ffffff 50%);
+  background: var(--bg-primary-pattern-one);
 
  }
 .flex {
@@ -88,14 +89,12 @@ nav {
   text-align: center;
 }
 .navbar .nav-item:hover:not(.active){
-  /* background-image: linear-gradient(90deg, #ffffff 50%, #ff9d00 50%); */
   background: #fff;
   border: none;
   transition: 0.8s;
   cursor: pointer;
 }
 .navbar .nav-item.active {
-  /* background: linear-gradient(90deg, #ffffff 50%, #ff9d00 50%); */
   background: #fff;
   border: none;
   transition: 0.8s;
@@ -205,7 +204,7 @@ footer {
 
 
 .colorPalette,.neumorphism,.linearGradient{ 
-  background: linear-gradient(90deg, #ff9d00 50%, #ffffff 50%);
+  background: var(--bg-primary-pattern-one);
 }
 
 
@@ -565,4 +564,52 @@ h6 figcaption {
   h1 {
     font-size: 24px;
   }
+}
+/* #content-desktop {display: block;} */
+#content-mobile {display: none;}
+
+@media screen and (max-width: 768px) {
+
+#content-desktop {display: none;}
+#content-mobile {display: block;}
+
+}
+#gotoTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  width: 3rem;
+  height: 3rem;
+  z-index: 99;
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: rgb(37, 37, 37);
+  cursor: pointer;
+  padding: .5rem;
+  border-radius: 50%;
+  -webkit-animation: upNdown 2s infinite linear;
+  animation: upNdown 2s infinite linear;
+}
+
+#gotoTop:hover {
+  color: white;
+  background-color: rgb(95, 95, 95);
+}
+.fa.fa-angle-double-up {
+  -webkit-animation: upNdown 2s infinite linear;
+  animation: upNdown 2s infinite linear;
+}
+
+@-webkit-keyframes upNdown {
+   0% { }
+   50% { transform: translateY(-10px); }
+   100% { }
+}
+@keyframes upNdown {
+   0% { }
+   50% { transform: translateY(-10px); }
+   100% { }
 }

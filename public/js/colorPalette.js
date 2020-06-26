@@ -8,8 +8,8 @@ var isLike = false;
 var likedPaletteId = [];
 var pageIndex = 1;
 
-// const apiURL = `https://uigenaratorkit.herokuapp.com/`;
-const apiURL = `http://localhost:3000/`;
+const apiURL = `https://uigenaratorkit.herokuapp.com/`;
+// const apiURL = `http://localhost:3000/`;
 
 createPalette = Pickr.create({
   el: `.createPalette-color-picker`,
@@ -145,7 +145,8 @@ function loadMore() {
   loadPartialData(si, ei);
 }
 function renderLikes(element, index) {
-  if (element.isLiked && likedPaletteId.length>0 &&likedPaletteId.includes(element.id)) {
+  // if (element.isLiked && likedPaletteId.length>0 &&likedPaletteId.includes(element.id)) {
+  if (element.isLiked ) {
     return `<small onclick="paletteLiked('${element.id}',this,${element.isLiked})"><i class="fa fa-heart text-danger"></i><small id="likesCount"> ${element.likes}</small></small>`;
   } else {
     return `<small onclick="paletteLiked('${element.id}',this,${element.isLiked})"><i class="fa fa-heart-o text-danger"></i> <small id="likesCount"> ${element.likes}</small></small>`;

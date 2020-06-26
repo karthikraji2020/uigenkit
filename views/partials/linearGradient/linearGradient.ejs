@@ -46,26 +46,34 @@
                   </div>
                 </div>
             </div>
-            <div class="row my-1">
-              <div class="col-sm-1">
+         
+             <div class="row my-1"  id="content-desktop">
+                <div class="col-1">
                 <button class="goBackward btn btn-dark" onclick="goBackward()"><i class="fa fa-backward"></i></button>
-             </div>
-              <div class="col-sm-4">
-                <label for="" class="text-white">Pick Color Stop 1</label>
-                <span class="bgOneColor-picker"></span>
-               </div>
-              <div class="col-sm-2 text-white">
-                <h6 class="gradientName"> Vision of Granduer</h6>
-              </div>
-               <div class="col-sm-4">
-                 <label for="" class="text-white">pick Color Stop 2</label>
-                 <span class="bgTwoColor-picker"></span>
-               </div>
-              
-               <div class="col-sm-1">
+                </div>
+                <div class="col-4">
+                  <label for="" class="text-white">Pick Color Stop 1</label> 
+                  <span class="bgOneColor-picker"></span>
+                </div>
+                 <div class="col-2 text-white" >
+                 <h6 class="gradientName"> Vision of Granduer</h6>
+                </div>
+                <div class="col-4">
+                   <label for="" class="text-white">pick Color Stop 2</label> 
+                  <span class="bgTwoColor-picker"></span>
+                </div>
+                <div class="col-1">
                   <button class="goForward btn btn-dark" onclick="goForward()" ><i class="fa fa-forward"></i></button>
-               </div>
+                </div>
              </div>
+             <div class="row my-4" id="content-mobile">
+
+              <div class="col-sm-12">
+                  <button class="goBackward btn btn-dark" onclick="goBackward()"><i class="fa fa-backward"></i></button>
+                  <span class="px-5"></span>
+                  <button class="goForward btn btn-dark" onclick="goForward()" ><i class="fa fa-forward"></i></button>
+              </div>
+           </div>
              
           </div>
         </div>
@@ -85,8 +93,6 @@
             <div class="modal-body">
               <div class="copycss"  tooltip="Copy to clipboard" >
               </div>
-            
-            
             </div>
             
             <!-- Modal footer -->

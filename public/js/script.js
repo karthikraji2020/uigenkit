@@ -64,6 +64,7 @@ function hexToRGBA(hex, opacity) {
 }
 
 
+
   // const copyText = (e) => {
   //   debugger;
   //   window.getSelection().selectAllChildren(textButton);

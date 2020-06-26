@@ -68,6 +68,7 @@
             <div class="card shadow" id="randomPaletteGenarator">
             </div>
             <div class="card shadow" id="customPaletteGenarator">
+              <div class="card shadow">
               <div class="card-body custom">
                 <h4 class="card-title text-left text-capitalize">custom Palette</h4>
               <h6 class="layer1" onclick="showPicker(this)">-</h6>
@@ -79,6 +80,7 @@
               <button class="btn btn-dark float-right" onclick="savePalette('custom')" title="Save Palette"> save</button>
               <button class="btn btn-danger float-right mx-2" onclick="resetCustomPaletteGenarator()" title="Clear Palette"> Clear</button>
               </div>
+            </div>
             </div>
 
           </div>
@@ -123,8 +125,32 @@
         <aside id="colorConversion"> </aside>
       </div>
       </div>
+<button onclick="gotoTopFunction()" id="gotoTop" title="Go to top"><i class="fa fa-angle-double-up"></i></button>
+
     </div>
   </div>
+
+<script>
+  //Get the button
+var mybutton = document.getElementById("gotoTop");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunctionUpDown()};
+
+function scrollFunctionUpDown() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function gotoTopFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
   <script src="/js/colorPalette.js"></script>
 
 
