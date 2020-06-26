@@ -1,25 +1,33 @@
 # UiGenaratorKit
- All In One  latest Trending UI - Generator-Kit Application.
+ All In One latest Trending UI - Generator-Kit Application.
  
 ## about the application
 UiGenaratorKit is multi-featured application users can (copy css code) or download their own color palettes , linear-gradient as Images as well and soft-ui Genarator (latest ui-design pattern ) for their next successful project. It has a collection of fresh palettes created and liked by users everyday.
 
-It's a clone of colorhunt, neumorphism,ui gradient  made in node and ejs.
+It's a Recreation of colorhunt, neumorphism,ui gradient apps which i made in node and ejs.
 
 Applink :[uigenaratorkit](https://uigenaratorkit.herokuapp.com)
 
+## :film_projector: DEMO
+<p align="center">
+<img src="./public/uigenaratorkit.gif" alt="uigenaratorkit">
+</p>
 ###### Features
 1. Neumorphism (or) Soft UI Generator.
     1. Copy Css Code  by one tap on the color.
 2. LinearGradient Generator.
     1. Copy Css Code  by one tap on the color.
     2. Download As Image
-3. Color Palette Generator.
+3. Color Palette Generator
+   Two Types Of Palette Genarator (custom and Random) 
     1. Copy Css Code by one tap on the color.
     2. users able to like the palette.
-    2. Download As Image.
-    a. socialmedia colors.
+    3. sort palettes by likes and time (createdAt)
+    4. Download As Image.
+   a. Popular socialmedia colors (copy code and downloadable).
 
 ## Tech Stack
-- serverside Rendering (nodejs & ejs) 
+- serverside Rendering (nodejs & ejs) ;
 - bootstrap 4.3
+
+

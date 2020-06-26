@@ -29,25 +29,25 @@
           <!-- <div>Selected directions  <span id="selectedVal"></span></div> -->
         
         </div> 
-        
 
-        <div class="showQuote">
-          <div class="grid grid1" onclick="CopyColorToClipboard(this)">
-            <section class="grid1ColorCode"></section>
+          <div class="showQuote">
+              <div class="grid grid1" onclick="CopyColorToClipboard(this)">
+                <section class="grid1ColorCode"></section>
+              </div>
+              <div class="grid grid2" onclick="CopyColorToClipboard(this)">
+                <section class="grid2ColorCode"></section>
+              </div>
+              <div class="grid grid3" onclick="CopyColorToClipboard(this)">
+                <section class="grid3ColorCode"></section>
+              </div>
+              <div class="grid grid4" onclick="CopyColorToClipboard(this)">
+                <section class="grid4ColorCode"></section>
+              </div>
           </div>
-          <div class="grid grid2" onclick="CopyColorToClipboard(this)">
-            <section class="grid2ColorCode"></section>
-          </div>
-          <div class="grid grid3" onclick="CopyColorToClipboard(this)">
-            <section class="grid3ColorCode"></section>
-          </div>
-          <div class="grid grid4" onclick="CopyColorToClipboard(this)">
-            <section class="grid4ColorCode"></section>
-          </div>
-        </div>
+
         </div>
         <div class="row my-2">
-          <div class="col-sm-6 offset-sm-3">
+          <div class="col-sm-12 col-md-6 offset-md-3">
           <div class="bg-light shadow">
             <div class="df-switch" onclick="togglePalette()">
               <button type="button" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
@@ -80,11 +80,27 @@
               <button class="btn btn-danger float-right mx-2" onclick="resetCustomPaletteGenarator()" title="Clear Palette"> Clear</button>
               </div>
             </div>
-            <!-- <div class="card-deck" id="customPalette">
-            </div> -->
+
           </div>
         </div>
+        <div class="row my-2">
+          <div class="col-md-6">
+          <!-- <div>Selected directions  <span id="selectedValSortedBy"></span></div> -->
+          </div>
+         <div class="col-md-6 load-more">
+           <div class="btn-group  btn-group-toggle text-light " id="sortBy" data-toggle="buttons">
+            <h5 class=" text-dark ">SortedBy :</h5> &nbsp;
+            <label class="btn btn-dark active">
+              <input type="radio"  name="sortBy" onclick="sortBy(this);" id="likes" autocomplete="off" value="likes" >Likes <i class="fa fa-heart"></i>
+            </label>
+            <label class="btn btn-dark ">
+              <input type="radio"  name="sortBy" onclick="sortBy(this);" id="createdat" autocomplete="off" value="createdat">Created At <i class="fa fa-clock-o"></i>
+            </label>
+          </div>
+         </div>
+       </div>
         <div class="row">
+          
           <div class="card-group customColorPalette">
       
           </div>

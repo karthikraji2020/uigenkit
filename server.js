@@ -45,9 +45,6 @@ app.get("/lineargradient", function(req, res) {
 app.get("/colorpalette", function(req, res) {
     res.render("./partials/colorPalette/colorPalette");
 });
-// app.get("/createCustomPalette", function(req, res) {
-//     res.render("./partials/colorPalette/createCustomPalette");
-// });
 
 app.get("/custompalette", function(req, res) {
     readDataAndSortwithDate(`${customPaletteDataPath}`,res);
@@ -83,31 +80,6 @@ app.put("/updatelikesbyid/:paletteid", function(req, res) {
 });
 
 
-
-
- // UPDATE
- app.get('/users/:id', (req, res) => {
-
-    readFile(data => {
-
-        console.log(filteredItems);
-
-        writeFile(JSON.stringify(data, null, 2), () => {
-            res.status(200).send(`users id:${userId} updated`);
-        });
-    },
-        true);
-});
-
-
-    // variables
-
-// app.post("/likes", function(req, res) {
-//     let layers =req.body.obj.split(',');
-//     console.log(layers);
-//     res.render("./partials/colorPalette/likes",{layers});
-// });
-//   res.redirect('/')
 app.post("/custompalette", function(req, res) {
         // STEP 2: Adding new data to users object 
         customPalette.push(req.body); 
@@ -152,13 +124,21 @@ function readDataAndSortwithDate(filePath,res) {
             let years = d2.diff(d1, 'years');
             let hours = d2.diff(d1, 'hours');
             let minutes = d2.diff(d1, 'minutes');
-            result= months>12 ? `${years} years ago` :  `${months} months ago` ;
-            result= hours>24 ? `${days} days ago` :  `${hours} hrs ago` ;
-            result =minutes>60 ? `${hours} hours ago` :  `${minutes} mins ago` ;
+            if(months>12) {
+                result= `${years} years ago` ;
+            } else  {
+                if(hours >24) {
+                    result=`${days} days ago`;
+                } else if(hours <24) {
+                    if( minutes >60) {
+                        result= `${hours} hours ago` ;
+                    } else if (minutes <60) {
+                        result=  `${minutes} mins ago` ;
+                    }
+                }
+            }
             element.createdAt= result;
         });
-        // sortedArray.map(x=>{
-        //     console.log(`likes ${x.likes}`);})
         let t2= Date.now();
         console.log(`Difference in ms: ${t2-t1}`);
         res.status(200).send(sortedArray);

@@ -1,22 +1,15 @@
-// import apiURL from './public/js/environmentConfig.js';
-// const apiURL =require('/js/environmentConfig.js')/js/neumorphism.js
+var currentValue = "hex";
+var selectedSortBy = ["createdat"];
 var colorData;
 var customPaletteData;
 var createPalette;
 var selectedLayer;
 var isLike = false;
 var likedPaletteId = [];
-const apiURL = `https://uigenaratorkit.herokuapp.com/`;
-// const apiURL = `http://localhost:3000/`;
 var pageIndex = 1;
 
-// fetch('./data/colorData.json')
-fetch(`${apiURL}socialmediapalette`)
-  .then((response) => response.json())
-  .then((obj) => {
-    colorData = obj;
-    renderCards(obj);
-  });
+// const apiURL = `https://uigenaratorkit.herokuapp.com/`;
+const apiURL = `http://localhost:3000/`;
 
 createPalette = Pickr.create({
   el: `.createPalette-color-picker`,
@@ -40,11 +33,25 @@ createPalette = Pickr.create({
     },
   },
 });
+
 createPalette.on("change", (color, instance) => {
   changeSelectedlayerBg();
 });
 createPalette.hide();
 loadPaletteColors();
+setTimeout(() => {
+  loadSocialMediaPaletteColors();
+}, 3000);
+
+function  loadSocialMediaPaletteColors() {
+  fetch(`${apiURL}socialmediapalette`)
+  .then((response) => response.json())
+  .then((obj) => {
+    colorData = obj;
+    renderCards(obj);
+  });
+}
+
 function loadPaletteColors() {
   fetch(`${apiURL}custompalette`, {
     headers: {
@@ -59,20 +66,34 @@ function loadPaletteColors() {
     });
 }
 
+
+
 function loadPartialData(startIndex, endIndex) {
-  let initalData = customPaletteData.slice(startIndex, endIndex);
-  renderPalettes(initalData);
+  switch (selectedSortBy.toString()) {
+    case 'createdat':
+      let customPaletteDataCopy= customPaletteData;
+    customPaletteDataCopy.sort((a,b)=>{return b.id - a.id});
+    customPaletteData= customPaletteDataCopy;
+    let initalData = customPaletteData.slice(startIndex, endIndex);
+    renderPalettes(initalData);
+      break;
+      case 'likes':
+      let customPaletteDataCopy1= customPaletteData;
+      customPaletteData.sort((a,b)=>{return b.likes - a.likes});
+      customPaletteData= customPaletteDataCopy1;
+      let initalData1 = customPaletteData.slice(startIndex, endIndex);
+      renderPalettes(initalData1);
+      break;
+  }
 }
 
 function renderPalettes(customPaletteData) {
   var returnData = "";
   customPaletteData.forEach((element, index) => {
-    returnData += ` <div class="col-sm-12 col-md-4 col-lg-3 my-1" >
-      <form id="form_${index}" action="/likes" method="POST">
-    <input type="text" hidden name="obj" value="${element.hex.layer1},${
-      element.hex.layer2
-    },${element.hex.layer3},${element.hex.layer4}">
-      <div class="card shadow">
+    if(element.createdAt !== undefined) {
+    returnData += ` <div class="col-sm-12 col-md-4 col-lg-3 my-2" >
+
+      <div class="card">
       <div class="card-body custom" title="click to copy ClipBoard">
       ${palettecolorWithFormat(element, currentValue)}
     </div>
@@ -94,12 +115,10 @@ function renderPalettes(customPaletteData) {
      </button>
       </div>
     </div>
-    </form>
     </div>
       `;
+    }
   });
-  debugger;
-  // document.querySelector(".card-group.customColorPalette").innerHTML=returnData;
   let withLoadMore = "";
   if (customPaletteData.length >= 12) {
     withLoadMore = `
@@ -126,7 +145,7 @@ function loadMore() {
   loadPartialData(si, ei);
 }
 function renderLikes(element, index) {
-  if (element.isLiked) {
+  if (element.isLiked && likedPaletteId.length>0 &&likedPaletteId.includes(element.id)) {
     return `<small onclick="paletteLiked('${element.id}',this,${element.isLiked})"><i class="fa fa-heart text-danger"></i><small id="likesCount"> ${element.likes}</small></small>`;
   } else {
     return `<small onclick="paletteLiked('${element.id}',this,${element.isLiked})"><i class="fa fa-heart-o text-danger"></i> <small id="likesCount"> ${element.likes}</small></small>`;
@@ -165,6 +184,7 @@ function resetCustomPaletteGenarator() {
   layer3.innerHTML = " - ";
   layer4.innerHTML = " - ";
 }
+
 function paletteLiked(id, thisObj, isLiked) {
   isLike = isLike ? false : true;
   if (!isLike && likedPaletteId.includes(id)) {
@@ -249,23 +269,43 @@ function customPalette() {
                 </div>
                 <div class="card-footer ">
                 <button class="btn btn-dark float-right mx-2" onclick="savePalette('random')" title="Save Palette"> save</button> 
-                  <button class="btn btn-secondary float-right" onclick="getTheme()" title="Genarate Palette">Genarate Palette <i class="fa fa-random "></i></button>
+                  <button class="btn btn-secondary float-right" onclick="customPalette()" title="Genarate Palette">Genarate Palette <i class="fa fa-random "></i></button>
                   </div>
                 </div>`;
+                
+  let setg1Color= `${getRandomColorInHEXFormat()}`;
+  
+  let setg2Color= `${getRandomColorInHEXFormat()}`;
+  
+  let setg3Color= `${getRandomColorInHEXFormat()}`;
+  
+  let setg4Color= `${getRandomColorInHEXFormat()}`;
+  
   let g1 = document.querySelector(".g1");
   let g2 = document.querySelector(".g2");
   let g3 = document.querySelector(".g3");
   let g4 = document.querySelector(".g4");
 
-  g1.style.backgroundColor = grid1ColorCode.innerHTML;
-  g2.style.backgroundColor = grid2ColorCode.innerHTML;
-  g3.style.backgroundColor = grid3ColorCode.innerHTML;
-  g4.style.backgroundColor = grid4ColorCode.innerHTML;
+  g1.style.backgroundColor = setg1Color;
+  g2.style.backgroundColor = setg2Color;
+  g3.style.backgroundColor = setg3Color;
+  g4.style.backgroundColor = setg4Color;
+  
 
-  g1.innerHTML = grid1ColorCode.innerHTML;
-  g2.innerHTML = grid2ColorCode.innerHTML;
-  g3.innerHTML = grid3ColorCode.innerHTML;
-  g4.innerHTML = grid4ColorCode.innerHTML;
+  g1.innerHTML = setg1Color;
+  g2.innerHTML = setg2Color;
+  g3.innerHTML = setg3Color;
+  g4.innerHTML = setg4Color;
+  // g1.style.backgroundColor = grid1ColorCode.innerHTML;
+  // g2.style.backgroundColor = grid2ColorCode.innerHTML;
+  // g3.style.backgroundColor = grid3ColorCode.innerHTML;
+  // g4.style.backgroundColor = grid4ColorCode.innerHTML;
+  
+
+  // g1.innerHTML = grid1ColorCode.innerHTML;
+  // g2.innerHTML = grid2ColorCode.innerHTML;
+  // g3.innerHTML = grid3ColorCode.innerHTML;
+  // g4.innerHTML = grid4ColorCode.innerHTML;
 }
 
 function downloadImage(obj, name) {
@@ -356,7 +396,7 @@ function savePalette(type) {
     let newPalette = {
       id: Date.now(),
       createdAt: Date.now(),
-      isLiked: true,
+      isLiked: false,
       likes: 1,
       hex: {
         layer1: layer1.innerHTML,
@@ -485,7 +525,7 @@ for (let index = 0; index < showQuoteChild.length; index++) {
 }
 //["grid1", "grid2", "grid3","grid4"];
 getTheme();
-var currentValue = "hex";
+
 // Get click event, assign button to var, and get values from that var
 $("#colorFormatBtnGroup input").on("click", function () {
   var thisBtn = $(this);
@@ -494,7 +534,21 @@ $("#colorFormatBtnGroup input").on("click", function () {
   renderPalettes(customPaletteData, btnValue);
   $("#selectedVal").text(btnValue);
 });
+
+$("#sortBy input").on("click", function () {
+  var thisBtn = $(this);
+  var btnValue = thisBtn.val();
+  selectedSortBy.length=0
+  selectedSortBy.push(btnValue);
+  sortBy(btnValue);
+  $("#selectedValSortedBy").text(btnValue);
+});
+
+customPalette();
+
+
 function getTheme() {
+
   for (let index = 0; index < gridsArrray.length; index++) {
     const currenGridElement = gridsArrray[index];
     let getColorCode = getRandomColorInHEXFormat();
@@ -518,7 +572,6 @@ function getTheme() {
           break;
       }
     }
-    customPalette();
   }
   //take copy and do the
 }
@@ -527,7 +580,6 @@ window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
 var myNav = document.getElementById('colorFormatBtnGroup');
   if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-    debugger;
     myNav.classList.add("btn-group-vertical","fixed-middle-right");
   } else {
   
@@ -535,28 +587,35 @@ var myNav = document.getElementById('colorFormatBtnGroup');
   }
 }
 
- 
+function sortBy(toSortBy) {
+  // selectedSortBy.length= 0;
+  // selectedSortBy.push(toSortBy.value);
+  // selectedSortBy = toSortBy.value;
+  loadPartialData(0, 12);
+}
+
 function handleClick(colorFormat) {
   currentValue = colorFormat.value;
+  let gridsArrray = document.querySelectorAll("#randomPaletteGenarator .card-body h6");
   for (let index = 0; index < gridsArrray.length; index++) {
-    const currenGridElement = gridsArrray[index];
-    let currenGridElementDOM = document.querySelector("." + currenGridElement);
+    // const currenGridElement = gridsArrray[index];
+    // let currenGridElementDOM = document.querySelector("." + currenGridElement);
+    let currenGridElementDOM =  gridsArrray[index];
     if (currentValue == "hex") {
-      currenGridElementDOM.children[0].innerHTML = rgbToHex(
+      currenGridElementDOM.innerHTML = rgbToHex(
         currenGridElementDOM.style.backgroundColor
       );
     }
     if (currentValue == "rgb") {
-      currenGridElementDOM.children[0].innerHTML =
+      currenGridElementDOM.innerHTML =
         currenGridElementDOM.style.backgroundColor;
     }
     if (currentValue == "rgba") {
-      currenGridElementDOM.children[0].innerHTML = currenGridElementDOM.style.backgroundColor
+      currenGridElementDOM.innerHTML = currenGridElementDOM.style.backgroundColor
         .replace("rgb", "rgba")
         .replace(")", ",1)");
     }
   }
-  customPalette();
 }
 
 function getRandomColorInHEXFormat() {
