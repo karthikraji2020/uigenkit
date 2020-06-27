@@ -16,7 +16,7 @@ createPalette = Pickr.create({
   theme: "nano", // or 'monolith', or 'nano'
   default: "#000",
   comparison: false,
-  showAlways: true,
+  showAlways: false,
   closeOnScroll: true,
   closeWithKey: "Escape",
   // sliders: 'v',
@@ -37,8 +37,11 @@ createPalette = Pickr.create({
 createPalette.on("change", (color, instance) => {
   changeSelectedlayerBg();
 });
+
 createPalette.hide();
+
 loadPaletteColors();
+
 setTimeout(() => {
   loadSocialMediaPaletteColors();
 }, 3000);
@@ -133,6 +136,8 @@ function renderPalettes(customPaletteData) {
   ).innerHTML = returnData;
   document.querySelector(".col-sm-3.load-more").innerHTML = withLoadMore;
 }
+
+
 function loadMore() {
   // 1* 12 =12
   // 2* 12 =24
@@ -175,10 +180,10 @@ function resetCustomPaletteGenarator() {
   layer3 = document.querySelector("#customPaletteGenarator h6.layer3");
   layer4 = document.querySelector("#customPaletteGenarator h6.layer4");
 
-  layer1.style.backgroundColor = " rgb(224, 224, 224)";
-  layer2.style.backgroundColor = " rgb(206, 206, 206)";
-  layer3.style.backgroundColor = " rgba(168, 168, 168, 0.822)";
-  layer4.style.backgroundColor = " rgba(143, 142, 142, 0.815)";
+  layer1.style.backgroundColor = " rgba(143, 142, 142, 0.815)";
+  layer2.style.backgroundColor = " rgba(168, 168, 168, 0.822)";
+  layer3.style.backgroundColor = " rgb(206, 206, 206)";
+  layer4.style.backgroundColor = " rgb(224, 224, 224)";
 
   layer1.innerHTML = " - ";
   layer2.innerHTML = " - ";
@@ -187,7 +192,7 @@ function resetCustomPaletteGenarator() {
 }
 
 function paletteLiked(id, thisObj, isLiked) {
-  isLike = isLike ? false : true;
+  isLike = (isLike && likedPaletteId.includes(id)) ? false : true;
   if (!isLike && likedPaletteId.includes(id)) {
     thisObj.firstElementChild.className = "fa fa-heart-o text-danger";
     let likesCount =
@@ -262,7 +267,7 @@ function customPalette() {
     "#randomPaletteGenarator"
   ).innerHTML = `       <div class="card shadow">
                   <div class="card-body">
-                <h4 class="card-title text-left text-capitalize"> random Palette</h4>
+                <h4 class="card-title text-left text-capitalize"> random Generator</h4>
                   <h6 class="g1" onclick="showPicker(this)"> </h6>
                   <h6 class="g2" onclick="showPicker(this)"> </h6>
                   <h6 class="g3" onclick="showPicker(this)"> </h6>
@@ -270,17 +275,26 @@ function customPalette() {
                 </div>
                 <div class="card-footer ">
                 <button class="btn btn-dark float-right mx-2" onclick="savePalette('random')" title="Save Palette"> save</button> 
-                  <button class="btn btn-secondary float-right" onclick="customPalette()" title="Genarate Palette">Genarate Palette <i class="fa fa-random "></i></button>
+                  <button class="btn btn-secondary float-right" onclick="customPalette()" title="Genarate Palette">Generate <i class="fa fa-random "></i></button>
                   </div>
                 </div>`;
                 
-  let setg1Color= `${getRandomColorInHEXFormat()}`;
+ var lighten2Color = `${getRandomColorInHEXFormat()}`;
+  let setg1Color= `${getShadesOfColor(lighten2Color, -40)}`;
+  var lighten3Color =getShadesOfColor(lighten2Color, 40);
+  var lighten4Color = getShadesOfColor(lighten2Color, 70) ;
+  // let colorstoptwo= `${invertColor(lighten2Color)}`;
+
+  // var lighten2Color = getShadesOfColorjust(setg1Color, 20) ;
+  // var lighten3Color = getShadesOfColor(setg1Color, 40) ;
+  // var lighten4Color = getShadesOfColor(setg1Color, 60) ;
+  let setg2Color= `${lighten2Color}`;
+  let setg3Color= `${lighten3Color}`;
+  let setg4Color= `${lighten4Color}`;
   
-  let setg2Color= `${getRandomColorInHEXFormat()}`;
-  
-  let setg3Color= `${getRandomColorInHEXFormat()}`;
-  
-  let setg4Color= `${getRandomColorInHEXFormat()}`;
+  // let setg2Color= `${getRandomColorInHEXFormat()}`;
+  // let setg3Color= `${getRandomColorInHEXFormat()}`;
+  // let setg4Color= `${getRandomColorInHEXFormat()}`;
   
   let g1 = document.querySelector(".g1");
   let g2 = document.querySelector(".g2");
@@ -370,6 +384,7 @@ function showPicker(obj) {
 }
 
 function savePalette(type) {
+  renderLoader(400);
   let layer1, layer2, layer3, layer4;
   if (type === "random") {
     layer1 = document.querySelector(".g1");
@@ -529,10 +544,13 @@ getTheme();
 
 // Get click event, assign button to var, and get values from that var
 $("#colorFormatBtnGroup input").on("click", function () {
-  var thisBtn = $(this);
+
+  var thisBtn = $(this);  
   var btnValue = thisBtn.val();
   renderCards(colorData, btnValue);
   renderPalettes(customPaletteData, btnValue);
+
+
   $("#selectedVal").text(btnValue);
 });
 
@@ -542,8 +560,12 @@ $("#sortBy input").on("click", function () {
   selectedSortBy.length=0
   selectedSortBy.push(btnValue);
   sortBy(btnValue);
+  
+  renderLoader(500);
+
   $("#selectedValSortedBy").text(btnValue);
 });
+
 
 customPalette();
 

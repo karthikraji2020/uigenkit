@@ -1,10 +1,19 @@
 
 // const copyButton = document.getElementById("copy");
 // const textButton = document.querySelector(".copycss");
-document.querySelector('.footer-year').innerText= new Date().getFullYear();
+function renderLoader(ms) {
+  $('body').append('<div style="z-index:10000;position:Fixed;height:100vh;" id="loadingDiv"><img src="/images/loading.png" class="loader" alt="loader"/><div > </div></div>');
+  setTimeout(removeLoader, ms); 
+}
+function removeLoader(){
+  $( "#loadingDiv").remove(); 
+}
 
 $(document).ready(function() {
   var path = window.location.pathname,pages;
+  renderLoader(700);
+  
+
   var pathname = path.split('/')[1];
   pages = ['home', 'neumorphism', 'lineargradient','colorpalette'];
   if (pathname==='') {
@@ -24,7 +33,9 @@ $(document).ready(function() {
 
 });
 
-
+function getShadesOfColor(color, amount) {
+  return '#' + color.replace(/^#/, '').replace(/../g, color => ('0'+Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
+}
 function CopyColorToClipboard(containerid) {
   var range = document.createRange();
   range.selectNode(containerid);
@@ -62,6 +73,19 @@ function hexToRGBA(hex, opacity) {
     ")"
   );
 }
+
+function invertColor(hexTripletColor) {
+  var color = hexTripletColor;
+  color = color.substring(1); // remove #
+  color = parseInt(color, 16); // convert to integer
+  color = 0xffffff ^ color; // invert three bytes
+  color = color.toString(16); // convert to hex
+  color = ("000000" + color).slice(-6); // pad with leading zeros
+  color = "#" + color; // prepend #
+  return color;
+}
+
+
 
 
 

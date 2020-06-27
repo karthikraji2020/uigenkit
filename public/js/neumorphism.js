@@ -2,7 +2,7 @@ const boxContent = document.querySelector(".box");
 const copyCssContent = document.querySelector(".copy-css");
 const colorCodeInHex = document.querySelector("#colorCodeInHex");
 var containerContent = document.querySelector(".box-wrapper");
-
+var globalHexValueOfPicker;
 const sizeRange = document.querySelector("#sizeRange");
 const radiusRange = document.querySelector("#radiusRange");
 const distanceRange = document.querySelector("#distanceRange");
@@ -14,15 +14,43 @@ const radiusRangeValue = document.querySelector("#radiusRangeValue");
 const distanceRangeValue = document.querySelector("#distanceRangeValue");
 const blurRangeValue = document.querySelector("#blurRangeValue");
 const intensityRangeValue = document.querySelector("#intensityRangeValue");
-var selectedDirection = "135deg";
-var isInset = true;
+var selectedDirection = "145deg";
+var isInset = false;
 const copyButton = document.getElementById("copy");
 const textButton = document.querySelector(".copy-css");
 const shapeType = document.querySelector('#shapeType');
 
-// sizeRangeValue.innerHTML = sizeRange.value;
-// boxContent.style.width  = sizeRange.value;
-// boxContent.style.height  = sizeRange.value;
+
+const pickr = Pickr.create({
+  el: ".color-picker",
+  theme: "nano", // or 'monolith', or 'nano'
+  default: "#626262",
+  comparison: false,
+  showAlways: false,
+  closeOnScroll: true,
+  closeWithKey: "Escape",
+  components: {
+    // Main components
+    preview: true,
+    opacity: true,
+    hue: true,
+    // Input / output Options
+    interaction: {
+      hex: true,
+      rgba: true,
+      input: true,
+      // save: true
+    },
+  },
+});
+
+pickr.on("change", (color, instance) => {
+  let rgbaColor = color.toRGBA().toString();
+   globalHexValueOfPicker = color.toHEXA().toString();
+  addcopycss();
+  changeBgColor(rgbaColor);
+});
+
 
 sizeRangeValue.innerText = `${sizeRange.value}`;
 radiusRangeValue.innerHTML = `${radiusRange.value}`;
@@ -54,16 +82,16 @@ sizeRange.oninput = function () {
   sizeRangeValue.innerHTML = `${this.value}`;
   //ratio  Calculations
   let blurRatio = Number(this.value) / 5;
-  let distanceRatio = Number(this.value) / 10;
-  let radiusRatio = Number(this.value) / 2;
+  let distanceRatio = Number(this.value) / 30 ;
+  let radiusRatio = Number(this.value) / 4;
 
   blurRange.value = blurRatio;
   blurRangeValue.innerHTML = blurRatio;
 
-  distanceRange.value = distanceRatio;
-  distanceRangeValue.innerHTML = distanceRatio;
+  distanceRange.value = distanceRatio.toFixed(1);
+  distanceRangeValue.innerHTML = distanceRatio.toFixed(1);
 
-  radiusRange.max = radiusRatio;
+  // radiusRange.max = radiusRatio;
   radiusRange.value = radiusRatio / 1.5;
   radiusRangeValue.innerHTML = radiusRatio;
 
@@ -156,12 +184,15 @@ function changePositionTo(pos, thisObj) {
 function checkDirection() {
   let boxshadow, boxshadowWithInset, firstInsetData, data1, secondInsetData;
   boxshadow = getBoxShadow();
+
   firstInsetData = "inset" + boxshadow.split("), ")[0] + ") ,";
   data1 = boxshadow.split("), ")[1];
   secondInsetData = "inset " + data1;
   boxshadowWithInset = firstInsetData + secondInsetData;
 
   //checking whether inset Enabled
+    // return boxshadow;
+     
   if (isInset) {
     return boxshadow;
   } else {
@@ -170,7 +201,7 @@ function checkDirection() {
 }
 function toggleInset(Obj) {
   isInset = isInset ? false : true;
-  isInset ? shapeType.textContent = "Inset" : shapeType.textContent = "Flat";
+  isInset ? shapeType.textContent = "Pressed" : shapeType.textContent = "Flat";
   addcopycss();
 }
 function getBoxShadow() {
@@ -182,12 +213,16 @@ function getBoxShadow() {
   data = getBackgroundColor(containerContent);
   test = intensityRangeValue.innerHTML;
   if (!data.includes("rgba(")) {
-    firstPointShadowColor = data
-      .replace("rgb(", "rgba(")
-      .replace(")", `,${intensityRangeValue.innerHTML})`);
-    // secondPointShadowColor = data.replace('rgb(','rgba(').replace(')',`,${intensityRangeValue.innerHTML * 2})`);
     let hexValue = rgbToHex(data);
-    let inverterHexValue = invertColor(hexValue);
+
+    // firstPointShadowColor = data
+    //   .replace("rgb(", "rgba(")
+    //   .replace(")", `,${intensityRangeValue.innerHTML})`);
+     let bgHex=  rgbToHex(data);
+      let inverterHexValue = getShadesOfColor(bgHex,-75);
+      
+    // secondPointShadowColor = data.replace('rgb(','rgba(').replace(')',`,${intensityRangeValue.innerHTML * 2})`);
+    // let inverterHexValue = invertColor(hexValue);
     let result = hexToRGBA(inverterHexValue);
 
      let newData = result.split(',');
@@ -196,15 +231,25 @@ function getBoxShadow() {
      let opResult = `${newData[0]},${newData[1]},${newData[2]},${roundedOpacity})`
 
     // secondPointShadowColor = result.replace(')',`,${intensityRangeValue.innerHTML})`);
-    secondPointShadowColor = opResult;
+    // secondPointShadowColor = opResult;
+    firstPointShadowColor=opResult;
+
+    // firstPointShadowColor = getShadesOfColor(hexValue,15);
+    // secondPointShadowColor = getShadesOfColor(hexValue,-55);
+    secondPointShadowColor =data;
+    // secondPointShadowColor = data;
     // Returns FF00FF
   } else {
     firstPointShadowColor = data;
     secondPointShadowColor = data;
+    // let hexValue2 = rgbToHex(data);
+    // firstPointShadowColor = getShadesOfColor(hexValue2,15);
+    // secondPointShadowColor = getShadesOfColor(hexValue2,-35);
+    
   }
 
   switch (selectedDirection) {
-    case "135deg":
+    case "145deg":
       return ` ${ratio}px ${ratio}px ${blurRatio}px ${firstPointShadowColor}, -${ratio}px -${ratio}px ${blurRatio}px ${secondPointShadowColor}`;
       break;
     case "225deg":
@@ -221,22 +266,22 @@ function getBoxShadow() {
   }
 }
 
-function invertColor(hexTripletColor) {
-  var color = hexTripletColor;
-  color = color.substring(1); // remove #
-  color = parseInt(color, 16); // convert to integer
-  color = 0xffffff ^ color; // invert three bytes
-  color = color.toString(16); // convert to hex
-  color = ("000000" + color).slice(-6); // pad with leading zeros
-  color = "#" + color; // prepend #
-  return color;
-}
+// function invertColor(hexTripletColor) {
+//   var color = hexTripletColor;
+//   color = color.substring(1); // remove #
+//   color = parseInt(color, 16); // convert to integer
+//   color = 0xffffff ^ color; // invert three bytes
+//   color = color.toString(16); // convert to hex
+//   color = ("000000" + color).slice(-6); // pad with leading zeros
+//   color = "#" + color; // prepend #
+//   return color;
+// }
 
 
 
 toggleInset.apply();
 setTimeout(() => {
-  changePositionTo("135deg");
+  changePositionTo("145deg");
 }, 800);
 
 const copyText = (e) => {
@@ -253,27 +298,3 @@ const resetTooltip = (e) => {
 copyButton.addEventListener("click", (e) => copyText(e));
 copyButton.addEventListener("mouseover", (e) => resetTooltip(e));
 
-const pickr = Pickr.create({
-  el: ".color-picker",
-  theme: "nano", // or 'monolith', or 'nano'
-  default: "#42445a",
-  comparison: false,
-  components: {
-    // Main components
-    preview: true,
-    opacity: true,
-    hue: true,
-    // Input / output Options
-    interaction: {
-      hex: true,
-      rgba: true,
-      input: true,
-      // save: true
-    },
-  },
-});
-
-pickr.on("change", (color, instance) => {
-  let rgbaColor = color.toRGBA().toString();
-  changeBgColor(rgbaColor);
-});
