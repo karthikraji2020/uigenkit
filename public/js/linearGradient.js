@@ -17,8 +17,8 @@ var colorData;
 const copyButton = document.getElementById("copy");
 const textButton = document.querySelector(".copycss");
 
-// const apiURL = `https://uigenaratorkit.herokuapp.com/`;
-const apiURL = `http://localhost:3000/`;
+const apiURL = `https://uigenaratorkit.herokuapp.com/`;
+// const apiURL = `http://localhost:3000/`;
 // load data
 function getData() {
   // fetch("./data/linearColor.json")
