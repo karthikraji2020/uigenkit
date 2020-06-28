@@ -8,8 +8,8 @@ var isLike = false;
 var likedPaletteId = [];
 var pageIndex = 1;
 
-const apiURL = `https://uigenaratorkit.herokuapp.com/`;
-// const apiURL = `http://localhost:3000/`;
+// const apiURL = `https://uigenaratorkit.herokuapp.com/`;
+const apiURL = `http://localhost:3000/`;
 
 createPalette = Pickr.create({
   el: `.createPalette-color-picker`,

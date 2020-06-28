@@ -1,9 +1,8 @@
 
-// const copyButton = document.getElementById("copy");
-// const textButton = document.querySelector(".copycss");
+
 
 function renderLoader(ms) {
-  $('body').append('<div style="z-index:10000;position:Fixed;height:100vh;" id="loadingDiv"><img src="/images/loader.png" class="loader" alt="loader"/><div > </div></div>');
+  $('body').append('<div style="z-index:10000;position:Fixed;height:100vh;" id="loadingDiv"><img src="/images/loader.png" class="loader" alt="loader"/><div>');
   setTimeout(removeLoader, ms); 
 }
 function removeLoader(){
