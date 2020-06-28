@@ -862,29 +862,5 @@
       "layer3": "rgba(186,233,249,1)",
       "layer4": "rgba(216,255,255,1)"
     }
-  },
-  {
-    "id": 1593267086874,
-    "createdAt": 1593267086874,
-    "isLiked": true,
-    "likes": 3,
-    "hex": {
-      "layer1": "#0b00d0",
-      "layer2": "#330ff8",
-      "layer3": "#5b37ff",
-      "layer4": "#7955ff"
-    },
-    "rgb": {
-      "layer1": "rgb(11, 0, 208)",
-      "layer2": "rgb(51, 15, 248)",
-      "layer3": "rgb(91, 55, 255)",
-      "layer4": "rgb(121, 85, 255)"
-    },
-    "rgba": {
-      "layer1": "rgba(11,0,208,1)",
-      "layer2": "rgba(51,15,248,1)",
-      "layer3": "rgba(91,55,255,1)",
-      "layer4": "rgba(121,85,255,1)"
-    }
   }
 ]
