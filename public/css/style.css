@@ -4,14 +4,16 @@
   --red: #d64041;
   /* --bg-primary-pattern-one:  linear-gradient(90deg, #ff9d00 50%, #ffffff 50%);
   --bg-primary-pattern-two:  linear-gradient(90deg, #ffffff 50%, #ff9d00 50%); */
-  --bg-primary-pattern-one:  linear-gradient(90deg, #16ebf5 50%, #ffffff 50%);
-  --bg-primary-pattern-two:  linear-gradient(90deg, #ffffff 50%, #16ebf5 50%);
+  --bg-primary-pattern-one:  linear-gradient(90deg, #166ff5 50%, #ffffff 50%);
+  --bg-primary-pattern-two:  linear-gradient(90deg, #ffffff 50%, #166ff5 50%);
 
 }
 .text-warning {
-  color: #00c5cf!important;
+  color: #166ff5!important;
 }
-
+.navbar-light .navbar-nav .nav-link {
+  color: #fff;
+}
 html {
   scroll-behavior: smooth;
   /* font-size: 62.5%;  */
@@ -21,7 +23,6 @@ html {
 }
 body {
   font-family: "Roboto", "Lato", sans-serif;
-  /* font-size: 1.6rem; */
   line-height: 1.5;
   margin: 0;
   scroll-behavior: smooth;
@@ -58,14 +59,14 @@ p {
   color: white;
 }
 
-.header-colorpalette,.header-neumorphism{
+.header-lineargradient,.header-neumorphism{
   position: relative;
   text-align: center;
   background: var(--bg-primary-pattern-two);
 
   color: white;
 }
-.header-lineargradient {
+.header-colorpalette{
   background: var(--bg-primary-pattern-one);
 }
 
@@ -84,12 +85,12 @@ nav {
 .header .inner-header:first-child ,
 .colorPalette .inner-header,
 .neumorphism .inner-header,
+.about .inner-header,
 .linearGradient .inner-header{
   margin-top: 3rem;
 }
 .header .inner-header:first-child {
   background: var(--bg-primary-pattern-one);
-
  }
 .flex {
   /*Flexbox for containers*/
@@ -213,7 +214,7 @@ footer {
 }
 
 
-.colorPalette,.neumorphism,.linearGradient{ 
+.colorPalette,.neumorphism,.linearGradient,.about{ 
   background: var(--bg-primary-pattern-one);
 }
 
@@ -316,7 +317,7 @@ background: white;
 #copy {
   position: relative;
   box-sizing: border-box;
-  background-color: #ff9900;
+  background-color: #31c6eb;
   color: #ffffff;
   font-size: 1rem;
   font-weight: 500;
@@ -462,11 +463,12 @@ h6 figcaption {
   left: -5rem;
   color: #0c0c0c;
 }
+
 .btn-toggle:after {
   content: 'random';
   right: -5rem;
   opacity: 0.5;
-  color: #ff9000;
+  color: #166ff5;
 }
 .btn-toggle > .inner-handle {
   border-radius: 13px;
@@ -479,7 +481,7 @@ h6 figcaption {
   box-shadow: inset 1px 1px 2px -1px black;
 }
 .btn-toggle.active > .inner-handle {
-  background-color: #eb9a31;
+  background-color: #31b0eb;
 }
 .btn-toggle > .handle:before {
   content: "";
@@ -493,7 +495,7 @@ h6 figcaption {
   background-repeat: no-repeat;
 }
 .btn-toggle.active > .handle:before {
-  background-image: radial-gradient(circle at center, #ff9000 5px, transparent 5px);
+  background-image: radial-gradient(circle at center, #166ff5 5px, transparent 5px);
 }
 .btn-toggle > .handle {
   position: absolute;
@@ -509,19 +511,23 @@ h6 figcaption {
 .btn-toggle.active {
   transition: background-color 0.25s;
 }
+
 .btn-toggle.active > .handle {
   left: 2.4175rem;
   transition: left 0.25s;
 }
+
 .btn-toggle.active:before {
   opacity: 0.5;
 }
+
 .btn-toggle.active:after {
   opacity: 1;
-  color: #ff9000;
+  color: #166ff5;
 }
+
 .btn-toggle.active {
-  background-color: #ff9000;
+  background-color: #166ff5;
 }
 .fixed-middle-right{
   position: fixed;
@@ -531,7 +537,9 @@ h6 figcaption {
 }
 /*Shrinking for mobile*/
 @media (max-width: 768px) {
-
+  .box-wrapper {
+    height: 50vh;
+  }
 .display-4{
 font-size: 2rem ;
 }
@@ -586,9 +594,9 @@ font-size: 2rem ;
 }
 
 .home-banner {
-  margin: 2rem 0;
-  padding: 1rem;
-  border: 0.75rem solid #454545;
+  margin: 2rem;
+  padding: 3rem;
+  border: 1.25rem solid #454545;
   /* border-radius: 2rem; */
 }
   .waves {
@@ -605,6 +613,11 @@ font-size: 2rem ;
     height: 40vh;
     width: 40vh;
   }
+  .navbar-light .navbar-nav .nav-link {
+    color: #166ff5;
+}
+
+
 }
 /* #content-desktop {display: block;} */
 #content-mobile {display: none;}
@@ -659,13 +672,13 @@ font-size: 2rem ;
     /* border-radius: 50%; */
     /* width: 50em;
     height: 50em; */
-    /* width: 70vh;
-    height: 70vh;  */
+    width: 70vh;
+    height: 50vh; 
 }
 .loader {   
     margin: 1rem auto;
     top:23%;
-    left:33%;
+    left:40%;
     position: absolute;
     transform: translate(-33%);
     font-size: 10px;

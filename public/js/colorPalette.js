@@ -258,11 +258,6 @@ function renderCards(colorData) {
   document.querySelector(".card-group.socialPalette").innerHTML = returnData;
 }
 function customPalette() {
-  let grid1ColorCode = document.querySelector(".grid1ColorCode");
-  let grid2ColorCode = document.querySelector(".grid2ColorCode");
-  let grid3ColorCode = document.querySelector(".grid3ColorCode");
-  let grid4ColorCode = document.querySelector(".grid4ColorCode");
-
   document.querySelector(
     "#randomPaletteGenarator"
   ).innerHTML = `       <div class="card shadow">
@@ -274,15 +269,15 @@ function customPalette() {
                   <h6 class="g4" onclick="showPicker(this)"> </h6>
                 </div>
                 <div class="card-footer ">
-                <button class="btn btn-dark float-right mx-2" onclick="savePalette('random')" title="Save Palette"> save</button> 
-                  <button class="btn btn-secondary float-right" onclick="customPalette()" title="Genarate Palette">Generate <i class="fa fa-random "></i></button>
+                <button class="btn btn-dark float-right mx-2" onclick="savePalette('random')" title="Save Palette"><i class="fa fa-save"></i>  save</button> 
+                  <button class="btn btn-secondary float-right" onclick="customPalette()" title="Genarate Palette"><i class="fa fa-random "></i> Generate </button>
                   </div>
                 </div>`;
                 
  var lighten2Color = `${getRandomColorInHEXFormat()}`;
-  let setg1Color= `${getShadesOfColor(lighten2Color, -40)}`;
+  let setg1Color= `${getShadesOfColor(lighten2Color, -80)}`;
   var lighten3Color =getShadesOfColor(lighten2Color, 40);
-  var lighten4Color = getShadesOfColor(lighten2Color, 70) ;
+  var lighten4Color = invertColor(setg1Color) ;
   // let colorstoptwo= `${invertColor(lighten2Color)}`;
 
   // var lighten2Color = getShadesOfColorjust(setg1Color, 20) ;
@@ -311,16 +306,6 @@ function customPalette() {
   g2.innerHTML = setg2Color;
   g3.innerHTML = setg3Color;
   g4.innerHTML = setg4Color;
-  // g1.style.backgroundColor = grid1ColorCode.innerHTML;
-  // g2.style.backgroundColor = grid2ColorCode.innerHTML;
-  // g3.style.backgroundColor = grid3ColorCode.innerHTML;
-  // g4.style.backgroundColor = grid4ColorCode.innerHTML;
-  
-
-  // g1.innerHTML = grid1ColorCode.innerHTML;
-  // g2.innerHTML = grid2ColorCode.innerHTML;
-  // g3.innerHTML = grid3ColorCode.innerHTML;
-  // g4.innerHTML = grid4ColorCode.innerHTML;
 }
 
 function downloadImage(obj, name) {
@@ -413,7 +398,7 @@ function savePalette(type) {
       id: Date.now(),
       createdAt: Date.now(),
       isLiked: false,
-      likes: 1,
+      likes: 0,
       hex: {
         layer1: layer1.innerHTML,
         layer2: layer2.innerHTML,

@@ -38,12 +38,15 @@ app.get("/home", function(req, res,next) {
 app.get("/neumorphism", function(req, res) {
     res.render("./partials/neumorphism/neumorphism");
 });
+app.get("/colorpalette", function(req, res) {
+    res.render("./partials/colorPalette/colorPalette");
+});
 app.get("/lineargradient", function(req, res) {
     res.render("./partials/linearGradient/linearGradient");
 });
 
-app.get("/colorpalette", function(req, res) {
-    res.render("./partials/colorPalette/colorPalette");
+app.get("/about", function(req, res) {
+    res.render("./partials/about/about");
 });
 
 app.get("/custompalette", function(req, res) {

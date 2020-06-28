@@ -1,21 +1,25 @@
 
 // const copyButton = document.getElementById("copy");
 // const textButton = document.querySelector(".copycss");
+
 function renderLoader(ms) {
-  $('body').append('<div style="z-index:10000;position:Fixed;height:100vh;" id="loadingDiv"><img src="/images/loading.png" class="loader" alt="loader"/><div > </div></div>');
+  $('body').append('<div style="z-index:10000;position:Fixed;height:100vh;" id="loadingDiv"><img src="/images/loader.png" class="loader" alt="loader"/><div > </div></div>');
   setTimeout(removeLoader, ms); 
 }
 function removeLoader(){
   $( "#loadingDiv").remove(); 
 }
+// const navbarNav = document.querySelector("#navbarNav ul li.nav-item");
+// navbarNav.addEventListener("click",  renderLoader(700));
 
 $(document).ready(function() {
+ 
+  // renderLoader(700)
   var path = window.location.pathname,pages;
-  renderLoader(700);
   
 
   var pathname = path.split('/')[1];
-  pages = ['home', 'neumorphism', 'lineargradient','colorpalette'];
+  pages = ['home', 'neumorphism', 'lineargradient','colorpalette','about'];
   if (pathname==='') {
      document.querySelector('li.nav-item').classList.add("active");
   } else {
