@@ -11,8 +11,9 @@ Applink :[uigenaratorkit](https://uigenaratorkit.herokuapp.com)
 
 ## :film_projector: DEMO
 <p align="center">
-<img src="./public/uigenaratorkit.gif" alt="uigenaratorkit">
+<img src="./public/images/uigenaratorkit.gif" alt="uigenaratorkit">
 </p>
+
 ###### Features
 1. Neumorphism (or) Soft UI Generator.
     1. Copy Css Code  by one tap on the color.
@@ -20,12 +21,12 @@ Applink :[uigenaratorkit](https://uigenaratorkit.herokuapp.com)
     1. Copy Css Code  by one tap on the color.
     2. Download As Image
 3. Color Palette Generator
-   Two Types Of Palette Genarator (custom and Random) 
+    Two Types Of Palette Genarator (custom and Random) 
     1. Copy Css Code by one tap on the color.
     2. users able to like the palette.
     3. sort palettes by likes and time (createdAt)
     4. Download As Image.
-   a. Popular socialmedia colors (copy code and downloadable).
+   Popular socialmedia colors (copy code and downloadable).
 
 ## Tech Stack
 - serverside Rendering (nodejs & ejs) ;
