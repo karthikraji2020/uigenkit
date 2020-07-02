@@ -3,16 +3,18 @@
   --text-color-white: #ffffff;
   --red: #d64041;
   /* --bg-primary-pattern-one:  linear-gradient(90deg, #ff9d00 50%, #ffffff 50%);
-  --bg-primary-pattern-two:  linear-gradient(90deg, #ffffff 50%, #ff9d00 50%); */
+  --bg-primary-pattern-two:  linear-gradient(90deg, #ffffff 50%, #ff9d00 50%); 
   --bg-primary-pattern-one:  linear-gradient(90deg, #166ff5 50%, #ffffff 50%);
-  --bg-primary-pattern-two:  linear-gradient(90deg, #ffffff 50%, #166ff5 50%);
+  --bg-primary-pattern-two:  linear-gradient(90deg, #ffffff 50%, #166ff5 50%);*/
+    --bg-primary-pattern-one: #fff;
+    --bg-primary-pattern-two: #bfc8d4bd;
 
 }
 .text-warning {
   color: #166ff5!important;
 }
 .navbar-light .navbar-nav .nav-link {
-  color: #fff;
+  color: #4169a5;
 }
 html {
   scroll-behavior: smooth;
@@ -71,7 +73,7 @@ p {
 }
 
 nav {
-  background:  var(--bg-primary-pattern-two);
+  background:  #fff;
 }
 
 .d-flex.bg-transprant {
@@ -106,8 +108,9 @@ nav {
   cursor: pointer;
 }
 .navbar .nav-item.active {
-  background: #fff;
+/*   background: #fff; */
   border: none;
+  border-bottom: 3px solid blue;
   transition: 0.8s;
   cursor: pointer !important; 
 }
@@ -600,8 +603,8 @@ font-size: 2rem ;
 .home-banner {
   margin: 2rem;
   padding: 3rem;
-  border: 1.25rem solid #454545;
-  /* border-radius: 2rem; */
+  /* border: 1.25rem solid #454545;
+  border-radius: 2rem; */
 }
   .waves {
     height: 40px;
