@@ -11,7 +11,7 @@ Applink :[uigenaratorkit](https://uigenaratorkit.herokuapp.com)
 
 ## :film_projector: DEMO
 <p align="center">
-<img src="./public/images/uiGeneratorkit.gif" alt="uigenaratorkit" title="uiGeneratorkit">
+<!-- <img src="./public/images/uiGeneratorkit.gif" alt="uigenaratorkit" title="uiGeneratorkit"> -->
 <!-- <img src="./public/images/ui_1.gif" alt="uigenaratorkit"> -->
 <!-- <img src="./public/images/ui_2.gif" alt="uigenaratorkit"> -->
 </p>
