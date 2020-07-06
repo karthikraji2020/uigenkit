@@ -1,8 +1,8 @@
-# UiGenaratorKit
+# UiGeneratorKit
  All In One latest Trending UI - Generator-Kit Application.
  
-## about the application
-  UiGenaratorKit is multi-featured application  that helps designers and developers to choose  (copy css code) or download their own color palettes , linear-gradient as Images as well and soft-ui Genarator (latest ui-design pattern ) for their next successful project.
+## About the application
+  UiGeneratorKit is multi-featured application  that helps designers and developers to choose  (copy css code) or download their own color palettes , linear-gradient as Images as well and soft-ui Genarator (latest ui-design pattern ) for their next successful project.
 It has a collection of fresh palettes created and liked by users everyday.
 
 It's a Recreation of colorhunt, neumorphism,ui gradient apps which i made in node and ejs.
