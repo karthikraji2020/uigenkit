@@ -11,10 +11,11 @@
             <div class="wrpper-grid">
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="control-box">
+                        <div class="control-box">   
                             <form>
+                               
                                 <div class="form-group row">
-                                    <label for="sizeRange" class="col-4 col-form-label">Pick a Color :</label>
+                                    <label for="sizeRange" class="col-4 col-form-label">Pick a Color </label>
                                     <div class="col-2">
                                       <div class="color-picker"></div>
                                         <input id="bgColorOne" hidden  onchange="changeBgColor(this.value)">
@@ -27,9 +28,9 @@
                             
                                 <!-- sizeRange -->
                                 <div class="form-group row">
-                                    <label for="sizeRange" class="col-3 col-form-label">Size :</label>
-                                    <div class="col-7">
-                                     <input type="range" min="10" max="410" value="300" id="sizeRange">
+                                    <label for="sizeRange" class="col-2 col-form-label">Size </label>
+                                    <div class=" col-8">
+                                     <input type="range" min="10" max="380" value="300" id="sizeRange">
                                     </div>
                                     <div class="col-1">
                                         <span id="sizeRangeValue"></span><span>px</span>
@@ -37,8 +38,8 @@
                                 </div>
                                 <!-- radiusRange -->
                                 <div class="form-group row">
-                                    <label for="radiusRange" class="col-3 col-form-label">Radius :</label>
-                                    <div class="col-7">
+                                    <label for="radiusRange" class="col-2 col-form-label">Radius </label>
+                                    <div class=" col-8">
                                        <input type="range" min="10" max="205" value="50" id="radiusRange">
                                     </div>
                                     <div class="col-1">
@@ -47,8 +48,8 @@
                                 </div>
                                 <!-- radiusRange -->
                                 <div class="form-group row">
-                                    <label for="distanceRange" class="col-3 col-form-label">Distance :</label>
-                                    <div class="col-7">
+                                    <label for="distanceRange" class="col-2 col-form-label">Distance </label>
+                                    <div class=" col-8">
                                        <input type="range" min="5" max="50" value="25" id="distanceRange">
                                     </div>
                                     <div class="col-1">
@@ -57,8 +58,8 @@
                                 </div>
                                 <!-- blurRange -->
                                 <div class="form-group row">
-                                    <label for="blurRange" class="col-3 col-form-label">Blur :</label>
-                                    <div class="col-7">
+                                    <label for="blurRange" class="col-2 col-form-label">Blur </label>
+                                    <div class=" col-8">
                                        <input type="range" min="10" max="100" value="60" id="blurRange">
                                     </div>
                                     <div class="col-1">
@@ -67,8 +68,8 @@
                                 </div>
                                 <!--intensityRange -->
                                 <div class="form-group row">
-                                    <label for="radiusRange" class="col-3 col-form-label">intensity :</label>
-                                    <div class="col-7">
+                                    <label for="radiusRange" class="col-2 col-form-label">intensity:</label>
+                                    <div class=" col-8">
                                        <input type="range" min="1" max="6" value="3" id="intensityRange">
                                     </div>
                                     <div class="col-1">
@@ -77,12 +78,25 @@
                                 </div>
                                 <!--intensityRange -->
                                 <div class="form-group row">
-                                    <label for="radiusRange" class="col-3 col-form-label">Types :</label>
+                                    <label for="radiusRange" class="col-2 col-form-label">Types </label>
                                     <div class="col-8">
                                    <button class="btn btn-dark" type="button" id="shapeType" onclick="toggleInset(this)">Inset</button>
                                     </div>
                                 </div>
+                       
                             </form>
+                            <div class="row">
+                                <div class="col-10">
+                                    <div class="copy-css" tooltip="Copy to clipboard">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <br>
+                                    <button  type="button" id="copy">
+                                        copy
+                                    </button>
+                                </div>
+                            </div>
                                
                         </div>
                       
@@ -108,8 +122,8 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="row">
+ <!-- <i class="fa fa-copy"></i> -->
+               <!-- <div class="row">
                     <div class="col-11">
                         <div class="copy-css" tooltip="Copy to clipboard">
                         </div>
@@ -118,10 +132,10 @@
                         <br>
                         <button id="copy">
                             copy
-                            <!-- <i class="fa fa-copy"></i> -->
+                           
                         </button>
                     </div>
-                </div>
+                </div> -->
             </div>
           </div>
          

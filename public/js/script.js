@@ -1,23 +1,20 @@
 
-
+$(window).on('load', function(){
+setTimeout(removeLoader, 800); 
+});
 
 function renderLoader(ms) {
-  $('body').append('<div style="z-index:10000;position:Fixed;height:100vh;" id="loadingDiv"><img src="/images/loader.png" class="loader" alt="loader"/><div>');
   setTimeout(removeLoader, ms); 
 }
+
 function removeLoader(){
-  $( "#loadingDiv").remove(); 
+  $( "#loadingDiv").css('display','none'); 
 }
-// const navbarNav = document.querySelector("#navbarNav ul li.nav-item");
-// navbarNav.addEventListener("click",  renderLoader(700));
 
 $(document).ready(function() {
  
-  // renderLoader(700)
-  var path = window.location.pathname,pages;
-  
-
-  var pathname = path.split('/')[1];
+  let path = window.location.pathname,pages;
+  let pathname = path.split('/')[1];
   pages = ['home', 'neumorphism', 'lineargradient','colorpalette','about'];
   if (pathname==='') {
      document.querySelector('li.nav-item').classList.add("active");
@@ -27,8 +24,8 @@ $(document).ready(function() {
         var navlist = document.querySelectorAll('li.nav-item');
         for (let index = 0; index < navlist.length; index++) {
           const currenGridElement = navlist[index];
-          const currentPath = navlist[index].innerText.replace(' ','').toLowerCase();
-          currentPath===item? currenGridElement.classList.add("active"): '';
+          const currentPath = currenGridElement.innerText.replace(' ','').toLowerCase();
+          currentPath===item ? currenGridElement.classList.add("active"): '';
         }
       }
     }
@@ -45,7 +42,6 @@ function CopyColorToClipboard(containerid) {
   window.getSelection().removeAllRanges(); // clear current selection
   window.getSelection().addRange(range); // to select text
   document.execCommand("copy");
-  // window.getSelection().removeAllRanges(); // to deselect
   alert("Color Code Copied " + containerid.innerText);
 }
 
@@ -87,10 +83,6 @@ function invertColor(hexTripletColor) {
   color = "#" + color; // prepend #
   return color;
 }
-
-
-
-
 
   // const copyText = (e) => {
   //   debugger;

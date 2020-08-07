@@ -373,6 +373,10 @@ background: white;
   text-align: left;
   white-space: pre;
 }
+/* .modal-body{
+  background-color: rgb(41, 41, 41);
+
+} */
 
 #randomPaletteGenarator .card-body h6 ,.custom.card-body h6{
   color:#fff;

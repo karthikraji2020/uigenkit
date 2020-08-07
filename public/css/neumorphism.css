@@ -1,5 +1,5 @@
 .box-wrapper {
-  height: 80vh;
+  height: 65vh;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -8,7 +8,7 @@
 }
 .position-wrapper {
     position: relative;
-    min-height: 80vh;
+    min-height: 65vh;
 }
 .position-wrapper .top-left {
     position: absolute;
@@ -40,7 +40,6 @@
     right:0;
     cursor:pointer;
 }
-
 .position-wrapper .bottom-right {
     position: absolute;
     bottom:0;
@@ -54,33 +53,26 @@
     cursor:pointer;
 }
 .control-box {
-  min-height: 50vh;
+  min-height: 30vh;
   /* height:40rem; */
   margin: 0;
   border:1px solid #fff;
   text-align: left;
 }
-
 input[type="range"] {
     width: 100%;
 }
-
 .box {
     /* background: #fff; */
     align-self: center;
 }
-
 label {
     font-weight: bold;
 }
-
-
-
 #content-wrapper {
     /* background: rgb(255, 22, 22) ;  */
     /* margin-top: 3.5rem; */
 } 
-
 #bgColorOne {
     height: 2rem;
     width: 2rem;

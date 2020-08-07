@@ -8,8 +8,8 @@ var isLike = false;
 var likedPaletteId = [];
 var pageIndex = 1;
 
-const apiURL = `https://uigenaratorkit.herokuapp.com/`;
-// const apiURL = `http://localhost:3000/`;
+const apiURL = `https://uigenaratorkit.herokuapp.com/api/`;
+// const apiURL = `http://localhost:3000/api/`;
 
 createPalette = Pickr.create({
   el: `.createPalette-color-picker`,
@@ -44,7 +44,7 @@ loadPaletteColors();
 
 setTimeout(() => {
   loadSocialMediaPaletteColors();
-}, 3000);
+}, 0);
 
 function  loadSocialMediaPaletteColors() {
   fetch(`${apiURL}socialmediapalette`)
@@ -105,17 +105,17 @@ function renderPalettes(customPaletteData) {
       ${renderLikes(element, index)}
          </div>
          <div class="float-right">
-         <i class="fa fa-clock-o"></i><small class="text-muted"> ${
-           element.createdAt
-         }</small>
+       
+
+         <button type="button" class="btn btn-light btn-sm btn-outline-secondary" title="Download as Image" onclick="downloadPaletteAsImage('${
+          element.hex.layer1
+        }','${element.hex.layer2}','${element.hex.layer3}','${
+        element.hex.layer4
+      }')">
+        <i class="fa fa-download"></i>
+       </button>
          </div>
-      <button type="button" class="btn btn-light btn-sm btn-outline-secondary" title="Download as Image" onclick="downloadPaletteAsImage('${
-        element.hex.layer1
-      }','${element.hex.layer2}','${element.hex.layer3}','${
-      element.hex.layer4
-    }')">
-      <i class="fa fa-download"></i>
-     </button>
+    
       </div>
     </div>
     </div>
@@ -137,7 +137,11 @@ function renderPalettes(customPaletteData) {
   document.querySelector(".col-sm-3.load-more").innerHTML = withLoadMore;
 }
 
-
+/*
+  <i class="fa fa-clock-o"></i><small class="text-muted"> ${
+           element.createdAt
+         }</small>
+*/ 
 function loadMore() {
   // 1* 12 =12
   // 2* 12 =24
@@ -150,7 +154,6 @@ function loadMore() {
   loadPartialData(si, ei);
 }
 function renderLikes(element, index) {
-  // if (element.isLiked && likedPaletteId.length>0 &&likedPaletteId.includes(element.id)) {
   if (element.isLiked ) {
     return `<small onclick="paletteLiked('${element.id}',this,${element.isLiked})"><i class="fa fa-heart text-danger"></i><small id="likesCount"> ${element.likes}</small></small>`;
   } else {
@@ -627,11 +630,12 @@ function handleClick(colorFormat) {
 }
 
 function getRandomColorInHEXFormat() {
-  let bgColor = "#" + parseInt(Math.random() * 0xffffff).toString(16);
-  if (bgColor.length <= 6) {
-    return getRandomColorInHEXFormat();
+  let letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
   }
-  return bgColor; // #HEXCODE
+  return color; // #HEXCODE
 }
 
 function downloadPaletteAsImage(layer1, layer2, layer3, layer4) {
