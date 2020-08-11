@@ -7,10 +7,10 @@ const router = express.Router();
     router.get('/lineargradientcolors', Uigeneratorkit.findAllLineargradient);
 
     // Create a new custompalette
-    // router.post('/custompalette', URLShortener.create);
+    // router.post('/custompalette', Uigeneratorkit.findAllUiGeneratorkitPalette);
 
     // Create a new custompalette
-    router.get('/custompalette', Uigeneratorkit.createCustomPalette);
+    router.get('/custompalette', Uigeneratorkit.findAllCustomPalette);
 
      // Retrieve all socialmediapalette
     router.get('/socialmediapalette', Uigeneratorkit.findAllSocialmediapalette);

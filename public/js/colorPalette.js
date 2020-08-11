@@ -101,7 +101,7 @@ function renderPalettes(customPaletteData) {
       ${palettecolorWithFormat(element, currentValue)}
     </div>
     <div class="card-footer">
-         <div class="float-left" title="likes">
+         <div class="float-left py-1" title="likes">
       ${renderLikes(element, index)}
          </div>
          <div class="float-right">
@@ -138,9 +138,9 @@ function renderPalettes(customPaletteData) {
 }
 
 /*
-  <i class="fa fa-clock-o"></i><small class="text-muted"> ${
+  <i class="fa fa-clock-o"></i><span class="text-muted"> ${
            element.createdAt
-         }</small>
+         }</span>
 */ 
 function loadMore() {
   // 1* 12 =12
@@ -155,9 +155,9 @@ function loadMore() {
 }
 function renderLikes(element, index) {
   if (element.isLiked ) {
-    return `<small onclick="paletteLiked('${element.id}',this,${element.isLiked})"><i class="fa fa-heart text-danger"></i><small id="likesCount"> ${element.likes}</small></small>`;
+    return `<span onclick="paletteLiked('${element.id}',this,${element.isLiked})"><i class="fa fa-heart text-danger"></i><span id="likesCount"> ${element.likes}</span></span>`;
   } else {
-    return `<small onclick="paletteLiked('${element.id}',this,${element.isLiked})"><i class="fa fa-heart-o text-danger"></i> <small id="likesCount"> ${element.likes}</small></small>`;
+    return `<span onclick="paletteLiked('${element.id}',this,${element.isLiked})"><i class="fa fa-heart-o text-danger"></i> <span id="likesCount"> ${element.likes}</span></span>`;
   }
 }
 

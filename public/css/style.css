@@ -718,3 +718,7 @@ h2.headerTitle{
     height:100%;
     background-color:rgba(46, 46, 46, 0.9);
 }
+#likesCount{
+  font-weight: 500;
+  font-size: .9rem;
+}

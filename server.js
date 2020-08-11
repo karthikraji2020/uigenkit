@@ -10,6 +10,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const moment = require('moment');
+// const apiRoute = require('./api/routes/uigeneratorkit.routes');
 const LinearGradientColor = require('./api/models/lineargradient.model');
 const SocialMediaColors = require('./api/models/socialmedia.model');
 const UiGeneratorkitPalette = require('./api/models/uigeneratorkit.model');
@@ -23,7 +24,6 @@ const mongooseSets={
   };
   // Connecting to the database
   mongoose.connect(process.env.MONGODB_URI, mongooseSets).then(() => {
-    //mongodb+srv://admin:<password>@cluster0-zt42g.mongodb.net/<dbname>?retryWrites=true&w=majority 
   console.log("Successfully connected to the database");    
 }).catch(err => {
     console.log('Could not connect to the database. Exiting now...', err);
@@ -53,6 +53,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
 app.use(expressLayouts);
+// app.use('/api',apiRoute);
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -204,30 +205,45 @@ app.get("/api/lineargradientcolors", function(req, res) {
 });
 
  // UPDATE
-app.put("/updatelikesbyid/:paletteid", function(req, res) {
-    let paletteid =req.params.paletteid;
-    let likes =req.body.likes;
-    let isLiked =req.body.isLiked;
-
-      customPalette.forEach(element => {
-        if(element.id == paletteid) {
-          element.likes= likes;
-          element.isLiked= isLiked;
-         }
+app.put("/api/updatelikesbyid/:paletteid",  function(req, res) {
+      // Validate Request
+      let paletteid =req.params.paletteid;
+      let likes =req.body.likes;
+      let isLiked =req.body.isLiked;
+      console.log(paletteid);
+  
+    UiGeneratorkitPalette.findOneAndUpdate(
+        { "id": paletteid}, {
+            likes: req.body.likes,
+            isLiked:req.body.isLiked,
+    }, {new: true})
+    .then(palette => {
+        if(!palette) {
+            return res.status(404).send({
+                message: "palette not found with id " +paletteid
+            });
+        }
+    // readDataAndSortwithDate(`${customPaletteDataPath}`,res);
+            // findAllPalettes();
+        UiGeneratorkitPalette.find()
+        .then(customPalette => {
+        res.send(customPalette);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving the customPalette."
+            });
+        });
+    }).catch(err => {
+       
+        return res.status(500).send({
+            message:err.message+ "Error updating palette with id " +paletteid
+        });
     });
-
-      // STEP 3: Writing to a file 
-      fs.writeFile(`${customPaletteDataPath}`, JSON.stringify(customPalette, null, 2), err => { 
-        // Checking for errors 
-        if (err) throw err;  
-        console.log("Done update"); // Success 
-    }); 
-    readDataAndSortwithDate(`${customPaletteDataPath}`,res);
 
 });
 
 
-app.post("/custompalette", function(req, res) {
+app.post("/api/custompalette", function(req, res) {
 
     const lineargradient = new UiGeneratorkitPalette({
         id: req.body.id ,
@@ -257,23 +273,38 @@ app.post("/custompalette", function(req, res) {
     if(err) {
       return res.status(400).send("error while creting a post")
     }
-    console.log(rec);
-    // res.send(rec);
-    readDataAndSortwithDate(`${customPaletteDataPath}`,res);
-    //  let dd = readDataAndSortwithDate_new(palette,res);
-    // res.send(dd);
+    // console.log(rec);
+    UiGeneratorkitPalette.find()
+    .then(customPalette => {
+        // readDataAndSortwithDate(customPalette,res);
+    res.send(customPalette);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving the customPalette."
+        });
+    });
 
   })
         
 });
 
+function findAllPalettes(res) {
+    UiGeneratorkitPalette.find()
+    .then(customPalette => {
+    res.send(customPalette);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving the customPalette."
+        });
+    });
+}
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server started on Port ${port}`));
 
 
-async function readDataAndSortwithDate_new(palette,res) {
-    // console.log(palette)
+async function readDataAndSortwithDate(palette,res) {
+    console.log(palette)
 
     console.time();
     let sortedArray =  palette.sort((a,b)=>b.likes-a.likes);

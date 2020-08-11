@@ -139,6 +139,7 @@ function CopyColorToClipboard(content) {
   window.getSelection().addRange(range); // to select text
   document.execCommand("copy");
   alert("Color Code Copied " + content.innerText);
+
   window.getSelection().removeAllRanges(); // to deselect
 }
 // sizeRange.trigger('input');
