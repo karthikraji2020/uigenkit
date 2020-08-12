@@ -328,7 +328,6 @@ function genarateGreyShadecolor() {
   {
     grayShadecolor.concat('0');
   }
-  console.log('#' + grayShadecolor+grayShadecolor+grayShadecolor);
   return '#' + grayShadecolor+grayShadecolor+grayShadecolor;
 }
 
@@ -396,16 +395,16 @@ function savePalette(type) {
   renderLoader(400);
   let layer1, layer2, layer3, layer4;
   if (type === "random") {
-    layer1 = document.querySelector(".g1");
-    layer2 = document.querySelector(".g2");
-    layer3 = document.querySelector(".g3");
-    layer4 = document.querySelector(".g4");
+    layer1 = document.querySelector(".g1 figcaption");
+    layer2 = document.querySelector(".g2 figcaption");
+    layer3 = document.querySelector(".g3 figcaption");
+    layer4 = document.querySelector(".g4 figcaption");
   }
   if (type === "custom") {
-    layer1 = document.querySelector(".layer1");
-    layer2 = document.querySelector(".layer2");
-    layer3 = document.querySelector(".layer3");
-    layer4 = document.querySelector(".layer4");
+    layer1 = document.querySelector(".layer1 figcaption");
+    layer2 = document.querySelector(".layer2 figcaption");
+    layer3 = document.querySelector(".layer3 figcaption");
+    layer4 = document.querySelector(".layer4 figcaption");
   }
 
   if (
@@ -436,10 +435,10 @@ function savePalette(type) {
         layer4: hexToRGB(layer4.innerHTML),
       },
       rgba: {
-        layer1: hexToRGBA(layer1.innerHTML),
-        layer2: hexToRGBA(layer2.innerHTML),
-        layer3: hexToRGBA(layer3.innerHTML),
-        layer4: hexToRGBA(layer4.innerHTML),
+        layer1: hexToRGBA(layer1.innerHTML,1),
+        layer2: hexToRGBA(layer2.innerHTML,1),
+        layer3: hexToRGBA(layer3.innerHTML,1),
+        layer4: hexToRGBA(layer4.innerHTML,1),
       },
     };
 
