@@ -323,10 +323,10 @@ function customPalette() {
   g4.innerHTML = `<figcaption>${setg4Color}</figcaption>`;
 }
 function genarateGreyShadecolor() {
-  var grayShadecolor = Math.floor(Math.random() * 255).toString(16);
+  let grayShadecolor = Math.floor(Math.random() * 255).toString(16);
   if (grayShadecolor.length === 1)
   {
-    grayShadecolor.concat('0');
+    grayShadecolor+='0';
   }
   return '#' + grayShadecolor+grayShadecolor+grayShadecolor;
 }
@@ -562,10 +562,12 @@ $("#colorFormatBtnGroup input").on("click", function () {
   $("#selectedVal").text(btnValue);
 });
 $("#colorSchemeBtnGroup input[name='colorScheme']").on("click", function () {
-  var thisBtn = $(this);  
-  var btnValue = thisBtn.val();
+  let thisBtn = $(this);  
+  let btnValue = thisBtn.val();
+  if(currentColorScheme!==btnValue){
+    customPalette();
+  }
   currentColorScheme=btnValue;
-  // customPalette();
   // $("#selectedVal").text(btnValue);
 });
 
@@ -633,7 +635,7 @@ function sortBy(toSortBy) {
 }
 
 function changeCurrentColorScheme(colorScheme) {
-   currentColorScheme= colorScheme;
+  //  currentColorScheme= colorScheme;
 }
 function handleClick(colorFormat) {
   currentValue = colorFormat.value;
