@@ -9,17 +9,19 @@
           </div>
           <div class="col-sm-6">
             <div class="btn-group  btn-group-toggle text-light " id="colorFormatBtnGroup" data-toggle="buttons">
+              <label class="btn btn-dark active">
+                <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="hex" autocomplete="off" value="hex" checked>HEX
+              </label>
               <label class="btn btn-dark">
                 <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="rgb" autocomplete="off" value="rgb" >RGB
-              </label>
-              <label class="btn btn-dark active">
-                <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="hex" autocomplete="off" value="hex">HEX
               </label>
               <label class="btn btn-dark">
                 <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="rgba" autocomplete="off" value="rgba"> RGBA
               </label>
             </div>
           </div>
+
+        
         </div>
         <div class="row">
        <div class="colorFormat">
@@ -59,6 +61,26 @@
           </div>
         </div>
        
+        <div class="row my-2  py-2 colorSchemeSelection">
+          <div class="col-sm-12 col-md-6 offset-md-3">
+          <div class="bg-light shadow  py-2">
+            <div class="col-sm-6">
+              <div class="btn-group  btn-group-toggle text-light " id="colorSchemeBtnGroup" data-toggle="buttons">
+                <label class="btn btn-dark">
+                  <input type="radio"  name="colorScheme" onclick="changeCurrentColorScheme(this.value)" id="monochromatic" autocomplete="off" value="monochromatic" checked>Monochromatic
+                </label>
+                <label class="btn btn-dark ">
+                  <input type="radio"  name="colorScheme" onclick="changeCurrentColorScheme(this.value);" id="dirtectComplementry" autocomplete="off" value="dirtectComplementry">DirtectComplementry
+                </label>
+                <label class="btn btn-dark">
+                  <input type="radio"  name="colorScheme" onclick="changeCurrentColorScheme(this.value);" id="acromatic" autocomplete="off" value="acromatic"> Acromatic
+                </label>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+       
         <div class="row">
           <div class="col-sm-2">
             <div class="createPalette-color-picker">
@@ -71,10 +93,10 @@
               <div class="card shadow">
               <div class="card-body custom">
                 <h4 class="card-title text-left text-capitalize">custom Generator</h4>
-              <h6 class="layer1" onclick="showPicker(this)">-</h6>
-              <h6 class="layer2" onclick="showPicker(this)">-</h6>
-              <h6 class="layer3" onclick="showPicker(this)">-</h6>
-              <h6 class="layer4" onclick="showPicker(this)">-</h6>
+              <h6 class="layer1" onclick="showPicker(this)"><figcaption> Click Here</figcaption></h6>
+              <h6 class="layer2" onclick="showPicker(this)"><figcaption> Click Here</figcaption></h6>
+              <h6 class="layer3" onclick="showPicker(this)"><figcaption> Click Here</figcaption></h6>
+              <h6 class="layer4" onclick="showPicker(this)"><figcaption> Click Here</figcaption></h6>
             </div>
             <div class="card-footer">
               <button class="btn btn-dark float-right" onclick="savePalette('custom')" title="Save Palette"><i class="fa fa-save"></i>  save</button>
@@ -82,7 +104,7 @@
               </div>
             </div>
             </div>
-
+          
           </div>
         </div>
         <div class="row my-2">
@@ -96,7 +118,7 @@
               <input type="radio"  name="sortBy" onclick="sortBy(this);" id="likes" autocomplete="off" value="likes" ><i class="fa fa-heart"></i> Likes 
             </label>
             <label class="btn btn-dark ">
-              <input type="radio"  name="sortBy" onclick="sortBy(this);" id="createdat" autocomplete="off" value="createdat"><i class="fa fa-clock-o"></i> Created At 
+              <input type="radio"  name="sortBy" onclick="sortBy(this);" id="createdat" autocomplete="off" value="createdat" checked><i class="fa fa-clock-o"></i> Created At 
             </label>
           </div>
          </div>

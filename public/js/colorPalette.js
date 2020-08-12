@@ -7,6 +7,7 @@ var selectedLayer;
 var isLike = false;
 var likedPaletteId = [];
 var pageIndex = 1;
+let currentColorScheme = "monochromatic";
 
 const apiURL = `https://uigenaratorkit.herokuapp.com/api/`;
 // const apiURL = `http://localhost:3000/api/`;
@@ -95,7 +96,6 @@ function renderPalettes(customPaletteData) {
   customPaletteData.forEach((element, index) => {
     if(element.createdAt !== undefined) {
     returnData += ` <div class="col-sm-12 col-md-4 col-lg-3 my-2" >
-
       <div class="card">
       <div class="card-body custom" title="click to copy ClipBoard">
       ${palettecolorWithFormat(element, currentValue)}
@@ -105,8 +105,6 @@ function renderPalettes(customPaletteData) {
       ${renderLikes(element, index)}
          </div>
          <div class="float-right">
-       
-
          <button type="button" class="btn btn-light btn-sm btn-outline-secondary" title="Download as Image" onclick="downloadPaletteAsImage('${
           element.hex.layer1
         }','${element.hex.layer2}','${element.hex.layer3}','${
@@ -155,23 +153,24 @@ function loadMore() {
 }
 function renderLikes(element, index) {
   if (element.isLiked ) {
-    return `<span onclick="paletteLiked('${element.id}',this,${element.isLiked})"><i class="fa fa-heart text-danger"></i><span id="likesCount"> ${element.likes}</span></span>`;
+    return `<span onclick="paletteLiked('${element.id}',this,${element.isLiked})"><i class="fa fa-heart text-danger"></i><span id="likesCount"> ${element.likes} </span> Likes</span>`;
   } else {
-    return `<span onclick="paletteLiked('${element.id}',this,${element.isLiked})"><i class="fa fa-heart-o text-danger"></i> <span id="likesCount"> ${element.likes}</span></span>`;
+    return `<span onclick="paletteLiked('${element.id}',this,${element.isLiked})"><i class="fa fa-heart-o text-danger"></i> <span id="likesCount"> ${element.likes} </span> Likes</span>`;
   }
 }
 
 function togglePalette() {
   let isChecked = document.querySelector(".btn.btn-lg.btn-toggle").className;
-  console.log(isChecked);
+  // console.log(isChecked);
   let isActive = isChecked.includes("active");
+  resetCustomPaletteGenarator();
   if (isActive) {
-    resetCustomPaletteGenarator();
     document.querySelector("#randomPaletteGenarator").style.display = "none";
+    document.querySelector(".colorSchemeSelection").style.display = "none";
     document.querySelector("#customPaletteGenarator").style.display = "block";
   } else {
-    resetCustomPaletteGenarator();
     document.querySelector("#randomPaletteGenarator").style.display = "block";
+    document.querySelector(".colorSchemeSelection").style.display = "block";
     document.querySelector("#customPaletteGenarator").style.display = "none";
   }
 }
@@ -188,10 +187,11 @@ function resetCustomPaletteGenarator() {
   layer3.style.backgroundColor = " rgb(206, 206, 206)";
   layer4.style.backgroundColor = " rgb(224, 224, 224)";
 
-  layer1.innerHTML = " - ";
-  layer2.innerHTML = " - ";
-  layer3.innerHTML = " - ";
-  layer4.innerHTML = " - ";
+  
+  layer1.innerHTML = "<figcaption> Click Here</figcaption> ";
+  layer2.innerHTML = "<figcaption> Click Here</figcaption> ";
+  layer3.innerHTML = "<figcaption> Click Here</figcaption> ";
+  layer4.innerHTML = "<figcaption> Click Here</figcaption> ";
 }
 
 function paletteLiked(id, thisObj, isLiked) {
@@ -257,7 +257,7 @@ function renderCards(colorData) {
     </div>
       `;
   });
-  debugger;
+//  debugger;
   document.querySelector(".card-group.socialPalette").innerHTML = returnData;
 }
 function customPalette() {
@@ -272,27 +272,39 @@ function customPalette() {
                   <h6 class="g4" onclick="showPicker(this)"> </h6>
                 </div>
                 <div class="card-footer ">
+             
                 <button class="btn btn-dark float-right mx-2" onclick="savePalette('random')" title="Save Palette"><i class="fa fa-save"></i>  save</button> 
                   <button class="btn btn-secondary float-right" onclick="customPalette()" title="Genarate Palette"><i class="fa fa-random "></i> Generate </button>
                   </div>
                 </div>`;
-                
- var lighten2Color = `${getRandomColorInHEXFormat()}`;
-  let setg1Color= `${getShadesOfColor(lighten2Color, -80)}`;
-  var lighten3Color =getShadesOfColor(lighten2Color, 40);
-  var lighten4Color = invertColor(setg1Color) ;
-  // let colorstoptwo= `${invertColor(lighten2Color)}`;
+  let setg1Color,setg2Color,setg3Color,setg4Color;
+  var lighten2Color ,lighten3Color ,lighten4Color;    
 
-  // var lighten2Color = getShadesOfColorjust(setg1Color, 20) ;
-  // var lighten3Color = getShadesOfColor(setg1Color, 40) ;
-  // var lighten4Color = getShadesOfColor(setg1Color, 60) ;
-  let setg2Color= `${lighten2Color}`;
-  let setg3Color= `${lighten3Color}`;
-  let setg4Color= `${lighten4Color}`;
-  
-  // let setg2Color= `${getRandomColorInHEXFormat()}`;
-  // let setg3Color= `${getRandomColorInHEXFormat()}`;
-  // let setg4Color= `${getRandomColorInHEXFormat()}`;
+   lighten2Color = `${getRandomColorInHEXFormat()}`;
+  setg1Color= `${getShadesOfColor(lighten2Color, -80)}`;
+  lighten3Color =getShadesOfColor(lighten2Color, 40);
+  lighten4Color = invertColor(setg1Color) ;   
+
+    if(currentColorScheme==='monochromatic') {
+      lighten4Color = getShadesOfColor(lighten2Color, 60);
+      
+     setg2Color= `${lighten2Color}`;
+     setg3Color= `${lighten3Color}`;
+     setg4Color= `${lighten4Color}`;
+    }else if(currentColorScheme==='dirtectComplementry') {
+      lighten3Color = invertColor(lighten3Color) ;   
+      lighten4Color = invertColor(setg1Color) ;   
+      
+     setg2Color= `${lighten2Color}`;
+     setg3Color= `${lighten3Color}`;
+     setg4Color= `${lighten4Color}`;
+    }else {
+        
+     setg1Color= `${genarateGreyShadecolor()}`;
+     setg2Color= `${genarateGreyShadecolor()}`;
+     setg3Color= `${genarateGreyShadecolor()}`;
+     setg4Color= `${genarateGreyShadecolor()}`;
+    }
   
   let g1 = document.querySelector(".g1");
   let g2 = document.querySelector(".g2");
@@ -305,17 +317,26 @@ function customPalette() {
   g4.style.backgroundColor = setg4Color;
   
 
-  g1.innerHTML = setg1Color;
-  g2.innerHTML = setg2Color;
-  g3.innerHTML = setg3Color;
-  g4.innerHTML = setg4Color;
+  g1.innerHTML = `<figcaption>${setg1Color}</figcaption>`;
+  g2.innerHTML = `<figcaption>${setg2Color}</figcaption>`;
+  g3.innerHTML = `<figcaption>${setg3Color}</figcaption>`;
+  g4.innerHTML = `<figcaption>${setg4Color}</figcaption>`;
+}
+function genarateGreyShadecolor() {
+  var grayShadecolor = Math.floor(Math.random() * 255).toString(16);
+  if (grayShadecolor.length === 1)
+  {
+    grayShadecolor.concat('0');
+  }
+  console.log('#' + grayShadecolor+grayShadecolor+grayShadecolor);
+  return '#' + grayShadecolor+grayShadecolor+grayShadecolor;
 }
 
 function downloadImage(obj, name) {
   draw(obj);
   var colorPaletteBackground = document.querySelector("#colorPalette");
   var base64URL = colorPaletteBackground.toDataURL();
-  debugger;
+//  debugger;
   var a = document.createElement("a"); //Create <a>
   a.href = base64URL; //Image Base64 Goes here
   let timeInMiliSec = Date.now();
@@ -541,6 +562,13 @@ $("#colorFormatBtnGroup input").on("click", function () {
 
   $("#selectedVal").text(btnValue);
 });
+$("#colorSchemeBtnGroup input[name='colorScheme']").on("click", function () {
+  var thisBtn = $(this);  
+  var btnValue = thisBtn.val();
+  currentColorScheme=btnValue;
+  // customPalette();
+  // $("#selectedVal").text(btnValue);
+});
 
 $("#sortBy input").on("click", function () {
   var thisBtn = $(this);
@@ -605,6 +633,9 @@ function sortBy(toSortBy) {
   loadPartialData(0, 12);
 }
 
+function changeCurrentColorScheme(colorScheme) {
+   currentColorScheme= colorScheme;
+}
 function handleClick(colorFormat) {
   currentValue = colorFormat.value;
   let gridsArrray = document.querySelectorAll("#randomPaletteGenarator .card-body h6");
@@ -642,7 +673,7 @@ function downloadPaletteAsImage(layer1, layer2, layer3, layer4) {
   drawPalette(layer1, layer2, layer3, layer4);
   let colorCanvasPaletteBackground = document.querySelector("#paletteCanvas");
   let base64URL = colorCanvasPaletteBackground.toDataURL();
-  debugger;
+//  debugger;
   let a = document.createElement("a"); //Create <a>
   a.href = base64URL; //Image Base64 Goes here
   let timeInMiliSec = Date.now();

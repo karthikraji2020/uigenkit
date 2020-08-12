@@ -5,7 +5,6 @@ const path = require('path');
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const fs = require('fs');
-const customPalette = require('./public/data/custompalette.json');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -31,8 +30,6 @@ const mongooseSets={
 });
 
 //dataPaths
-
-const customPaletteDataPath = `./public/data/custompalette.json`;
 
 //middlewares 
 app.use(cors());
@@ -288,16 +285,6 @@ app.post("/api/custompalette", function(req, res) {
         
 });
 
-function findAllPalettes(res) {
-    UiGeneratorkitPalette.find()
-    .then(customPalette => {
-    res.send(customPalette);
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Some error occurred while retrieving the customPalette."
-        });
-    });
-}
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server started on Port ${port}`));
