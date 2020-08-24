@@ -10,6 +10,9 @@
     --bg-primary-pattern-two: #bfc8d4bd;
 
 }
+h2 {
+  text-transform: capitalize;
+}
 .text-warning {
   color: #166ff5!important;
 }
@@ -134,9 +137,9 @@ nav {
   z-index: 1;
   background-color: rgb(255, 255, 255);
   margin: 3rem 0;
-  padding: 4rem;
+  padding: 3rem;
 /*   border: 1.5rem solid #454545; */
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 
 .home-banner .left-wrapper h2.title {
@@ -156,14 +159,22 @@ nav {
   float: left;
 }
 h2.headerTitle{
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   text-transform: capitalize;
   text-align: left;
-  padding: 2rem;
-  background: #b7b7b791;
+  padding: 1rem;
+  /* background: #b7b7b791; */
   border-radius: 1rem;
-  text-decoration: underline;
+  /* text-decoration: underline; */
   color: #000;
+}
+h2.headerTitle::after {
+  content: '';
+  margin-top: .1rem;
+  display: block;
+  width: 10%;
+  height: 3px;
+  background: blue;
 }
 /* Animation */
 .parallax > use {
@@ -203,8 +214,10 @@ h2.headerTitle{
 }
 
 footer {
-  background-color: #454545;
+  /* background-color: #454545; */
   /* background-color: #2221aae6; */
+  background-color: #0049b6;
+  /* background-color: rgb(40, 40, 233); */
   color: white;
 }
 .page-footer .footer-links {
@@ -237,8 +250,9 @@ text-decoration: none;
 margin: 5px 2px;
 border-radius:50%;
 /* border:3px solid #ccc; */
-box-shadow: 1px 9px 9px #150c3f, inset 2px 10px 10px rgb(149, 149, 153);
- background:rgb(78, 78, 78); 
+/* box-shadow: 1px 9px 9px #150c3f, inset 2px 10px 10px rgb(149, 149, 153); */
+ /* background:rgb(78, 78, 78);  */
+ background:#166ff5;
  /* background:#2221aae6;  */
 }
 .social-about .fa{
@@ -251,7 +265,7 @@ box-shadow: 1px 9px 9px #150c3f, inset 2px 10px 10px rgb(149, 149, 153);
   cursor: pointer;
 transition:.7s;
 transform: scale(.91); 
-box-shadow: 1px 9px 9px #231b1b, inset 2px 10px 10px rgb(146, 145, 145);
+/* box-shadow: 1px 9px 9px #231b1b, inset 2px 10px 10px rgb(146, 145, 145); */
 /* box-shadow: 1px 9px 9px #231b1b, inset 2px 10px 10px rgb(68, 54, 211); */
 }
 .social-about .fa:hover{
@@ -265,7 +279,8 @@ background: white;
 }
 
 .fa-linkedin {
-color: #007bb5;
+/* color: #007bb5; */
+color: #fff;
 background: white;
 }
 .social-about .fa-codepen,
@@ -285,7 +300,8 @@ background: white;
   }
   .fa-instagram{
     background: white;
-    color: #fe4164;
+    /* color: #fe4164; */
+    color: #fff;
   }
   .linkedin {
   background-color: #007bb5;
@@ -453,7 +469,7 @@ h6 figcaption,
 
 
 .df-switch {
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   padding: 2rem 2rem 1rem;
   text-align: center;
 }

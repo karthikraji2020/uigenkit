@@ -31,7 +31,9 @@ Applink :[uigenaratorkit](https://uigenaratorkit.herokuapp.com)
    Popular socialmedia colors (copy code and downloadable).
 
 ## Tech Stack
-- serverside Rendering (nodejs & ejs) ;
-- bootstrap 4.3
+- serverside Rendering (nodejs & ejs);
+- MongoDB.
+- Vennila Javascript.
+- HTML5,CSS3,bootstrap 4.3.
 
 

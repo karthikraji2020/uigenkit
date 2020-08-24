@@ -1,14 +1,14 @@
 
 <div class="colorPalette">
     <div class="inner-header flex">
-      <div class="container home-banner shadow">
+      <div class="container home-banner shadow-lg">
         <h2 class="headerTitle">color pallete</h2>
-        <div class="row">
+      <!-- <div class="row">
           <div class="col-sm-6">
             <h3 class="text-dark text-left">colorFormat </h3>
           </div>
           <div class="col-sm-6">
-            <div class="btn-group  btn-group-toggle text-light " id="colorFormatBtnGroup" data-toggle="buttons">
+        <div class="btn-group  btn-group-toggle text-light " id="colorFormatBtnGroup" data-toggle="buttons">
               <label class="btn btn-dark active">
                 <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="hex" autocomplete="off" value="hex" checked>HEX
               </label>
@@ -18,11 +18,9 @@
               <label class="btn btn-dark">
                 <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="rgba" autocomplete="off" value="rgba"> RGBA
               </label>
-            </div>
+            </div> 
           </div>
-
-        
-        </div>
+        </div>-->
         <div class="row">
        <div class="colorFormat">
 
@@ -49,7 +47,8 @@
 
         </div>
         <div class="row my-2">
-          <div class="col-sm-12 col-md-6 offset-md-3">
+          <div class="col-md-3"></div>
+          <div class="col-sm-12 col-md-6 ">
           <div class="bg-light shadow">
             <div class="df-switch" onclick="togglePalette()">
               <button type="button" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
@@ -59,6 +58,20 @@
             </div>
           </div>
           </div>
+          <div class="col-md-3">
+            <b class=" text-dark ">colorFormat </b>
+          <div class="btn-group  btn-group-toggle text-light " id="colorFormatBtnGroup" data-toggle="buttons">
+            <label class="btn btn-dark active">
+              <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="hex" autocomplete="off" value="hex" checked>HEX
+            </label>
+            <label class="btn btn-dark">
+              <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="rgb" autocomplete="off" value="rgb" >RGB
+            </label>
+            <label class="btn btn-dark">
+              <input type="radio"  name="colorFormat" onclick="handleClick(this);" id="rgba" autocomplete="off" value="rgba"> RGBA
+            </label>
+          </div>
+        </div>
         </div>
        
         <div class="row my-2  py-2 colorSchemeSelection">
@@ -84,11 +97,7 @@
         </div>
        
         <div class="row">
-          <div class="col-sm-2">
-            <div class="createPalette-color-picker">
-            </div>
-          </div>
-          <div class="col-sm-8 offset-sm-1">
+          <div class="col-sm-9">
             <div class="card shadow" id="randomPaletteGenarator">
             </div>
             <div class="card shadow" id="customPaletteGenarator">
@@ -107,6 +116,11 @@
             </div>
             </div>
           
+          </div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-2 align-self-start">
+            <div class="createPalette-color-picker">
+            </div>
           </div>
         </div>
         <div class="row my-2">

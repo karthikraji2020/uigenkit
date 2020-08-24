@@ -95,7 +95,7 @@ function renderPalettes(customPaletteData) {
   var returnData = "";
   customPaletteData.forEach((element, index) => {
     if(element.createdAt !== undefined) {
-    returnData += ` <div class="col-sm-12 col-md-4 col-lg-3 my-2" >
+    returnData += ` <div class="col-sm-6 col-md-4 col-lg-3 my-2" >
       <div class="card">
       <div class="card-body custom" title="click to copy ClipBoard">
       ${palettecolorWithFormat(element, currentValue)}
