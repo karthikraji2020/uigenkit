@@ -2,13 +2,12 @@
 :root {
   --text-color-white: #ffffff;
   --red: #d64041;
-  /* --bg-primary-pattern-one:  linear-gradient(90deg, #ff9d00 50%, #ffffff 50%);
-  --bg-primary-pattern-two:  linear-gradient(90deg, #ffffff 50%, #ff9d00 50%); 
-  --bg-primary-pattern-one:  linear-gradient(90deg, #166ff5 50%, #ffffff 50%);
-  --bg-primary-pattern-two:  linear-gradient(90deg, #ffffff 50%, #166ff5 50%);*/
-    --bg-primary-pattern-one: #fff;
-    --bg-primary-pattern-two: #bfc8d4bd;
+  --bg-primary-pattern-one: #fff;
+  --bg-primary-pattern-two: #bfc8d4bd;
 
+}
+.transition{
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 h2 {
   text-transform: capitalize;
@@ -723,9 +722,6 @@ h2.headerTitle{
 
 .loader,
 .loader:after {
-    /* border-radius: 50%; */
-    /* width: 50em;
-    height: 50em; */
     width: 70vh;
     height: 50vh; 
 }
@@ -746,7 +742,6 @@ h2.headerTitle{
     
 }
 
-/* style=""  */
 #loadingDiv {
     z-index:10000;
     position:Fixed;

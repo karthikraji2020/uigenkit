@@ -615,15 +615,20 @@ function getTheme() {
   }
   //take copy and do the
 }
+let trans = () => {
+  document.documentElement.classList.add('transition');
+  window.setTimeout(() => {
+      document.documentElement.classList.remove('transition');
+  }, 1000)
+}
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
 var myNav = document.getElementById('colorFormatBtnGroup');
   if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-    myNav.classList.add("btn-group-vertical","fixed-middle-right");
+    myNav.classList.add("btn-group-vertical","fixed-middle-right","transition");
   } else {
-  
-    myNav.classList.remove("btn-group-vertical","fixed-middle-right");
+    myNav.classList.remove("btn-group-vertical","fixed-middle-right","transition");
   }
 }
 

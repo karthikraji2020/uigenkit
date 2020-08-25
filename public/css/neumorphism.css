@@ -4,7 +4,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 .position-wrapper {
     position: relative;
@@ -69,10 +68,6 @@ input[type="range"] {
 label {
     font-weight: bold;
 }
-#content-wrapper {
-    /* background: rgb(255, 22, 22) ;  */
-    /* margin-top: 3.5rem; */
-} 
 #bgColorOne {
     height: 2rem;
     width: 2rem;
