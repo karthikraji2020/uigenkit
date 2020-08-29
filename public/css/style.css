@@ -761,3 +761,14 @@ h2.headerTitle{
   font-weight: 500;
   font-size: .8rem;
 }
+.toasterBst{
+  position: fixed;
+  top: 10%;
+  right: 0;
+  z-index: 999999;
+  display: none;
+}
+.toasterBst .text-primary ,
+.toasterBst .border-primary{
+  color: #0049b6 !important;
+}

@@ -4,6 +4,12 @@
 <body>
     <%- include('partials/navbar') -%>
     <div style="z-index:10000;position:Fixed;height:100vh;" id="loadingDiv"><img src="/images/loader.png" class="loader" alt="loader"/><div ></div></div>
+        <div class="toasterBst">
+            <div class="alert alert-light text-primary shadow border-primary alert-dismissible fade show" id="myAlert">
+                <button type="button" class="close" >&times;</button>
+                <strong class="color-code"> </strong> Copied !!
+              </div>
+        </div>
     <%- body %>
     <%- include('partials/footer') -%>
 </body>

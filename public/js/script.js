@@ -42,9 +42,17 @@ function CopyColorToClipboard(containerid) {
   window.getSelection().removeAllRanges(); // clear current selection
   window.getSelection().addRange(range); // to select text
   document.execCommand("copy");
-  alert("Color Code Copied " + containerid.innerText);
+  
+  var colorCodeWrapper = document.querySelector('.color-code');
+  var toasterBstWrapper = document.querySelector('.toasterBst');
+  toasterBstWrapper.style.display="block";
+  colorCodeWrapper.innerText = containerid.innerText;
+  // alert("Color Code Copied " + containerid.innerText);
+  setTimeout(() => {
+  toasterBstWrapper.style.display="none";
+  colorCodeWrapper.innerText=""
+  }, 2500);
 }
-
 var rgbToHex = function (rgb) {
   let RGB = rgb.split("rgb(")[1].split(")").join("").split(",");
   let darray ='';
