@@ -158,7 +158,7 @@ nav {
   float: left;
 }
 h2.headerTitle{
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   text-transform: capitalize;
   text-align: left;
   padding: 1rem;
@@ -354,17 +354,17 @@ background: white;
 #copy {
   position: relative;
   box-sizing: border-box;
-  background-color: #31c6eb;
+  background-color: #166ff5;
   color: #ffffff;
   font-size: 1rem;
   font-weight: 500;
   padding: .6rem;
   border: 0;
-  border-radius: 15px;
+  border-radius: 5px;
   outline: none;
   cursor: pointer;
   user-select: none;
-  box-shadow: 13px 13px 20px #caced1, -13px -13px 20px #ffffff;
+  box-shadow: 0px 7px 12px #caced1, 0px -7px 12px #ffffff;
 }
 #copy:before {
   content: "";
@@ -584,6 +584,7 @@ h6 figcaption,
 }
 /*Shrinking for mobile*/
 @media (max-width: 768px) {
+ 
   .box-wrapper {
     height: 50vh;
   }
@@ -699,6 +700,9 @@ h2.headerTitle{
 #gotoTop:hover {
   color: white;
   background-color: rgb(95, 95, 95);
+}
+.about_{
+  text-transform: capitalize;
 }
 .about_logo {
   -webkit-animation: upNdown 2s infinite linear;

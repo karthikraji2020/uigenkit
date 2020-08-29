@@ -1,6 +1,6 @@
 
 $(window).on('load', function(){
-setTimeout(removeLoader, 800); 
+setTimeout(removeLoader, 550); 
 });
 
 function renderLoader(ms) {

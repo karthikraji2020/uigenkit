@@ -387,6 +387,17 @@ function colorWithFormat(element, format) {
 
 function showPicker(obj) {
   selectedLayer = obj.className;
+  // if(obj.style.backgroundColor !== ''){
+    if (currentValue == "hex") {
+        let result =rgbToHex(obj.style.backgroundColor)
+        createPalette.setColor(result);
+    }else if (currentValue == "rgb") {
+       createPalette.setColor(obj.style.backgroundColor);
+    } else {
+      let result  = obj.style.backgroundColor.replace("rgb", "rgba").replace(")", ",1)");
+        createPalette.setColor(result);
+    }
+  // }
   createPalette.show();
   createPalette.setColorRepresentation(obj.innerHTML);
 }
@@ -498,11 +509,22 @@ function hexToRGB(hexvalue) {
   let rbgvalue = colorConversion.style.color;
   return rbgvalue;
 }
-$(window)
-  .resize(function () {
-    draw("rgb(54, 238, 213)");
-  })
-  .resize();
+
+
+$(window).resize(function () {
+  let colorSchemeBtnGroup = document.getElementById('colorSchemeBtnGroup');
+  let colorShemeTitle = document.querySelector('.color-sheme-title');
+  if(window.screen.width <= 768) {
+    colorShemeTitle.style.display="none";
+    colorSchemeBtnGroup.classList.add("btn-group-vertical","transition");
+    console.log( window.screen.width);
+  }else {
+    colorShemeTitle.style.display="block";
+    colorSchemeBtnGroup.classList.remove("btn-group-vertical","transition");
+  }
+  draw("rgb(54, 238, 213)");
+}).resize();
+
 function draw(bgone) {
   var canvas = document.getElementById("colorPalette");
   var ctx = canvas.getContext("2d");
@@ -624,11 +646,15 @@ let trans = () => {
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-var myNav = document.getElementById('colorFormatBtnGroup');
+let colorFormatBtnGroup = document.getElementById('colorFormatBtnGroup');
+let colorShemeTitle = document.querySelector('.color-sheme-title');
   if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-    myNav.classList.add("btn-group-vertical","fixed-middle-right","transition");
+    colorFormatBtnGroup.classList.add("btn-group-vertical","fixed-middle-right","transition");
+    colorShemeTitle.style.display="none";
   } else {
-    myNav.classList.remove("btn-group-vertical","fixed-middle-right","transition");
+    colorFormatBtnGroup.classList.remove("btn-group-vertical","fixed-middle-right","transition");
+    colorShemeTitle.style.display="block";
+    
   }
 }
 

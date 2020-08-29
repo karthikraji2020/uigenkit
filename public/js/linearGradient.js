@@ -35,11 +35,13 @@ function goForward() {
   let validIndex = currentIndex <= colorData.length - 1;
   if (validIndex) {
     let { colorStopOne, colorStopTwo, gradientName } = colorData[currentIndex];
-
     draw(colorStopOne, colorStopTwo);
+    linearGradientPointOne.setColor(colorStopOne);
+    linearGradientPointTwo.setColor(colorStopTwo);
     headerBackground.style.backgroundImage = `linear-gradient(${selectedDirection},${colorStopOne},${colorStopTwo})`;
     bgStopPointOne.value = colorStopOne;
     bgStopPointTwo.value = colorStopTwo;
+
     gradientNameLabel.textContent = gradientName;
     if (goBackwardBtn.hasAttribute("disabled")) {
       goBackwardBtn.removeAttribute("disabled");
