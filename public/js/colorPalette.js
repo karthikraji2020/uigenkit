@@ -182,8 +182,8 @@ function resetCustomPaletteGenarator() {
   layer3 = document.querySelector("#customPaletteGenarator h6.layer3");
   layer4 = document.querySelector("#customPaletteGenarator h6.layer4");
 
-  layer1.style.backgroundColor = " rgba(143, 142, 142, 0.815)";
-  layer2.style.backgroundColor = " rgba(168, 168, 168, 0.822)";
+  layer1.style.backgroundColor = " rgba(143, 142, 142, 0.7)";
+  layer2.style.backgroundColor = " rgba(168, 168, 168, 0.8)";
   layer3.style.backgroundColor = " rgb(206, 206, 206)";
   layer4.style.backgroundColor = " rgb(224, 224, 224)";
 
@@ -387,7 +387,7 @@ function colorWithFormat(element, format) {
 
 function showPicker(obj) {
   selectedLayer = obj.className;
-  // if(obj.style.backgroundColor !== ''){
+  if(obj.style.backgroundColor !== ''){
     if (currentValue == "hex") {
         let result =rgbToHex(obj.style.backgroundColor)
         createPalette.setColor(result);
@@ -397,7 +397,7 @@ function showPicker(obj) {
       let result  = obj.style.backgroundColor.replace("rgb", "rgba").replace(")", ",1)");
         createPalette.setColor(result);
     }
-  // }
+  }
   createPalette.show();
   createPalette.setColorRepresentation(obj.innerHTML);
 }
