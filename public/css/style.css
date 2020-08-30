@@ -776,3 +776,7 @@ h2.headerTitle{
 .toasterBst .border-primary{
   color: #0049b6 !important;
 }
+.display-4 {
+  font-size: 2.5rem;
+  font-weight: 400;
+}
