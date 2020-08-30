@@ -7,7 +7,8 @@ It has a collection of fresh palettes created and liked by users everyday.
 
 It's a Recreation of colorhunt, neumorphism,ui gradient apps which i made in node and ejs.
 
-Applink :[uigenaratorkit](https://uigenaratorkit.herokuapp.com)
+<!-- Applink :[uigenaratorkit](https://uigenaratorkit.herokuapp.com) -->
+Applink :[uigenaratorkit](https://uigenkit.herokuapp.com)
 
 ## :film_projector: DEMO
 <p align="center">

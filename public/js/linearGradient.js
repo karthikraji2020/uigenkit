@@ -17,7 +17,7 @@ var colorData;
 const copyButton = document.getElementById("copy");
 const textButton = document.querySelector(".copycss");
 
-const apiURL = `https://uigenaratorkit.herokuapp.com/api/`;
+const apiURL = `https://uigenkit.herokuapp.com/api/`;
 // const apiURL = `http://localhost:3000/api/`;
 // load data
 function getData() {

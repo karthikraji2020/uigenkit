@@ -9,7 +9,7 @@ var likedPaletteId = [];
 var pageIndex = 1;
 let currentColorScheme = "monochromatic";
 
-const apiURL = `https://uigenaratorkit.herokuapp.com/api/`;
+const apiURL = `https://uigenkit.herokuapp.com/api/`;
 // const apiURL = `http://localhost:3000/api/`;
 
 createPalette = Pickr.create({
