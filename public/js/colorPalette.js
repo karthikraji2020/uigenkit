@@ -158,6 +158,7 @@ function renderLikes(element, index) {
     return `<span onclick="paletteLiked('${element.id}',this,${element.isLiked})"><i class="fa fa-heart-o text-danger"></i> <span id="likesCount"> ${element.likes} </span> Likes</span>`;
   }
 }
+resetCustomPaletteGenarator();
 
 function togglePalette() {
   let isChecked = document.querySelector(".btn.btn-lg.btn-toggle").className;
@@ -182,10 +183,10 @@ function resetCustomPaletteGenarator() {
   layer3 = document.querySelector("#customPaletteGenarator h6.layer3");
   layer4 = document.querySelector("#customPaletteGenarator h6.layer4");
 
-  layer1.style.backgroundColor = " rgba(143, 142, 142, 0.7)";
-  layer2.style.backgroundColor = " rgba(168, 168, 168, 0.8)";
-  layer3.style.backgroundColor = " rgb(206, 206, 206)";
-  layer4.style.backgroundColor = " rgb(224, 224, 224)";
+  layer1.style.backgroundColor = "#8f8e8e";
+  layer2.style.backgroundColor = "#a8a8a8";
+  layer3.style.backgroundColor = "#cecece";
+  layer4.style.backgroundColor = "#e0e0e0";
 
   
   layer1.innerHTML = "<figcaption> Click Here</figcaption> ";
@@ -550,12 +551,10 @@ function changeSelectedlayerBg() {
   }
 }
 function changeSelectedlayerBgTrigger(selector) {
-  document.querySelector(
-    `.${selector}`
-  ).style.backgroundColor = document.querySelector(".pcr-result").value;
-  document.querySelector(`.${selector}`).innerHTML = document.querySelector(
-    ".pcr-result"
-  ).value;
+  let changedColor = document.querySelector(".pcr-result").value;
+  let currentSelector =  document.querySelector(`.${selector}`);
+  currentSelector.style.backgroundColor = changedColor;
+  currentSelector.innerHTML = `<figcaption>${changedColor}</figcaption>`;
 }
 var gridsArrray = []; // alternative for this
 // var alternativeGridsArray=["grid1", "grid2", "grid3","grid4"];
