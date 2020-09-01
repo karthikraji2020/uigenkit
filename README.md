@@ -5,7 +5,6 @@
   UiGeneratorKit is multi-featured application  that helps designers and developers to choose  (copy css code) or download their own color palettes , linear-gradient as Images as well and soft-ui Genarator (latest ui-design pattern ) for their next successful project.
 It has a collection of fresh palettes created and liked by users everyday.
 
-It's a Recreation of colorhunt, neumorphism,ui gradient apps which i made in node and ejs.
 
 <!-- Applink :[uigenaratorkit](https://uigenaratorkit.herokuapp.com) -->
 Applink :[uigenaratorkit](https://uigenkit.herokuapp.com)
