@@ -9,7 +9,7 @@ Applink :[uigenaratorkit](https://uigenkit.herokuapp.com)
 
 ## :film_projector: DEMO
 <p align="center">
-<img src="./public/images/uigenkit_.gif" alt="uigeneratorkit">
+<img src="./public/images/uigenkit.gif" alt="uigenkit">
 </p>
 
 ###### Features

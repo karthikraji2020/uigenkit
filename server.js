@@ -4,15 +4,14 @@ const ejs = require('ejs');
 const path = require('path');
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
-const fs = require('fs');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const moment = require('moment');
 // const apiRoute = require('./api/routes/uigeneratorkit.routes');
 const LinearGradientColor = require('./api/models/lineargradient.model');
 const SocialMediaColors = require('./api/models/socialmedia.model');
 const UiGeneratorkitPalette = require('./api/models/uigeneratorkit.model');
+const port = process.env.PORT || 3000;
 
 const mongooseSets={
     keepAlive: true,
@@ -58,7 +57,7 @@ app.get("/", function(req, res) {
     res.render("./partials/home");
 });
 
-app.get("/home", function(req, res,next) {
+app.get("/home", function(req, res) {
     res.render("./partials/home");
 });
 
@@ -80,17 +79,11 @@ app.get("/api/custompalette", function(req, res) {
     UiGeneratorkitPalette.find()
     .then(customPalette => {
         res.status(200).send(customPalette);  
-        //need to fix createdtime feature  
-    // readDataAndSortwithDate_new(customPalette,res);
-    // let dd = readDataAndSortwithDate_new(customPalette,res);
-    // res.send(dd);
-
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while retrieving the customPalette."
         });
     });
-    // readDataAndSortwithDate(`${customPaletteDataPath}`,res);
 });
 app.get("/api/socialmediapalette", function(req, res) {
     SocialMediaColors.find()
@@ -102,61 +95,6 @@ app.get("/api/socialmediapalette", function(req, res) {
         });
     });
 });
-
-app.post('/lineargradientposts', function(req, res) {
-    // const lineargradient = new LinearGradientColor({
-    //   gradientName: req.body.gradientName,
-    //   colorStopOne: req.body.colorStopOne,
-    //   colorStopTwo: req.body.colorStopTwo
-    // })
-    // const lineargradient = new SocialMediaColors({
-    //   brandName: req.body.brandName,
-    //   colorFormats: {
-    //       hex:req.body.colorFormats.hex,
-    //       hashhex:req.body.colorFormats.hashhex,
-    //       rgb:req.body.colorFormats.rgb,
-    //       rgba:req.body.colorFormats.rgba,
-    //     }
-    // })
-    console.log(req.body);
-    console.log(req.body.rgba);
-    const lineargradient = new UiGeneratorkitPalette({
-
-          id: req.body.id ,
-          createdAt:  req.body.createdAt ,
-          isLiked:  req.body.isLiked ,
-          likes: req.body.likes,
-          hex: {
-            layer1:req.body.hex.layer1,
-            layer2:req.body.hex.layer2,
-            layer3:req.body.hex.layer3,
-            layer4:req.body.hex.layer4,
-        },
-        rgb: {
-            layer1:req.body.rgb.layer1,
-            layer2:req.body.rgb.layer2,
-            layer3:req.body.rgb.layer3,
-            layer4:req.body.rgb.layer4,
-        },
-        rgba: {
-            layer1:req.body.rgba.layer1,
-            layer2:req.body.rgba.layer2,
-            layer3:req.body.rgba.layer3,
-            layer4:req.body.rgba.layer4,
-        }
-    })
-    
-    console.log(req.body.brandName);
-    lineargradient.save(function(err, rec) {
-      if(err) {
-        return res.status(400).send("error while creting a post")
-      }
-      console.log(rec);
-      res.send(rec);
-    })
-  })
-
-
 
 app.get("/api/lineargradientcolors", function(req, res) {
     LinearGradientColor.find()
@@ -188,8 +126,6 @@ app.put("/api/updatelikesbyid/:paletteid",  function(req, res) {
                 message: "palette not found with id " +paletteid
             });
         }
-    // readDataAndSortwithDate(`${customPaletteDataPath}`,res);
-            // findAllPalettes();
         UiGeneratorkitPalette.find()
         .then(customPalette => {
         res.send(customPalette);
@@ -238,10 +174,8 @@ app.post("/api/custompalette", function(req, res) {
     if(err) {
       return res.status(400).send("error while creting a post")
     }
-    // console.log(rec);
     UiGeneratorkitPalette.find()
     .then(customPalette => {
-        // readDataAndSortwithDate(customPalette,res);
     res.send(customPalette);
     }).catch(err => {
         res.status(500).send({
@@ -254,92 +188,5 @@ app.post("/api/custompalette", function(req, res) {
 });
 
 
-const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server started on Port ${port}`));
 
-
-async function readDataAndSortwithDate(palette,res) {
-    console.log(palette)
-
-    console.time();
-    let sortedArray =  palette.sort((a,b)=>b.likes-a.likes);
-    sortedArray.sort(function(a, b) {
-        a = new Date(a.createdAt);
-        b = new Date(b.createdAt);
-        return ((a>b) ? -1 : (a<b) ? 1 : 0);
-    });
-    let data =  await sortedArray.forEach(element => {
-        let d1 = moment(element.createdAt);
-        let d2 = moment();
-        let days = d2.diff(d1, 'days');
-        let result;
-        let months = d2.diff(d1, 'months');
-        let years = d2.diff(d1, 'years');
-        let hours = d2.diff(d1, 'hours');
-        let minutes = d2.diff(d1, 'minutes');
-        if(months>12) {
-            result= `${years} years ago` ;
-        } else  {
-            if(hours >24) {
-                result=`${days} days ago`;
-            } else if(hours <24) {
-                if( minutes >60) {
-                    result= `${hours} hours ago` ;
-                } else if (minutes <60) {
-                    result=  `${minutes} mins ago` ;
-                }
-            }
-        }
-        element.createdAt= result;
-    });
-    console.timeEnd();
-    res.status(200).send(data);
-    // res.status(200).send(sortedArray);
-    // console.log(data)
-    // return data;
-}
-
-function readDataAndSortwithDate___(filePath,res) {
-    fs.readFile(`${filePath}`, function(err, data) { 
-        // Check for errors 
-        if (err) throw err; 
-        // Converting to JSON 
-        const paletteData = JSON.parse(data); 
-            // console.log(`Difference in hours: ${hours}`);
-        let t1= Date.now();
-        let sortedArray = paletteData.sort((a,b)=>b.likes-a.likes);
-        sortedArray.sort(function(a, b) {
-            a = new Date(a.createdAt);
-            b = new Date(b.createdAt);
-            return ((a>b) ? -1 : (a<b) ? 1 : 0);
-        });
-
-        sortedArray.forEach(element => {
-            let d1 = moment(element.createdAt);
-            let d2 = moment();
-            let days = d2.diff(d1, 'days');
-            let result;
-            let months = d2.diff(d1, 'months');
-            let years = d2.diff(d1, 'years');
-            let hours = d2.diff(d1, 'hours');
-            let minutes = d2.diff(d1, 'minutes');
-            if(months>12) {
-                result= `${years} years ago` ;
-            } else  {
-                if(hours >24) {
-                    result=`${days} days ago`;
-                } else if(hours <24) {
-                    if( minutes >60) {
-                        result= `${hours} hours ago` ;
-                    } else if (minutes <60) {
-                        result=  `${minutes} mins ago` ;
-                    }
-                }
-            }
-            element.createdAt= result;
-        });
-        let t2= Date.now();
-        console.log(`Difference in ms: ${t2-t1}`);
-        res.status(200).send(sortedArray);
-    }); 
-}
