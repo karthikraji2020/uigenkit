@@ -708,7 +708,7 @@ function downloadPaletteAsImage(layer1, layer2, layer3, layer4) {
   let a = document.createElement("a"); //Create <a>
   a.href = base64URL; //Image Base64 Goes here
   let timeInMiliSec = Date.now();
-  a.download = `UiGenaratorKit_ColorPaletteBackGround_${timeInMiliSec}.jpg`; //File name Here
+  a.download = `UiGenKit_ColorPaletteBackGround_${timeInMiliSec}.jpg`; //File name Here
   a.click(); //Downloaded file
 }
 

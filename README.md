@@ -1,20 +1,15 @@
-# UiGeneratorKit
+# UiGenKit
  All In One latest Trending UI - Generator-Kit Application.
  
 ## About the application
-  UiGeneratorKit is multi-featured application  that helps designers and developers to choose  (copy css code) or download their own color palettes , linear-gradient as Images as well and soft-ui Genarator (latest ui-design pattern ) for their next successful project.
+  UiGenKit is multi-featured application  that helps designers and developers to choose  (copy css code) or download their own color palettes , linear-gradient as Images as well and soft-ui Genarator (latest ui-design pattern ) for their next successful project.
 It has a collection of fresh palettes created and liked by users everyday.
 
-
-<!-- Applink :[uigenaratorkit](https://uigenaratorkit.herokuapp.com) -->
 Applink :[uigenaratorkit](https://uigenkit.herokuapp.com)
 
 ## :film_projector: DEMO
 <p align="center">
-<!-- <img src="./public/images/uiGeneratorkit.gif" alt="uigenaratorkit" title="uiGeneratorkit"> -->
-<!-- <img src="./public/images/uigenkit.gif" alt="uigeneratorkit"> -->
 <img src="./public/images/uigenkit_.gif" alt="uigeneratorkit">
-<!-- <img src="./public/images/ui_2.gif" alt="uigenaratorkit"> -->
 </p>
 
 ###### Features

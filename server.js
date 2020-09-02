@@ -144,39 +144,7 @@ app.post('/lineargradientposts', function(req, res) {
             layer3:req.body.rgba.layer3,
             layer4:req.body.rgba.layer4,
         }
-      // id: req.body.id ,
-        //   createdAt:  req.body.createdAt ,
-        //   isLiked:  req.body.isLiked ,
-        //   likes: req.body.likes,
-        //   hex: 
-        //     layer1: req.body.layer1 ,
-        //     layer2: req.body.layer2 ,
-        //     layer3: req.body.layer3 ,
-        //     layer4: req.body.layer4 ,
-        //   ,
-        //   rgb: {
-        //     layer1: req.body.layer1 ,
-        //     layer2: req.body.layer2 ,
-        //     layer3: req.body.layer3 ,
-        //     layer4: req.body.layer4 ,
-        //   },
-        //   rgba.layer1: req.body.layer1 ,
-        //     layer2: req.body.layer2 ,
-        //     layer3: req.body.layer3 ,
-        //     layer4: req.body.layer4 }
-    //     }
-        
     })
-
-    /*
-          brandName: { type: String },
-        colorFormats:{ 
-        hex: { type: String },
-        hashhex: { type: String },
-        rgb: { type: String },
-        rgba: { type: String },
-    }
-    */ 
     
     console.log(req.body.brandName);
     lineargradient.save(function(err, rec) {

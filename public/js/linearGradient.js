@@ -21,7 +21,6 @@ const apiURL = `https://uigenkit.herokuapp.com/api/`;
 // const apiURL = `http://localhost:3000/api/`;
 // load data
 function getData() {
-  // fetch("./data/linearColor.json")
   fetch(`${apiURL}lineargradientcolors`)
     .then((response) => response.json())
     .then((obj) => {
@@ -115,38 +114,24 @@ function downloadAsImage() {
 function draw(bgone, bgtwo) {
   var canvas = document.getElementById("thecanvas");
   var ctx = canvas.getContext("2d");
-  // ctx.fillStyle = "#ff9d00";
-  // ctx.fillRect(25,25,800,600);
   let myWidth = window.innerWidth;
   let myHeight = window.innerHeight;
-  // let  myWidth = 500;
-  // let myHeight = 700;
-  // ctx.rect(0, 0, canvas.width, canvas.height);
   var grd = ctx.createLinearGradient(0, 0, myWidth, myHeight);
 
   if( selectedDirection=="135deg") {
-    // ctx.rect(myWidth, myHeight,0, 0);
     var grd = ctx.createLinearGradient(0, 0, myWidth, myHeight);
   }
   if( selectedDirection=="315deg") {
-    // ctx.rect(0, 0, myWidth, myHeight);
     var grd = ctx.createLinearGradient(myWidth, myHeight,0, 0);
   }
   if(selectedDirection=="225deg") {
-    // ctx.rect(0, myWidth, myHeight,0);
     var grd = ctx.createLinearGradient(0, myWidth, myHeight,0);
   }
   if( selectedDirection=="45deg") {
-    // ctx.rect(myWidth, 0, 0, myHeight);
     var grd = ctx.createLinearGradient(myWidth, 0, 0, myHeight);
   }
   ctx.rect(0, 0, myWidth, myHeight);
-  // add linear gradient
-
-  // var grd = ctx.createLinearGradient(0, 0, myWidth, myHeight);
-  // light blue
   grd.addColorStop(0, bgone);
-  // dark blue
   grd.addColorStop(1, bgtwo);
   ctx.fillStyle = grd;
   ctx.fill();

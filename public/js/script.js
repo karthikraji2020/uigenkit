@@ -47,7 +47,6 @@ function CopyColorToClipboard(containerid) {
   var toasterBstWrapper = document.querySelector('.toasterBst');
   toasterBstWrapper.style.display="block";
   colorCodeWrapper.innerText = containerid.innerText;
-  // alert("Color Code Copied " + containerid.innerText);
   setTimeout(() => {
   toasterBstWrapper.style.display="none";
   colorCodeWrapper.innerText=""
@@ -91,19 +90,5 @@ function invertColor(hexTripletColor) {
   color = "#" + color; // prepend #
   return color;
 }
-
-  // const copyText = (e) => {
-  //   debugger;
-  //   window.getSelection().selectAllChildren(textButton);
-  //   document.execCommand("copy");
-  //   e.target.setAttribute("tooltip", "Copied! ✅");
-  // };
-
-  // const resetTooltip = (e) => {
-  //   e.target.setAttribute("tooltip", "Copy to clipboard");
-  // };
-
-  // copyButton.addEventListener("click", (e) => copyText(e));
-  // copyButton.addEventListener("mouseover", (e) => resetTooltip(e));
 
 
