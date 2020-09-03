@@ -29,7 +29,7 @@ Applink :[uigenaratorkit](https://uigenkit.herokuapp.com)
 ## Tech Stack
 - serverside Rendering (nodejs & ejs);
 - MongoDB.
-- Vennila Javascript.
+- Venila Javascript.
 - HTML5,CSS3,bootstrap 4.3.
 
 
