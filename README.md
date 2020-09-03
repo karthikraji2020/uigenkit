@@ -5,7 +5,7 @@
   UiGenKit is multi-featured application  that helps designers and developers to choose  (copy css code) or download their own color palettes , linear-gradient as Images as well and soft-ui Genarator (latest ui-design pattern ) for their next successful project.
 It has a collection of fresh palettes created and liked by users everyday.
 
-Applink :[uigenaratorkit](https://uigenkit.herokuapp.com)
+Applink :[uigenkit](https://uigenkit.herokuapp.com)
 
 ## :film_projector: DEMO
 <p align="center">
