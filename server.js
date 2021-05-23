@@ -7,11 +7,17 @@ const expressLayouts = require('express-ejs-layouts');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const compression = require('compression');
 // const apiRoute = require('./api/routes/uigeneratorkit.routes');
 const LinearGradientColor = require('./api/models/lineargradient.model');
 const SocialMediaColors = require('./api/models/socialmedia.model');
 const UiGeneratorkitPalette = require('./api/models/uigeneratorkit.model');
 const port = process.env.PORT || 3000;
+
+
+
+const multer = require("multer");
+const sharp = require("sharp");
 
 const mongooseSets={
     keepAlive: true,
@@ -32,6 +38,20 @@ const mongooseSets={
 
 //middlewares 
 app.use(cors());
+app.use('/uploads', express.static(path.join(__dirname + '/uploads')));
+app.use(compression({
+    level:6,
+    threshold:10*1000, //10kb
+    filter: (req, res)=>{
+        if (req.headers['x-no-compression']) {
+            // don't compress responses with this request header
+            return false
+          }
+          // fallback to standard filter function
+          return compression.filter(req, res)
+    }
+   
+}))
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header(
@@ -53,12 +73,91 @@ app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+      cb(null, "uploads");
+    },
+    filename: function(req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    }
+  });
+  
+  const upload = multer({
+    storage: storage
+  });
+
+  app.post("/preview", upload.single("image"), (req, res, next) => {
+    const file = req.file;
+    var ext;
+  
+    if (!file) {
+      const error = new Error("Please Upload a file");
+      error.httpStatusCode = 404;
+      return next(error);
+    }
+    if (file.mimetype == "image/jpeg") {
+      ext = "jpg";
+    }
+    if (file.mimetype == "image/png") {
+      ext = "png";
+      }
+      console.log(file.path)
+  
+    res.render("./partials/imageoptimizer/preview", { url: file.path, name: file.filename, ext: ext });
+  });
+  
+  app.post("/compress/uploads/:name/:ext",  (req, res) => {
+    let name =req.params.name;
+    let ext =req.params.ext;
+    console.log(name);
+    console.log(__dirname);
+    let file =name;
+    console.log(file);
+    const fileFormat = ext;
+    if (fileFormat === 'svg') {
+      console.log('svg not processed with sharp');
+      return;
+    }
+  
+    let sh = sharp('./uploads/' + file);
+    if (fileFormat === 'jpg' || fileFormat === 'jpeg') {
+      sh = sh.jpeg({ quality: 70 });
+    } else if (fileFormat === 'png') {
+      sh = sh.png({ quality: 70 });
+    }
+  
+    sh.toFile('output/' + file, function (err, info) {
+      // console.log(info);
+      if (err) {
+        console.log('error in image optimization');
+        return;
+      }
+    });
+    setTimeout(()=>{
+      res.download(path.join(__dirname,`output/${file}`));
+    },1000)
+  
+  });
+  
+  
 app.get("/", function(req, res) {
     res.render("./partials/home");
 });
 
 app.get("/home", function(req, res) {
     res.render("./partials/home");
+});
+app.get("/imageoptimizer", function(req, res) {
+    res.render("./partials/imageoptimizer/imageoptimizer");
+});
+app.get("/test", function(req, res) {
+    res.send("test".repeat(100000));
 });
 
 app.get("/neumorphism", function(req, res) {
@@ -190,3 +289,7 @@ app.post("/api/custompalette", function(req, res) {
 
 app.listen(port, () => console.log(`Server started on Port ${port}`));
 
+function getExtension(filename) {
+  let ext = path.extname(filename || '').split('.');
+  return ext[ext.length - 1];
+}

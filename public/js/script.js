@@ -1,6 +1,6 @@
 
 $(window).on('load', function(){
-setTimeout(removeLoader, 550); 
+setTimeout(removeLoader, 350); 
 });
 
 function renderLoader(ms) {
@@ -15,9 +15,11 @@ $(document).ready(function() {
  
   let path = window.location.pathname,pages;
   let pathname = path.split('/')[1];
-  pages = ['home', 'neumorphism', 'lineargradient','colorpalette','about'];
+  pages = ['home', 'neumorphism', 'lineargradient','colorpalette','about','imageoptimizer'];
   if (pathname==='') {
      document.querySelector('li.nav-item').classList.add("active");
+  } else if (pathname==='preview') {
+     document.querySelectorAll('li.nav-item')[1].classList.add("active");
   } else {
     pages.map(item=>{
       if(item===pathname) {
