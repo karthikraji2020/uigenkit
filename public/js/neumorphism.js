@@ -151,7 +151,7 @@ function addcopycss() {
     containerContent
   )};\nborder-radius:${
     radiusRangeValue.innerHTML
-  }px;\nboxShadow : ${boxShadowvalues};`;
+  }px;\nbox-shadow:${boxShadowvalues};`;
   boxContent.style.boxShadow = `${boxShadowvalues}`;
   boxContent.style.borderRadius = `${radiusRangeValue.innerHTML}px`;
 }
@@ -163,7 +163,7 @@ function ratioCalucations() {
 }
 
 function changeBgColor(colorValue) {
-  debugger;
+  // debugger;
   if (!colorValue.includes("#") && !colorValue.includes("rgba(")) {
     colorCodeInHex.value = rgbToHex(colorValue);
   }
@@ -209,21 +209,15 @@ function getBoxShadow() {
   var data, test, firstPointShadowColor, secondPointShadowColor;
   let ratio = Number(distanceRangeValue.innerHTML);
   let blurRatio = Number(blurRangeValue.innerHTML);
-  // let ratio =Number(sizeRange.innerHTML)/10;
-  // let blurRatio =Number(blurRangeValue.innerHTML);
+
   data = getBackgroundColor(containerContent);
   test = intensityRangeValue.innerHTML;
   if (!data.includes("rgba(")) {
     let hexValue = rgbToHex(data);
 
-    // firstPointShadowColor = data
-    //   .replace("rgb(", "rgba(")
-    //   .replace(")", `,${intensityRangeValue.innerHTML})`);
      let bgHex=  rgbToHex(data);
       let inverterHexValue = getShadesOfColor(bgHex,-75);
-      
-    // secondPointShadowColor = data.replace('rgb(','rgba(').replace(')',`,${intensityRangeValue.innerHTML * 2})`);
-    // let inverterHexValue = invertColor(hexValue);
+   
     let result = hexToRGBA(inverterHexValue);
 
      let newData = result.split(',');
@@ -231,21 +225,15 @@ function getBoxShadow() {
      let  roundedOpacity = secondStopShadow.toFixed(1);
      let opResult = `${newData[0]},${newData[1]},${newData[2]},${roundedOpacity})`
 
-    // secondPointShadowColor = result.replace(')',`,${intensityRangeValue.innerHTML})`);
-    // secondPointShadowColor = opResult;
+   
     firstPointShadowColor=opResult;
 
-    // firstPointShadowColor = getShadesOfColor(hexValue,15);
-    // secondPointShadowColor = getShadesOfColor(hexValue,-55);
+
     secondPointShadowColor =data;
-    // secondPointShadowColor = data;
     // Returns FF00FF
   } else {
     firstPointShadowColor = data;
     secondPointShadowColor = data;
-    // let hexValue2 = rgbToHex(data);
-    // firstPointShadowColor = getShadesOfColor(hexValue2,15);
-    // secondPointShadowColor = getShadesOfColor(hexValue2,-35);
     
   }
 
@@ -267,16 +255,6 @@ function getBoxShadow() {
   }
 }
 
-// function invertColor(hexTripletColor) {
-//   var color = hexTripletColor;
-//   color = color.substring(1); // remove #
-//   color = parseInt(color, 16); // convert to integer
-//   color = 0xffffff ^ color; // invert three bytes
-//   color = color.toString(16); // convert to hex
-//   color = ("000000" + color).slice(-6); // pad with leading zeros
-//   color = "#" + color; // prepend #
-//   return color;
-// }
 
 
 
@@ -286,7 +264,7 @@ setTimeout(() => {
 }, 800);
 
 const copyText = (e) => {
-  debugger;
+  // debugger;
   window.getSelection().selectAllChildren(textButton);
   document.execCommand("copy");
   e.target.setAttribute("tooltip", "Copied! ✅");

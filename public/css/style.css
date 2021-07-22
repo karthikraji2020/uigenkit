@@ -360,6 +360,7 @@ background: white;
   font-weight: 500;
   padding: .6rem;
   border: 0;
+  z-index: 99;
   border-radius: 5px;
   outline: none;
   cursor: pointer !important; 

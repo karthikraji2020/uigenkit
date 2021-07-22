@@ -61,6 +61,9 @@
 input[type="range"] {
     width: 100%;
 }
+input[type="range"]:hover {
+ cursor: pointer;
+}
 .box {
     /* background: #fff; */
     align-self: center;
