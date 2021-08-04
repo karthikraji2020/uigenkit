@@ -15,7 +15,7 @@ $(document).ready(function() {
  
   let path = window.location.pathname,pages;
   let pathname = path.split('/')[1];
-  pages = ['home', 'neumorphism', 'lineargradient','colorpalette','about','imageoptimizer'];
+  pages = ['home', 'neumorphism', 'lineargradient','colorpalette','about','imageoptimizer','bgpattern'];
   if (pathname==='') {
      document.querySelector('li.nav-item').classList.add("active");
   } else if (pathname==='preview') {

@@ -1,0 +1,146 @@
+<link rel="stylesheet" href="/css/neumorphism.css">
+
+<div class="neumorphism">
+    <div class="inner-header flex">
+        <div class="container home-banner shadow-lg">
+        <h2 class="headerTitle">BgPattern </h2>
+        <div class="container" id="content-wrapper">
+            <div class="wrpper-grid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="control-box">   
+                            <form>
+                               
+                                <div class="form-group row">
+                                    <label for="sizeRange" class="col-4 col-form-label">Pick a Color </label>
+                                    <div class="col-2">
+                                      <div class="color-picker"></div>
+                                      <div class="color-picker2"></div>
+                                        <input id="BgPatternColorOne" hidden  onchange="changeBgColor(this.value)">
+                                        <!-- <div id="bgColorOne" onchange="changeBgColor(this.value)" > </div> -->
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" id="colorCodeInHex" class="form-control" value="#292892" onchange="changeBgColor(this.value)">
+                                    </div>
+                                </div>
+                            <!--
+
+                                 Zoom ->scale(1),
+                                angle ->rotate(90),
+                                spacing -H - > width 
+                                spacing -Verticle - > height 
+
+                                rect one - fill
+                              -->
+                            
+                                <!-- sizeRange -->
+                                <div class="form-group row">
+                                    <label for="zoomRange" class="col-2 col-form-label">Zoom </label>
+                                    <div class=" col-8">
+                                     <input type="range" min="5" max="18" value="5" id="zoomRange">
+                                    </div>
+                                    <div class="col-1">
+                                        <span id="zoomRangeValue"></span><span>px</span>
+                                    </div>
+                                </div>
+                                <!-- angleRange -->
+                                <div class="form-group row">
+                                    <label for="angleRange" class="col-2 col-form-label">Angle </label>
+                                    <div class=" col-8">
+                                       <input type="range" min="0" max="180" value="0" id="angleRange">
+                                    </div>
+                                    <div class="col-1">
+                                        <span id="angleRangeValue"></span><span>Deg</span>
+                                    </div>
+                                </div>
+                                <!-- heightRange -->
+                                <div class="form-group row">
+                                    <label for="heightRange" class="col-2 col-form-label">Height Spacing </label>
+                                    <div class=" col-8">
+                                       <input type="range" min="10" max="80" value="15" id="heightRange">
+                                    </div>
+                                    <div class="col-1">
+                                        <span id="heightRangeValue"></span><span>px</span>
+                                    </div>
+                                </div>
+                                <!-- widthRange -->
+                                <div class="form-group row">
+                                    <label for="widthRange" class="col-2 col-form-label">Width Spacing</label>
+                                    <div class=" col-8">
+                                       <input type="range" min="10" max="80" value="15" id="widthRange">
+                                    </div>
+                                    <div class="col-1">
+                                        <span id="widthRangeValue"></span><span>px</span>
+                                    </div>
+                                </div>
+                                <!--intensityRange -->
+                                <div class="form-group row">
+                                    <label for="radiusRange" class="col-2 col-form-label">Intensity:</label>
+                                    <div class=" col-8">
+                                       <input type="range" min="1" max="6" value="3" id="intensityRange">
+                                    </div>
+                                    <div class="col-1">
+                                        <span id="intensityRangeValue"></span><span>px</span>
+                                    </div>
+                                </div>
+                                <!--intensityRange -->
+                                <div class="form-group row">
+                                    <label for="radiusRange" class="col-2 col-form-label">Types </label>
+                                    <div class="col-8">
+                                   <button class="btn btn-dark" type="button" id="shapeType" onclick="toggleInset(this)">Inset</button>
+                                    </div>
+                                </div>
+                       
+                            </form>
+                            <div class="row">
+                                <div class="col-10">
+                                    <pre class="copy-css" tooltip="Copy to clipboard">
+                                    </pre>
+                                </div>
+                                <div class="col-2">
+                                    <br>
+                                    <button  type="button" id="copy">
+                                        copy
+                                    </button>
+                                </div>
+                            </div>
+                               
+                        </div>
+                      
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="position-wrapper shadow-lg">
+                            <div class="top-left active" onclick="changePositionTo('145deg',this)" title="Light Source from (Top Left)">
+                                <i class='fa fa-lightbulb-o text-warning fa-2x'></i>
+                            </div>
+                            <div class="top-right" onclick="changePositionTo('45deg',this)" title="Light Source from (Top Right)"> 
+                                <i class='fa fa-lightbulb-o text-warning fa-2x'></i>
+                            </div>
+                            <div class="bottom-right" onclick="changePositionTo('315deg',this)" title="Light Source from (Bottom Right)">
+                                <i class='fa fa-lightbulb-o text-warning fa-2x'></i>
+                            </div>
+                            <div class="bottom-left" onclick="changePositionTo('225deg',this)" title="Light Source from (Bottom Left)">
+                                <i class='fa fa-lightbulb-o text-warning fa-2x'></i>
+                            </div>
+                            <div class="box-wrapper ">
+                                <div class="box">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+          </div>
+         
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#BgPatternColorOne').colorpicker({color:'#626262'});
+    }); 
+</script>
+<script src="/js/bgPattern.js"></script>
+

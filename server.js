@@ -15,7 +15,6 @@ const UiGeneratorkitPalette = require('./api/models/uigeneratorkit.model');
 const port = process.env.PORT || 3000;
 
 
-
 const multer = require("multer");
 const sharp = require("sharp");
 
@@ -151,6 +150,7 @@ app.get("/", function(req, res) {
 });
 
 app.get("/home", function(req, res) {
+    res.setHeader('Cache-Control', 'public, max-age=86400');
     res.render("./partials/home");
 });
 app.get("/imageoptimizer", function(req, res) {
@@ -162,6 +162,9 @@ app.get("/test", function(req, res) {
 
 app.get("/neumorphism", function(req, res) {
     res.render("./partials/neumorphism/neumorphism");
+});
+app.get("/bgpattern", function(req, res) {
+    res.render("./partials/bgPattern/bgPattern");
 });
 app.get("/colorpalette", function(req, res) {
     res.render("./partials/colorPalette/colorPalette");
