@@ -33,6 +33,17 @@
                                         <input type="text" id="colorCodeInHex" class="form-control" value="#0848D4" onchange="changeBgColor(this.value)">
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="sizeRange" class="col-4 col-form-label">Stoke Color </label>
+                                    <div class="col-2">
+                                      <div class="color-picker3"></div>
+                                        <input id="BgPatternColorOne" hidden  onchange="changeBgColor(this.value)">
+                                        <!-- <div id="bgColorOne" onchange="changeBgColor(this.value)" > </div> -->
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" id="colorCodeInHex" class="form-control" value="#0848D4" onchange="changeBgColor(this.value)">
+                                    </div>
+                                </div>
                             <!--
 
                                  Zoom ->scale(1),
@@ -83,14 +94,14 @@
                                         <span id="widthRangeValue"></span><span>px</span>
                                     </div>
                                 </div>
-                                <!--intensityRange -->
+                                <!--strokeRange -->
                                 <div class="form-group row">
-                                    <label for="radiusRange" class="col-2 col-form-label">Intensity:</label>
+                                    <label for="radiusRange" class="col-2 col-form-label">stroke:</label>
                                     <div class=" col-8">
-                                       <input type="range" min="1" max="6" value="3" id="intensityRange">
+                                       <input type="range" min="0" max="10" value="1" id="strokeRange">
                                     </div>
                                     <div class="col-1">
-                                        <span id="intensityRangeValue"></span><span>px</span>
+                                        <span id="strokeRangeValue"></span><span></span>
                                     </div>
                                 </div>
                                 <!--intensityRange -->

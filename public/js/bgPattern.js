@@ -3,19 +3,22 @@ const copyCssContent = document.querySelector(".copy-css");
 const colorCodeInHex = document.querySelector("#colorCodeInHex");
 var containerContent = document.querySelector(".box-wrapper");
 var globalHexValueOfPicker;
+var globalHexValueOfPickerForeground;
+var globalHexValueOfPickerStroke;
 var globalHslaValueOfPicker;
 var globalHslaValueOfPickerTwo;
+var globalHslaValueOfPickerStroke;
 const zoomRange = document.querySelector("#zoomRange");
 const angleRange = document.querySelector("#angleRange");
 const heightRange = document.querySelector("#heightRange");
 const widthRange = document.querySelector("#widthRange");
-const intensityRange = document.querySelector("#intensityRange");
+const strokeRange = document.querySelector("#strokeRange");
 
 const zoomRangeValue = document.querySelector("#zoomRangeValue");
 const angleRangeValue = document.querySelector("#angleRangeValue");
 const heightRangeValue = document.querySelector("#heightRangeValue");
 const widthRangeValue = document.querySelector("#widthRangeValue");
-const intensityRangeValue = document.querySelector("#intensityRangeValue");
+const strokeRangeValue = document.querySelector("#strokeRangeValue");
 var selectedDirection = "145deg";
 var isInset = false;
 const copyButton = document.getElementById("copy");
@@ -44,8 +47,31 @@ const pickr = Pickr.create({
     },
   },
 });
-const pickrTwo = Pickr.create({
+const pickrForeground = Pickr.create({
   el: ".color-picker2",
+  theme: "nano", // or 'monolith', or 'nano'
+  default: "#0848D4",
+  comparison: false,
+  showAlways: false,
+  closeOnScroll: true,
+  closeWithKey: "Escape",
+  components: {
+    // Main components
+    preview: true,
+    opacity: true,
+    hue: true,
+    // Input / output Options
+    interaction: {
+      hex: true,
+      rgba: true,
+      hsla: true,
+      input: true,
+      save: true
+    },
+  },
+});
+const pickrStroke = Pickr.create({
+  el: ".color-picker3",
   theme: "nano", // or 'monolith', or 'nano'
   default: "#0848D4",
   comparison: false,
@@ -70,6 +96,7 @@ const pickrTwo = Pickr.create({
 
 globalHslaValueOfPicker= 'hsla(221, 93%, 103%, 1)';
 globalHslaValueOfPickerTwo= 'hsla(221, 93%, 43%, 1)';
+globalHslaValueOfPickerStroke= 'hsla(311, 0%, 86%, 1)';
 pickr.on("change", (color, instance) => {
   let rgbaColor = color.toRGBA().toString();
    globalHexValueOfPicker = color.toHEXA().toString();
@@ -77,10 +104,17 @@ pickr.on("change", (color, instance) => {
   addcopycss();
   changeBgColor(rgbaColor);
 });
-pickrTwo.on("change", (color, instance) => {
+pickrForeground.on("change", (color, instance) => {
   let rgbaColor = color.toRGBA().toString();
-  //  globalHexValueOfPicker = color.toHEXA().toString();
+   globalHexValueOfPickerForeground = color.toHEXA().toString();
    globalHslaValueOfPickerTwo = color.toHSLA().toString();
+  addcopycss();
+  changeBgColor(rgbaColor);
+});
+pickrStroke.on("change", (color, instance) => {
+  let rgbaColor = color.toRGBA().toString();
+  globalHexValueOfPickerStroke = color.toHEXA().toString();
+  globalHslaValueOfPickerStroke = color.toHSLA().toString();
   addcopycss();
   changeBgColor(rgbaColor);
 });
@@ -90,7 +124,7 @@ zoomRangeValue.innerText = `${zoomRange.value}`;
 angleRangeValue.innerHTML = `${angleRange.value}`;
 heightRangeValue.innerHTML = `${heightRange.value}`;
 widthRangeValue.innerHTML = `${widthRange.value}`;
-intensityRangeValue.innerHTML = `${intensityRange.value / 10}`;
+strokeRangeValue.innerHTML = `${strokeRange.value}`;
 
 boxContent.style.boxShadow = checkDirection();
 boxContent.style.width = zoomRange.value;
@@ -115,24 +149,7 @@ changeBgColor('rgba(218, 218, 218, 1)');
 // sizeRange(sizeRange.value);
 zoomRange.oninput = function () {
   zoomRangeValue.innerHTML = `${this.value}`;
-  //ratio  Calculations
-  let blurRatio = Number(this.value) / 5;
-  let distanceRatio = Number(this.value) / 30 ;
-  let radiusRatio = Number(this.value) / 4;
 
-  // widthRange.value = blurRatio;
-  // widthRangeValue.innerHTML = blurRatio;
-
-  // distanceRange.value = distanceRatio.toFixed(1);
-  // distanceRangeValue.innerHTML = distanceRatio.toFixed(1);
-
-  // radiusRange.max = radiusRatio;
-  // angleRange.value = radiusRatio / 1.5;
-  // angleRangeValue.innerHTML = radiusRatio;
-
-  boxContent.style.width = `${this.value}px`;
-  boxContent.style.height = `${this.value}px`;
-  boxContent.style.borderRadius = angleRange.value;
   addcopycss();
 };
 
@@ -155,8 +172,8 @@ widthRange.oninput = function () {
   addcopycss();
 };
 
-intensityRange.oninput = function () {
-  intensityRangeValue.innerHTML = `${this.value / 10}`;
+strokeRange.oninput = function () {
+  strokeRangeValue.innerHTML = `${this.value}`;
   boxContent.style.boxShadow = `${this.value}px`;
   addcopycss();
 };
@@ -185,8 +202,9 @@ function addcopycss() {
   let svgEle = `
   <svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'>
   <defs>
-    <pattern id='a' patternUnits='userSpaceOnUse' width='${widthRangeValue.innerHTML}' height='${heightRangeValue.innerHTML}' patternTransform='scale(${zoomRangeValue.innerHTML}) rotate(${angleRangeValue.innerHTML})'><rect x='0' y='0' width='100%' height='100%' fill='${globalHslaValueOfPicker}'/>
-    <path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='1' stroke='none' fill='${globalHslaValueOfPickerTwo}'/>
+    <pattern id='a' patternUnits='userSpaceOnUse' width='${widthRangeValue.innerHTML}' height='${heightRangeValue.innerHTML}' patternTransform='scale(${zoomRangeValue.innerHTML}) rotate(${angleRangeValue.innerHTML})'>
+    <rect x='0' y='0' width='100%' height='100%' fill='${globalHslaValueOfPicker}'/>
+    <path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='${strokeRangeValue.innerHTML}' stroke='${globalHslaValueOfPickerStroke}' fill='${globalHslaValueOfPickerTwo}'/>
     </pattern>
     </defs>
     <rect width='800%' height='800%' transform='translate(0,0)' fill='url(%83a)'/>
@@ -214,9 +232,8 @@ function addcopycss() {
   rect one - fill
 
   */ 
-  document.querySelector(".box-wrapper").style.backgroundImage = `url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse'  width='${widthRangeValue.innerHTML}' height='${heightRangeValue.innerHTML}' patternTransform='scale(${zoomRangeValue.innerHTML}) rotate(${angleRangeValue.innerHTML})'><rect x='0' y='0' width='100%' height='100%' fill='${globalHslaValueOfPicker}'/><path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='1' stroke='none' fill='${globalHslaValueOfPickerTwo}'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>")`;
+  document.querySelector(".box-wrapper").style.backgroundImage = `url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse'  width='${widthRangeValue.innerHTML}' height='${heightRangeValue.innerHTML}' patternTransform='scale(${zoomRangeValue.innerHTML}) rotate(${angleRangeValue.innerHTML})'><rect x='0' y='0' width='100%' height='100%' fill='${globalHslaValueOfPicker}'/><path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='${strokeRangeValue.innerHTML}' stroke='${globalHslaValueOfPickerStroke}' fill='${globalHslaValueOfPickerTwo}'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>")`;
   boxContent.style.borderRadius = `${angleRangeValue.innerHTML}px`;
-  // document.querySelector(".box-wrapper").style.backgroundColor = `${colorValue}`;
 
 }
 
@@ -275,7 +292,7 @@ function getBoxShadow() {
   let blurRatio = Number(widthRangeValue.innerHTML);
 
   data = getBackgroundColor(containerContent);
-  test = intensityRangeValue.innerHTML;
+  test = strokeRangeValue.innerHTML;
   if (!data.includes("rgba(")) {
     let hexValue = rgbToHex(data);
 
@@ -285,7 +302,7 @@ function getBoxShadow() {
     let result = hexToRGBA(inverterHexValue);
 
      let newData = result.split(',');
-     let secondStopShadow = Number(intensityRangeValue.innerHTML)*1.8;
+     let secondStopShadow = Number(strokeRangeValue.innerHTML)*1.8;
      let  roundedOpacity = secondStopShadow.toFixed(1);
      let opResult = `${newData[0]},${newData[1]},${newData[2]},${roundedOpacity})`
 
