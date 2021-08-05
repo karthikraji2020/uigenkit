@@ -150,7 +150,7 @@ app.get("/", function(req, res) {
 });
 
 app.get("/home", function(req, res) {
-    res.setHeader('Cache-Control', 'public, max-age=86400');
+    // res.setHeader('Cache-Control', 'public, max-age=86400');
     res.render("./partials/home");
 });
 app.get("/imageoptimizer", function(req, res) {
