@@ -12,15 +12,25 @@
                             <form>
                                
                                 <div class="form-group row">
-                                    <label for="sizeRange" class="col-4 col-form-label">Pick a Color </label>
+                                    <label for="sizeRange" class="col-4 col-form-label">Background Color </label>
                                     <div class="col-2">
                                       <div class="color-picker"></div>
+                                        <input id="BgPatternColorOne" hidden  onchange="changeBgColor(this.value)">
+                                        <!-- <div id="bgColorOne" onchange="changeBgColor(this.value)" > </div> -->
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" id="colorCodeInHex" class="form-control" value="#ffffff" onchange="changeBgColor(this.value)">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="sizeRange" class="col-4 col-form-label">Foreground Color </label>
+                                    <div class="col-2">
                                       <div class="color-picker2"></div>
                                         <input id="BgPatternColorOne" hidden  onchange="changeBgColor(this.value)">
                                         <!-- <div id="bgColorOne" onchange="changeBgColor(this.value)" > </div> -->
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" id="colorCodeInHex" class="form-control" value="#292892" onchange="changeBgColor(this.value)">
+                                        <input type="text" id="colorCodeInHex" class="form-control" value="#0848D4" onchange="changeBgColor(this.value)">
                                     </div>
                                 </div>
                             <!--

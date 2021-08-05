@@ -25,7 +25,7 @@ const shapeType = document.querySelector('#shapeType');
 const pickr = Pickr.create({
   el: ".color-picker",
   theme: "nano", // or 'monolith', or 'nano'
-  default: "#ffff11",
+  // default: "#ffffff",
   comparison: false,
   showAlways: false,
   closeOnScroll: true,
@@ -40,14 +40,14 @@ const pickr = Pickr.create({
       hex: true,
       rgba: true,
       input: true,
-      // save: true
+      save: true
     },
   },
 });
 const pickrTwo = Pickr.create({
   el: ".color-picker2",
   theme: "nano", // or 'monolith', or 'nano'
-  default: "#fff323",
+  default: "#0848D4",
   comparison: false,
   showAlways: false,
   closeOnScroll: true,
@@ -63,7 +63,7 @@ const pickrTwo = Pickr.create({
       rgba: true,
       hsla: true,
       input: true,
-      // save: true
+      save: true
     },
   },
 });

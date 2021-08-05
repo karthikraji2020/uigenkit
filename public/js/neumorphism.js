@@ -39,7 +39,7 @@ const pickr = Pickr.create({
       hex: true,
       rgba: true,
       input: true,
-      // save: true
+      save: true
     },
   },
 });
