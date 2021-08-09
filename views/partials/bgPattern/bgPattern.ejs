@@ -1,5 +1,6 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.2.1/html2canvas.js"></script>
 <link rel="stylesheet" href="/css/neumorphism.css">
-
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script> -->
 <div class="neumorphism">
     <div class="inner-header flex">
         <div class="container home-banner shadow-lg">
@@ -15,33 +16,27 @@
                                     <label for="sizeRange" class="col-4 col-form-label">Background Color </label>
                                     <div class="col-2">
                                       <div class="color-picker"></div>
-                                        <input id="BgPatternColorOne" hidden  onchange="changeBgColor(this.value)">
-                                        <!-- <div id="bgColorOne" onchange="changeBgColor(this.value)" > </div> -->
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" id="colorCodeInHex" class="form-control" value="#ffffff" onchange="changeBgColor(this.value)">
+                                        <input type="text" id="colorCodeInHex" class="form-control" value="#ffffff" >
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="sizeRange" class="col-4 col-form-label">Foreground Color </label>
                                     <div class="col-2">
                                       <div class="color-picker2"></div>
-                                        <input id="BgPatternColorOne" hidden  onchange="changeBgColor(this.value)">
-                                        <!-- <div id="bgColorOne" onchange="changeBgColor(this.value)" > </div> -->
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" id="colorCodeInHex" class="form-control" value="#0848D4" onchange="changeBgColor(this.value)">
+                                        <input type="text" id="fgColorCodeInHex" class="form-control" value="#0848D4" >
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="sizeRange" class="col-4 col-form-label">Stoke Color </label>
                                     <div class="col-2">
                                       <div class="color-picker3"></div>
-                                        <input id="BgPatternColorOne" hidden  onchange="changeBgColor(this.value)">
-                                        <!-- <div id="bgColorOne" onchange="changeBgColor(this.value)" > </div> -->
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" id="colorCodeInHex" class="form-control" value="#0848D4" onchange="changeBgColor(this.value)">
+                                        <input type="text" id="strokeColorCodeInHex" class="form-control" value="#0848D4">
                                     </div>
                                 </div>
                             <!--
@@ -123,6 +118,10 @@
                                     <button  type="button" id="copy">
                                         copy
                                     </button>
+                                    <br>
+                                    <button type="button" class="btn btn-dark" title="Download as Image" id="downloadAsJpg">
+                                        <i class="fa fa-download"></i>
+                                       </button>
                                 </div>
                             </div>
                                
@@ -131,19 +130,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="position-wrapper shadow-lg">
-                            <div class="top-left active" onclick="changePositionTo('145deg',this)" title="Light Source from (Top Left)">
-                                <i class='fa fa-lightbulb-o text-warning fa-2x'></i>
-                            </div>
-                            <div class="top-right" onclick="changePositionTo('45deg',this)" title="Light Source from (Top Right)"> 
-                                <i class='fa fa-lightbulb-o text-warning fa-2x'></i>
-                            </div>
-                            <div class="bottom-right" onclick="changePositionTo('315deg',this)" title="Light Source from (Bottom Right)">
-                                <i class='fa fa-lightbulb-o text-warning fa-2x'></i>
-                            </div>
-                            <div class="bottom-left" onclick="changePositionTo('225deg',this)" title="Light Source from (Bottom Left)">
-                                <i class='fa fa-lightbulb-o text-warning fa-2x'></i>
-                            </div>
-                            <div class="box-wrapper ">
+                            <div class="box-wrapper">
                                 <div class="box">
                                 </div>
                             </div>

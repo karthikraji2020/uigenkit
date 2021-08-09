@@ -1,6 +1,8 @@
 const boxContent = document.querySelector(".box");
 const copyCssContent = document.querySelector(".copy-css");
 const colorCodeInHex = document.querySelector("#colorCodeInHex");
+const fgColorCodeInHex = document.querySelector("#fgColorCodeInHex");
+const strokeColorCodeInHex = document.querySelector("#strokeColorCodeInHex");
 var containerContent = document.querySelector(".box-wrapper");
 var globalHexValueOfPicker;
 var globalHexValueOfPickerForeground;
@@ -24,6 +26,7 @@ var isInset = false;
 const copyButton = document.getElementById("copy");
 const textButton = document.querySelector(".copy-css");
 const shapeType = document.querySelector('#shapeType');
+const downloadAsJpgBtn = document.querySelector("#downloadAsJpg");
 
 const pickr = Pickr.create({
   el: ".color-picker",
@@ -102,21 +105,21 @@ pickr.on("change", (color, instance) => {
    globalHexValueOfPicker = color.toHEXA().toString();
    globalHslaValueOfPicker = color.toHSLA().toString();
   addcopycss();
-  changeBgColor(rgbaColor);
+  changeBgColor(rgbaColor,'bg');
 });
 pickrForeground.on("change", (color, instance) => {
   let rgbaColor = color.toRGBA().toString();
    globalHexValueOfPickerForeground = color.toHEXA().toString();
    globalHslaValueOfPickerTwo = color.toHSLA().toString();
   addcopycss();
-  changeBgColor(rgbaColor);
+  changeBgColor(rgbaColor,'fg');
 });
 pickrStroke.on("change", (color, instance) => {
   let rgbaColor = color.toRGBA().toString();
   globalHexValueOfPickerStroke = color.toHEXA().toString();
   globalHslaValueOfPickerStroke = color.toHSLA().toString();
   addcopycss();
-  changeBgColor(rgbaColor);
+  changeBgColor(rgbaColor,'stroke');
 });
 
 
@@ -126,9 +129,9 @@ heightRangeValue.innerHTML = `${heightRange.value}`;
 widthRangeValue.innerHTML = `${widthRange.value}`;
 strokeRangeValue.innerHTML = `${strokeRange.value}`;
 
-boxContent.style.boxShadow = checkDirection();
-boxContent.style.width = zoomRange.value;
-boxContent.style.height = zoomRange.value;
+// boxContent.style.boxShadow = checkDirection();
+// boxContent.style.width = zoomRange.value;
+// boxContent.style.height = zoomRange.value;
 addcopycss();
 changeBgColor('rgba(218, 218, 218, 1)');
 
@@ -161,14 +164,14 @@ angleRange.oninput = function () {
 
 heightRange.oninput = function () {
   heightRangeValue.innerHTML = `${this.value}`;
-  boxContent.style.boxShadow = checkDirection();
+  // boxContent.style.boxShadow = checkDirection();
   addcopycss();
 };
 
 widthRange.oninput = function () {
   widthRangeValue.innerHTML = `${this.value}`;
   // boxContent.style.boxShadow =  `${this.value}px`;
-  boxContent.style.boxShadow = checkDirection();
+  // boxContent.style.boxShadow = checkDirection();
   addcopycss();
 };
 
@@ -222,16 +225,7 @@ function addcopycss() {
 // background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='40' height='40' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(0,0%,100%,1)'/><path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='1' stroke='none' fill='hsla(258.5,59.4%,59.4%,1)'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>")
   copyCssContent.innerText = `background-image: url("data:image/svg+xml,${svgEle}");`;
 
-  /*
-   patternTransform='scale(1) rotate(0)'
-  Zoom ->scale(1),
-  angle ->rotate(90),
-  spacing -H - > width 
-  spacing -Verticle - > height 
-
-  rect one - fill
-
-  */ 
+ 
   document.querySelector(".box-wrapper").style.backgroundImage = `url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse'  width='${widthRangeValue.innerHTML}' height='${heightRangeValue.innerHTML}' patternTransform='scale(${zoomRangeValue.innerHTML}) rotate(${angleRangeValue.innerHTML})'><rect x='0' y='0' width='100%' height='100%' fill='${globalHslaValueOfPicker}'/><path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='${strokeRangeValue.innerHTML}' stroke='${globalHslaValueOfPickerStroke}' fill='${globalHslaValueOfPickerTwo}'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>")`;
   boxContent.style.borderRadius = `${angleRangeValue.innerHTML}px`;
 
@@ -243,15 +237,21 @@ function ratioCalucations() {
   return ratio;
 }
 
-function changeBgColor(colorValue) {
-  // debugger;
-  if (!colorValue.includes("#") && !colorValue.includes("rgba(")) {
-    colorCodeInHex.value = rgbToHex(colorValue);
-  }
-  // colorCodeInHex.value=colorValue;
-  colorCodeInHex.value = document.querySelector(".pcr-result").value;
-  // containerContent.style.backgroundImage =  `linear-gradient(${selectedDirection},${colorValue},${bgColorTwo.value})`;
-  // document.querySelector(".box-wrapper").style.backgroundColor = `${colorValue}`;
+
+function changeBgColor(colorValue,type) {
+
+  switch (type) {
+    case "bg":
+      colorCodeInHex.value = document.querySelectorAll(".pcr-result")[0].value;
+      break;
+      case "fg":
+        fgColorCodeInHex.value = document.querySelectorAll(".pcr-result")[1].value;
+      break;
+      case "stroke":
+        strokeColorCodeInHex.value = document.querySelectorAll(".pcr-result")[2].value;
+      break;
+    }
+
 }
 
 function changePositionTo(pos, thisObj) {
@@ -351,10 +351,32 @@ const copyText = (e) => {
   e.target.setAttribute("tooltip", "Copied! ✅");
 };
 
+function download(url){
+  let timeInMiliSec = Date.now();
+  var a = $("<a style='display:none' id='js-downloder'>")
+  .attr("href", url)
+  .attr("download",`UiGenaratorKit_BackGround${timeInMiliSec}.jpg`)
+  .appendTo("body");
+  a[0].click();
+  a.remove();
+}
+
 const resetTooltip = (e) => {
   e.target.setAttribute("tooltip", "Copy to clipboard");
 };
-
+const downloadAsJpg = (e) => {
+  var element = document.querySelector(".box-wrapper");
+  html2canvas(element).then(function(canvas) {
+    download(canvas.toDataURL("image/jpg"));
+  })
+};
 copyButton.addEventListener("click", (e) => copyText(e));
 copyButton.addEventListener("mouseover", (e) => resetTooltip(e));
 
+
+
+
+
+
+downloadAsJpgBtn.addEventListener("click", (e) => downloadAsJpg(e));
+downloadAsJpgBtn.addEventListener("mouseover", (e) => resetTooltip(e));
