@@ -27,6 +27,7 @@ const copyButton = document.getElementById("copy");
 const textButton = document.querySelector(".copy-css");
 const shapeType = document.querySelector('#shapeType');
 const downloadAsJpgBtn = document.querySelector("#downloadAsJpg");
+const randomButton = document.querySelector("#random");
 
 const pickr = Pickr.create({
   el: ".color-picker",
@@ -36,6 +37,17 @@ const pickr = Pickr.create({
   showAlways: false,
   closeOnScroll: true,
   closeWithKey: "Escape",
+  swatches: [
+    'rgba(233, 30, 99, 0.95)',
+    'rgba(156, 39, 176, 0.9)',
+    'rgba(103, 58, 183, 0.85)',
+    'rgba(63, 81, 181, 0.8)',
+    'rgba(0, 188, 212, 0.7)',
+    'rgba(139, 195, 74, 0.85)',
+    'rgba(205, 220, 57, 0.9)',
+    'rgba(255, 235, 59, 0.95)',
+    'rgba(255, 193, 7, 1)'
+],
   components: {
     // Main components
     preview: true,
@@ -58,6 +70,18 @@ const pickrForeground = Pickr.create({
   showAlways: false,
   closeOnScroll: true,
   closeWithKey: "Escape",
+  swatches: [
+    'rgba(244, 67, 54, 1)',
+    'rgba(103, 58, 183, 0.85)',
+    'rgba(63, 81, 181, 0.8)',
+    'rgba(33, 150, 243, 0.75)',
+    'rgba(3, 169, 244, 0.7)',
+    'rgba(0, 188, 212, 0.7)',
+    'rgba(0, 150, 136, 0.75)',
+    'rgba(76, 175, 80, 0.8)',
+    'rgba(139, 195, 74, 0.85)',
+    'rgba(255, 235, 59, 0.95)',
+],
   components: {
     // Main components
     preview: true,
@@ -78,12 +102,25 @@ const pickrStroke = Pickr.create({
   theme: "nano", // or 'monolith', or 'nano'
   default: "#0848D4",
   comparison: false,
+  palette: true,
   showAlways: false,
   closeOnScroll: true,
   closeWithKey: "Escape",
+  swatches: [
+    'rgba(244, 67, 54, 1)',
+    'rgba(156, 39, 176, 0.9)',
+    'rgba(103, 58, 183, 0.85)',
+    'rgba(63, 81, 181, 0.8)',
+    'rgba(33, 150, 243, 0.75)',
+    'rgba(3, 169, 244, 0.7)',
+    'rgba(76, 175, 80, 0.8)',
+    'rgba(139, 195, 74, 0.85)',
+    'rgba(255, 235, 59, 0.95)',
+    'rgba(255, 193, 7, 1)'
+],
   components: {
     // Main components
-    preview: true,
+    preview: false,
     opacity: true,
     hue: true,
     // Input / output Options
@@ -123,12 +160,18 @@ pickrStroke.on("change", (color, instance) => {
 });
 
 
-zoomRangeValue.innerText = `${zoomRange.value}`;
-angleRangeValue.innerHTML = `${angleRange.value}`;
-heightRangeValue.innerHTML = `${heightRange.value}`;
-widthRangeValue.innerHTML = `${widthRange.value}`;
-strokeRangeValue.innerHTML = `${strokeRange.value}`;
 
+
+function updateSliderValue(){
+  zoomRangeValue.innerText = `${zoomRange.value}`;
+  angleRangeValue.innerHTML = `${angleRange.value}`;
+  heightRangeValue.innerHTML = `${heightRange.value}`;
+  widthRangeValue.innerHTML = `${widthRange.value}`;
+  strokeRangeValue.innerHTML = `${strokeRange.value}`;
+}
+
+
+updateSliderValue();
 // boxContent.style.boxShadow = checkDirection();
 // boxContent.style.width = zoomRange.value;
 // boxContent.style.height = zoomRange.value;
@@ -158,26 +201,21 @@ zoomRange.oninput = function () {
 
 angleRange.oninput = function () {
   angleRangeValue.innerHTML = `${this.value}`;
-  boxContent.style.borderRadius = `${this.value}px`;
   addcopycss();
 };
 
 heightRange.oninput = function () {
   heightRangeValue.innerHTML = `${this.value}`;
-  // boxContent.style.boxShadow = checkDirection();
   addcopycss();
 };
 
 widthRange.oninput = function () {
   widthRangeValue.innerHTML = `${this.value}`;
-  // boxContent.style.boxShadow =  `${this.value}px`;
-  // boxContent.style.boxShadow = checkDirection();
   addcopycss();
 };
 
 strokeRange.oninput = function () {
   strokeRangeValue.innerHTML = `${this.value}`;
-  boxContent.style.boxShadow = `${this.value}px`;
   addcopycss();
 };
 function getBackgroundColor(elem) {
@@ -210,7 +248,7 @@ function addcopycss() {
     <path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='${strokeRangeValue.innerHTML}' stroke='${globalHslaValueOfPickerStroke}' fill='${globalHslaValueOfPickerTwo}'/>
     </pattern>
     </defs>
-    <rect width='800%' height='800%' transform='translate(0,0)' fill='url(%83a)'/>
+    <rect width='1200%' height='1200%' transform='translate(0,0)' fill='url(%83a)'/>
     </svg>
     
     `
@@ -226,7 +264,7 @@ function addcopycss() {
   copyCssContent.innerText = `background-image: url("data:image/svg+xml,${svgEle}");`;
 
  
-  document.querySelector(".box-wrapper").style.backgroundImage = `url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse'  width='${widthRangeValue.innerHTML}' height='${heightRangeValue.innerHTML}' patternTransform='scale(${zoomRangeValue.innerHTML}) rotate(${angleRangeValue.innerHTML})'><rect x='0' y='0' width='100%' height='100%' fill='${globalHslaValueOfPicker}'/><path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='${strokeRangeValue.innerHTML}' stroke='${globalHslaValueOfPickerStroke}' fill='${globalHslaValueOfPickerTwo}'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>")`;
+  document.querySelector(".box-wrapper").style.backgroundImage = `url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse'  width='${widthRangeValue.innerHTML}' height='${heightRangeValue.innerHTML}' patternTransform='scale(${zoomRangeValue.innerHTML}) rotate(${angleRangeValue.innerHTML})'><rect x='0' y='0' width='100%' height='100%' fill='${globalHslaValueOfPicker}'/><path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='${strokeRangeValue.innerHTML}' stroke='${globalHslaValueOfPickerStroke}' fill='${globalHslaValueOfPickerTwo}'/></pattern></defs><rect width='1200%' height='1200%' transform='translate(0,0)' fill='url(%23a)'/></svg>")`;
   // document.querySelector("#downloadImg").style.backgroundImage = `url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse'  width='${widthRangeValue.innerHTML}' height='${heightRangeValue.innerHTML}' patternTransform='scale(${zoomRangeValue.innerHTML}) rotate(${angleRangeValue.innerHTML})'><rect x='0' y='0' width='100%' height='100%' fill='${globalHslaValueOfPicker}'/><path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='${strokeRangeValue.innerHTML}' stroke='${globalHslaValueOfPickerStroke}' fill='${globalHslaValueOfPickerTwo}'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>")`;
 
 }
@@ -375,10 +413,26 @@ const downloadAsJpg = (e) => {
 copyButton.addEventListener("click", (e) => copyText(e));
 copyButton.addEventListener("mouseover", (e) => resetTooltip(e));
 
+const getRandomValue = (num) => {
+let value = Math.floor(Math.random() * num);
+return value;
+}
+const generateRandom = (e) => {
+  zoomRange.value = getRandomValue(8);
+  angleRange.value = getRandomValue(150);
+  strokeRange.value = getRandomValue(8);
+  heightRange.value = getRandomValue(4);
+  widthRange.value = getRandomValue(4);
 
+      //  let bgHex=  rgbToHex(data);
+      // let inverterHexValue = getShadesOfColor(bgHex,-75);
+  updateSliderValue();
+  addcopycss();
+}
 
 
 
 
 downloadAsJpgBtn.addEventListener("click", (e) => downloadAsJpg(e));
 downloadAsJpgBtn.addEventListener("mouseover", (e) => resetTooltip(e));
+randomButton.addEventListener("click", (e) => generateRandom(e));

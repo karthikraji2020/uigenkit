@@ -41,16 +41,7 @@
                                         <input type="text" id="strokeColorCodeInHex" class="form-control" value="#0848D4">
                                     </div>
                                 </div>
-                            <!--
-
-                                 Zoom ->scale(1),
-                                angle ->rotate(90),
-                                spacing -H - > width 
-                                spacing -Verticle - > height 
-
-                                rect one - fill
-                              -->
-                            
+                     
                                 <!-- sizeRange -->
                                 <div class="form-group row">
                                     <label for="zoomRange" class="col-2 col-form-label">Zoom </label>
@@ -113,7 +104,7 @@
                                 <div class="form-group row">
                                     <label for="radiusRange" class="col-2 col-form-label">Random </label>
                                     <div class="col-8">
-                                   <button class="btn btn-dark" type="button" id="shapeType" onclick="toggleInset(this)"><i class="fa fa-random"></i></button>
+                                   <button class="btn btn-dark" type="button" id="random" ><i class="fa fa-random"></i></button>
                                     </div>
                                 </div>
                        
@@ -154,7 +145,6 @@
         </div>
     </div>
 </div>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.js"></script> -->
 <script>
     $(document).ready(function(){
         $('#BgPatternColorOne').colorpicker({color:'#626262'});
