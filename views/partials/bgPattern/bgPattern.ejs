@@ -38,7 +38,7 @@
                                       <div class="color-picker3"></div>
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" id="strokeColorCodeInHex" class="form-control" value="#0848D4">
+                                        <input type="text" id="strokeColorCodeInHex" class="form-control" value="#DBDBDB">
                                     </div>
                                 </div>
                      
@@ -64,9 +64,9 @@
                                 </div>
                                 <!-- heightRange -->
                                 <div class="form-group row">
-                                    <label for="heightRange" class="col-2 col-form-label">Height Spacing </label>
+                                    <label for="heightRange" class="col-2 col-form-label">Height</label>
                                     <div class=" col-8">
-                                       <input type="range" min="10" max="80" value="15" id="heightRange">
+                                       <input type="range" min="10" max="40" value="15" id="heightRange">
                                     </div>
                                     <div class="col-1">
                                         <span id="heightRangeValue"></span><span>px</span>
@@ -74,9 +74,9 @@
                                 </div>
                                 <!-- widthRange -->
                                 <div class="form-group row">
-                                    <label for="widthRange" class="col-2 col-form-label">Width Spacing</label>
+                                    <label for="widthRange" class="col-2 col-form-label">Width</label>
                                     <div class=" col-8">
-                                       <input type="range" min="10" max="80" value="15" id="widthRange">
+                                       <input type="range" min="10" max="40" value="15" id="widthRange">
                                     </div>
                                     <div class="col-1">
                                         <span id="widthRangeValue"></span><span>px</span>
@@ -92,40 +92,32 @@
                                         <span id="strokeRangeValue"></span><span></span>
                                     </div>
                                 </div>
-                                <!--intensityRange -->
-                                <div class="form-group row">
-                                    <label for="radiusRange" class="col-2 col-form-label">Types </label>
-                                    <div class="col-8">
-                                   <button class="btn btn-dark" type="button" id="shapeType" onclick="toggleInset(this)">Inset</button>
+                                 <!--Random -->
+                                 <div class="form-group row">
+                                     <div class="col-sm-6">
+                                        <label for="radiusRange" class="col-2 col-form-label">Random </label>
+                                        <div class="col-4">
+                                       <button class="btn btn-dark" type="button" id="random" ><i class="fa fa-random"></i></button>
+                                     </div>
                                     </div>
+                                    <div class="col-sm-6">
+                                        <label for="radiusRange" class="col-2 col-form-label">Types </label>
+                                        <div class="col-4">
+                                       <button class="btn btn-dark" type="button" id="shapeType" >Square</button>
+                                        </div>
+                                     </div>
                                 </div>
                        
-                                <!--intensityRange -->
-                                <div class="form-group row">
-                                    <label for="radiusRange" class="col-2 col-form-label">Random </label>
-                                    <div class="col-8">
-                                   <button class="btn btn-dark" type="button" id="random" ><i class="fa fa-random"></i></button>
-                                    </div>
-                                </div>
-                       
-                            </form>
-                            <div class="row">
-                                <div class="col-10">
-                                    <pre class="copy-css" tooltip="Copy to clipboard">
-                                    </pre>
-                                </div>
-                                <div class="col-2">
-                                    <br>
-                                    <button  type="button" id="copy">
-                                        copy
-                                    </button>
-                                    <br>
-                                    <button type="button" class="btn btn-dark" title="Download as Image" id="downloadAsJpg">
-                                        <i class="fa fa-download"></i>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="addcopycss()">
+                                        Get Css <i class="fa fa-css3"> </i>
                                        </button>
+                                       <button type="button" class="btn btn-dark" title="Download as Image" id="downloadAsJpg">
+                                        <i class="fa fa-download"></i>
                                 </div>
                             </div>
-                               
+                            </form>
                         </div>
                       
                     </div>
@@ -145,6 +137,39 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade " id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content ">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Css Styles</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body bg-dark text-light">
+          <!-- <code> -->
+            <pre class="copy-css" tooltip="Copy to clipboard">
+            </pre>
+          <!-- </code> -->
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button id="copy">
+            copy
+            <!-- <i class="fa fa-copy"></i> -->
+        </button>
+          <!-- <button type="button" class="btn btn-secondary"  data-dismiss="modal" >Close</button> -->
+        </div>
+        
+      </div>
+    </div>
+  </div>
+    
 <script>
     $(document).ready(function(){
         $('#BgPatternColorOne').colorpicker({color:'#626262'});

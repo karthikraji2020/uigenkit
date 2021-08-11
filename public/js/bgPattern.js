@@ -28,7 +28,8 @@ const textButton = document.querySelector(".copy-css");
 const shapeType = document.querySelector('#shapeType');
 const downloadAsJpgBtn = document.querySelector("#downloadAsJpg");
 const randomButton = document.querySelector("#random");
-
+const  circleDimension = "M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5";
+const  squareDimension = "M 10,-2.55e-7 V 20 Z M -1.1677362e-8,10 H 20 Z";
 const pickr = Pickr.create({
   el: ".color-picker",
   theme: "nano", // or 'monolith', or 'nano'
@@ -100,7 +101,7 @@ const pickrForeground = Pickr.create({
 const pickrStroke = Pickr.create({
   el: ".color-picker3",
   theme: "nano", // or 'monolith', or 'nano'
-  default: "#0848D4",
+  default: "#DBDBDB",
   comparison: false,
   palette: true,
   showAlways: false,
@@ -172,30 +173,14 @@ function updateSliderValue(){
 
 
 updateSliderValue();
-// boxContent.style.boxShadow = checkDirection();
-// boxContent.style.width = zoomRange.value;
-// boxContent.style.height = zoomRange.value;
+
 addcopycss();
 changeBgColor('rgba(218, 218, 218, 1)');
 
-// const rgbToHex = function (rgb) {
-//   let RGB = rgb.split("rgb(")[1].split(")").join("").split(",");
-//   let darray = "";
-//   for (let index = 0; index < RGB.length; index++) {
-//     const element = RGB[index];
-//     var hex = Number(element).toString(16);
-//     if (hex.length < 2) {
-//       hex = "0" + hex;
-//     }
-//     darray += hex;
-//   }
-//   return `#${darray}`;
-// };
 
 // sizeRange(sizeRange.value);
 zoomRange.oninput = function () {
   zoomRangeValue.innerHTML = `${this.value}`;
-
   addcopycss();
 };
 
@@ -235,11 +220,14 @@ function CopyColorToClipboard(content) {
 
   window.getSelection().removeAllRanges(); // to deselect
 }
+
+function  getSvgImage() {
+  return `<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='${widthRangeValue.innerHTML}' height='${heightRangeValue.innerHTML}' patternTransform='scale(${zoomRangeValue.innerHTML}) rotate(${angleRangeValue.innerHTML})'><rect x='0' y='0' width='100%' height='100%' fill='${globalHslaValueOfPicker}'/><path d='${isInset?squareDimension:circleDimension}'  stroke-width='${strokeRangeValue.innerHTML}' stroke='${globalHslaValueOfPickerStroke}' fill='${globalHslaValueOfPickerTwo}'/></pattern></defs><rect width='100%' height='100%' fill='url(%23a)'/></svg>`
+  }
 // sizeRange.trigger('input');
 const e = new Event("input");
 zoomRange.dispatchEvent(e);
 function addcopycss() {
-  // let boxShadowvalues = checkDirection();
   let svgEle = `
   <svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'>
   <defs>
@@ -248,24 +236,12 @@ function addcopycss() {
     <path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='${strokeRangeValue.innerHTML}' stroke='${globalHslaValueOfPickerStroke}' fill='${globalHslaValueOfPickerTwo}'/>
     </pattern>
     </defs>
-    <rect width='1200%' height='1200%' transform='translate(0,0)' fill='url(%83a)'/>
+    <rect width='100%' height='100%'  fill='url(%83a)'/>
     </svg>
-    
     `
-    // <path d="M150 0 L75 200 L225 200 Z" />
-
-  // <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
-  // copyCssContent.innerText = `background:${getBackgroundColor(
-  //   containerContent
-  // )};\nborder-radius:${
-  //   radiusRangeValue.innerHTML
-  // }px;\nbox-shadow:${boxShadowvalues};`;
-// background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='40' height='40' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(0,0%,100%,1)'/><path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='1' stroke='none' fill='hsla(258.5,59.4%,59.4%,1)'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>")
-  copyCssContent.innerText = `background-image: url("data:image/svg+xml,${svgEle}");`;
-
- 
-  document.querySelector(".box-wrapper").style.backgroundImage = `url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse'  width='${widthRangeValue.innerHTML}' height='${heightRangeValue.innerHTML}' patternTransform='scale(${zoomRangeValue.innerHTML}) rotate(${angleRangeValue.innerHTML})'><rect x='0' y='0' width='100%' height='100%' fill='${globalHslaValueOfPicker}'/><path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='${strokeRangeValue.innerHTML}' stroke='${globalHslaValueOfPickerStroke}' fill='${globalHslaValueOfPickerTwo}'/></pattern></defs><rect width='1200%' height='1200%' transform='translate(0,0)' fill='url(%23a)'/></svg>")`;
-  // document.querySelector("#downloadImg").style.backgroundImage = `url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse'  width='${widthRangeValue.innerHTML}' height='${heightRangeValue.innerHTML}' patternTransform='scale(${zoomRangeValue.innerHTML}) rotate(${angleRangeValue.innerHTML})'><rect x='0' y='0' width='100%' height='100%' fill='${globalHslaValueOfPicker}'/><path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='${strokeRangeValue.innerHTML}' stroke='${globalHslaValueOfPickerStroke}' fill='${globalHslaValueOfPickerTwo}'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>")`;
+  copyCssContent.innerText = `background-image: url("data:image/svg+xml,${getSvgImage()}");`;
+         document.querySelector(".box-wrapper").style.backgroundImage = `url("data:image/svg+xml,${getSvgImage()}")`;
+  // document.querySelector("#downloadImg").style.backgroundImage = `url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='${widthRangeValue.innerHTML}' height='${heightRangeValue.innerHTML}' patternTransform='scale(${zoomRangeValue.innerHTML}) rotate(${angleRangeValue.innerHTML})'><rect x='0' y='0' width='100%' height='100%' fill='${globalHslaValueOfPicker}'/><path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='${strokeRangeValue.innerHTML}' stroke='${globalHslaValueOfPickerStroke}' fill='${globalHslaValueOfPickerTwo}'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>")`;
 
 }
 
@@ -292,95 +268,13 @@ function changeBgColor(colorValue,type) {
 
 }
 
-function changePositionTo(pos, thisObj) {
-  selectedDirection = pos;
-  if (thisObj !== "" && thisObj !== undefined) {
-    $(".position-wrapper .active").removeClass("active");
-    $(thisObj).addClass("active");
-  }
-  addcopycss();
-}
-
-function checkDirection() {
-  let boxshadow, boxshadowWithInset, firstInsetData, data1, secondInsetData;
-  boxshadow = getBoxShadow();
-
-  firstInsetData = "inset" + boxshadow.split("), ")[0] + ") ,";
-  data1 = boxshadow.split("), ")[1];
-  secondInsetData = "inset " + data1;
-  boxshadowWithInset = firstInsetData + secondInsetData;
-
-  //checking whether inset Enabled
-    // return boxshadow;
-     
-  if (isInset) {
-    return boxshadow;
-  } else {
-    return boxshadowWithInset;
-  }
-}
 function toggleInset(Obj) {
   isInset = isInset ? false : true;
-  isInset ? shapeType.textContent = "Pressed" : shapeType.textContent = "Flat";
+  isInset ? shapeType.textContent = "Circle" : shapeType.textContent = "Square";
   addcopycss();
 }
-function getBoxShadow() {
-  var data, test, firstPointShadowColor, secondPointShadowColor;
-  let ratio = Number(heightRangeValue.innerHTML);
-  let blurRatio = Number(widthRangeValue.innerHTML);
 
-  data = getBackgroundColor(containerContent);
-  test = strokeRangeValue.innerHTML;
-  if (!data.includes("rgba(")) {
-    let hexValue = rgbToHex(data);
-
-     let bgHex=  rgbToHex(data);
-      let inverterHexValue = getShadesOfColor(bgHex,-75);
-   
-    let result = hexToRGBA(inverterHexValue);
-
-     let newData = result.split(',');
-     let secondStopShadow = Number(strokeRangeValue.innerHTML)*1.8;
-     let  roundedOpacity = secondStopShadow.toFixed(1);
-     let opResult = `${newData[0]},${newData[1]},${newData[2]},${roundedOpacity})`
-
-   
-    firstPointShadowColor=opResult;
-
-
-    secondPointShadowColor =data;
-    // Returns FF00FF
-  } else {
-    firstPointShadowColor = data;
-    secondPointShadowColor = data;
-    
-  }
-
-  switch (selectedDirection) {
-    case "145deg":
-      return ` ${ratio}px ${ratio}px ${blurRatio}px ${firstPointShadowColor}, -${ratio}px -${ratio}px ${blurRatio}px ${secondPointShadowColor}`;
-      break;
-    case "225deg":
-      return ` -${ratio}px ${ratio}px ${blurRatio}px ${firstPointShadowColor}, -${ratio}px ${ratio}px ${blurRatio}px ${secondPointShadowColor}`;
-      break;
-    case "315deg":
-      return ` -${ratio}px -${ratio}px ${blurRatio}px ${firstPointShadowColor}, ${ratio}px ${ratio}px ${blurRatio}px ${secondPointShadowColor}`;
-      break;
-    case "45deg":
-      return ` ${ratio}px -${ratio}px ${blurRatio}px ${firstPointShadowColor}, ${ratio}px -${ratio}px ${blurRatio}px ${secondPointShadowColor}`;
-      break;
-    default:
-      return "daet";
-  }
-}
-
-
-
-
-toggleInset.apply();
-setTimeout(() => {
-  changePositionTo("145deg");
-}, 800);
+shapeType.addEventListener("click", (e) => toggleInset(e));
 
 const copyText = (e) => {
   // debugger;
@@ -413,6 +307,7 @@ const downloadAsJpg = (e) => {
 copyButton.addEventListener("click", (e) => copyText(e));
 copyButton.addEventListener("mouseover", (e) => resetTooltip(e));
 
+
 const getRandomValue = (num) => {
 let value = Math.floor(Math.random() * num);
 return value;
@@ -421,8 +316,8 @@ const generateRandom = (e) => {
   zoomRange.value = getRandomValue(8);
   angleRange.value = getRandomValue(150);
   strokeRange.value = getRandomValue(8);
-  heightRange.value = getRandomValue(4);
-  widthRange.value = getRandomValue(4);
+  heightRange.value = getRandomValue(30);
+  widthRange.value = getRandomValue(30);
 
       //  let bgHex=  rgbToHex(data);
       // let inverterHexValue = getShadesOfColor(bgHex,-75);

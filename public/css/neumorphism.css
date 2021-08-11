@@ -84,6 +84,8 @@ label {
   padding:.5rem;
   overflow-x: auto;
 }
-
+.checker {
+  fill: orange;
+}
 
  

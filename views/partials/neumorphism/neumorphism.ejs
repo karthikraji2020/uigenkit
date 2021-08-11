@@ -1,7 +1,4 @@
 <link rel="stylesheet" href="/css/neumorphism.css">
-<!-- <div class="my-3">
-
-</div> -->
 
 <div class="neumorphism">
     <div class="inner-header flex">
@@ -19,7 +16,6 @@
                                     <div class="col-2">
                                       <div class="color-picker"></div>
                                         <input id="bgColorOne" hidden  onchange="changeBgColor(this.value)">
-                                        <!-- <div id="bgColorOne" onchange="changeBgColor(this.value)" > </div> -->
                                     </div>
                                     <div class="col-6">
                                         <input type="text" id="colorCodeInHex" class="form-control" value="#292892" onchange="changeBgColor(this.value)">
@@ -122,27 +118,13 @@
                         </div>
                     </div>
                 </div>
- <!-- <i class="fa fa-copy"></i> -->
-               <!-- <div class="row">
-                    <div class="col-11">
-                        <div class="copy-css" tooltip="Copy to clipboard">
-                        </div>
-                    </div>
-                    <div class="col-1">
-                        <br>
-                        <button id="copy">
-                            copy
-                           
-                        </button>
-                    </div>
-                </div> -->
+ 
             </div>
           </div>
          
         </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.js"></script>
 <script>
     $(document).ready(function(){
         $('#bgColorOne').colorpicker({color:'#626262'});
