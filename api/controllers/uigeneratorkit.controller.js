@@ -1,5 +1,5 @@
 const UiGeneratorkitPalette = require('../models/uigeneratorkit.model');
-const LinearGradientColor = require('../models/Lineargradient.model');
+const LinearGradientColor = require('../models/lineargradient.model');
 const SocialMediaColors = require('../models/socialmedia.model');
 
 

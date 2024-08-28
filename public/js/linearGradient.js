@@ -17,8 +17,10 @@ var colorData;
 const copyButton = document.getElementById("copy");
 const textButton = document.querySelector(".copycss");
 
-const apiURL = `https://uigenkit.herokuapp.com/api/`;
+// const apiURL = `https://uigenkit.herokuapp.com/api/`;
 // const apiURL = `http://localhost:3000/api/`;
+const apiURL = `https://uigenkit.onrender.com/api/`;
+
 // load data
 function getData() {
   fetch(`${apiURL}lineargradientcolors`)
@@ -78,13 +80,15 @@ $(function () {
     // if rbg no
     currentDirection = chDirection.split(",")[0].split("(")[1];
     // var res = chDirection.replace(/to right|to left|to top|to bottom/gi, function (
-    var res = chDirection.replace(/45deg|135deg|225deg|315deg|to right/gi, function (
-    ) {
-      return btnValue;
-    });
+    var res = chDirection.replace(
+      /45deg|135deg|225deg|315deg|to right/gi,
+      function () {
+        return btnValue;
+      }
+    );
     selectedDirection = btnValue;
     headerBackground.style.backgroundImage = res;
-    draw(bgStopPointOne.value,  bgStopPointTwo.value);
+    draw(bgStopPointOne.value, bgStopPointTwo.value);
   });
   // Basic instantiation:
   $("#bgColorOne").colorpicker();
@@ -103,7 +107,7 @@ $(window)
 
 function downloadAsImage() {
   var dynamicBackground = document.querySelector("#thecanvas");
-  var dd = dynamicBackground.toDataURL('image/jpg', 1.0);
+  var dd = dynamicBackground.toDataURL("image/jpg", 1.0);
   var a = document.createElement("a"); //Create <a>
   a.href = dd; //Image Base64 Goes here
   let timeInMiliSec = Date.now();
@@ -118,16 +122,16 @@ function draw(bgone, bgtwo) {
   let myHeight = window.innerHeight;
   var grd = ctx.createLinearGradient(0, 0, myWidth, myHeight);
 
-  if( selectedDirection=="135deg") {
+  if (selectedDirection == "135deg") {
     var grd = ctx.createLinearGradient(0, 0, myWidth, myHeight);
   }
-  if( selectedDirection=="315deg") {
-    var grd = ctx.createLinearGradient(myWidth, myHeight,0, 0);
+  if (selectedDirection == "315deg") {
+    var grd = ctx.createLinearGradient(myWidth, myHeight, 0, 0);
   }
-  if(selectedDirection=="225deg") {
-    var grd = ctx.createLinearGradient(0, myWidth, myHeight,0);
+  if (selectedDirection == "225deg") {
+    var grd = ctx.createLinearGradient(0, myWidth, myHeight, 0);
   }
-  if( selectedDirection=="45deg") {
+  if (selectedDirection == "45deg") {
     var grd = ctx.createLinearGradient(myWidth, 0, 0, myHeight);
   }
   ctx.rect(0, 0, myWidth, myHeight);
@@ -152,7 +156,6 @@ function changBgColorTwo(colorValue) {
 function addcopycss() {
   copyCssWrapper.innerText = `background:${bgColorOne.value};/* fallback for old browsers */\nbackground: -webkit-${headerBackground.style.backgroundImage};/* Chrome 10-25, Safari 5.1-6 */\nbackground:${headerBackground.style.backgroundImage}; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */`;
 }
-
 
 const linearGradientPointOne = Pickr.create({
   el: ".bgOneColor-picker",
@@ -204,18 +207,16 @@ linearGradientPointTwo.on("change", (color, instance) => {
   changBgColorTwo(rgbaColor);
 });
 
- const copyText = (e) => {
-    debugger;
-    window.getSelection().selectAllChildren(textButton);
-    document.execCommand("copy");
-    e.target.setAttribute("tooltip", "Copied! ✅");
-  };
+const copyText = (e) => {
+  debugger;
+  window.getSelection().selectAllChildren(textButton);
+  document.execCommand("copy");
+  e.target.setAttribute("tooltip", "Copied! ✅");
+};
 
-  const resetTooltip = (e) => {
-    e.target.setAttribute("tooltip", "Copy to clipboard");
-  };
+const resetTooltip = (e) => {
+  e.target.setAttribute("tooltip", "Copy to clipboard");
+};
 
-  copyButton.addEventListener("click", (e) => copyText(e));
-  copyButton.addEventListener("mouseover", (e) => resetTooltip(e));
-
-
+copyButton.addEventListener("click", (e) => copyText(e));
+copyButton.addEventListener("mouseover", (e) => resetTooltip(e));

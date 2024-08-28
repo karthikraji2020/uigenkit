@@ -14,9 +14,36 @@ const SocialMediaColors = require('./api/models/socialmedia.model');
 const UiGeneratorkitPalette = require('./api/models/uigeneratorkit.model');
 const port = process.env.PORT || 3000;
 
-
+// const connectDB= require("./libs/db");
 const multer = require("multer");
-const sharp = require("sharp");
+// const sharp = require("sharp");
+
+// const uri = "mongodb+srv://admin:Password@cluster0.zt42g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+// const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
+
+// async function run() {
+//   try {
+//     // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
+//     await mongoose.connect(uri, clientOptions);
+//     await mongoose.connection.db.admin().command({ ping: 1 });
+//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
+//   } finally {
+//     // Ensures that the client will close when you finish/error
+//     await mongoose.disconnect();
+//   }
+// }
+// run().catch(console.dir);
+// Connect DB
+// const connectDB = async () => {
+//   try {
+//     await mongoose.connect(process.env.MONGODB_URI);
+//     consoog("MongoDB Connected...");
+//   } catch (error) {
+//     console.error(error.message);
+//     process.exit(1);
+//   }
+// };
 
 const mongooseSets={
     keepAlive: true,
@@ -26,12 +53,53 @@ const mongooseSets={
     useFindAndModify: false
   };
   // Connecting to the database
-  mongoose.connect(process.env.MONGODB_URI, mongooseSets).then(() => {
-  console.log("Successfully connected to the database");    
-}).catch(err => {
-    console.log('Could not connect to the database. Exiting now...', err);
-    process.exit();
-});
+
+  const connectDB = async () => {
+  try {
+    await  mongoose.connect(process.env.MONGODB_URI, mongooseSets);
+    console.log("MongoDB Connected...");
+  } catch (error) {
+    console.error(error.message);
+    process.exit(1);
+  }
+};
+
+connectDB();
+
+//   mongoose.connect(process.env.MONGODB_URI, mongooseSets).then(() => {
+//   console.log("Successfully connected to the database");    
+// }).catch(err => {
+//     console.log('Could not connect to the database. Exiting now...', err);
+//     process.exit();
+// });
+
+
+// const { MongoClient, ServerApiVersion } = require('mongodb');
+// const uri = "mongodb+srv://admin:Password@cluster0.zt42g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+// // MONGODB_URI = mongodb+srv://admin:password@123@cluster0-zt42g.mongodb.net/uigeneratorkit?retryWrites=true;
+
+// // Create a MongoClient with a MongoClientOptions object to set the Stable API version
+// const client = new MongoClient(uri, {
+//   serverApi: {
+//     version: ServerApiVersion.v1,
+//     strict: true,
+//     deprecationErrors: true,
+//   }
+// });
+
+// async function run() {
+//   try {
+//     // Connect the client to the server	(optional starting in v4.7)
+//     await client.connect();
+//     // Send a ping to confirm a successful connection
+//     await client.db("admin").command({ ping: 1 });
+//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
+//   } finally {
+//     // Ensures that the client will close when you finish/error
+//     await client.close();
+//   }
+// }
+// run().catch(console.dir);
 
 //dataPaths
 
@@ -288,6 +356,33 @@ app.post("/api/custompalette", function(req, res) {
   })
         
 });
+
+app.post('/lineargradientposts', function(req, res) {
+  const lineargradient = new LinearGradientColor({
+    gradientName: req.body.gradientName,
+    colorStopOne: req.body.colorStopOne,
+    colorStopTwo: req.body.colorStopTwo
+  })
+  // const lineargradient = new SocialMediaColors({
+  //   brandName: req.body.brandName,
+  //   colorFormats: {
+  //       hex:req.body.colorFormats.hex,
+  //       hashhex:req.body.colorFormats.hashhex,
+  //       rgb:req.body.colorFormats.rgb,
+  //       rgba:req.body.colorFormats.rgba,
+  //     }
+  // })
+  console.log(req.body);
+  
+  lineargradient.save(function(err, rec) {
+    if(err) {
+      return res.status(400).send("error while creting a post")
+    }
+    console.log(rec);
+    res.send(rec);
+  })
+})
+
 
 
 app.listen(port, () => console.log(`Server started on Port ${port}`));
