@@ -40,8 +40,8 @@ exports.createCustomPalette = (req, res) => {
 // Retrieve and return all LineargradientSchema from the database.
 exports.findAllCustomPalette = (req, res) => {
     UiGeneratorkitPalette.find()
-    .then(pallete => {
-        res.send(pallete);
+    .then(palette  => {
+        res.send(palette );
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while retrieving the gradients."

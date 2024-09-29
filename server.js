@@ -197,7 +197,7 @@ app.get("/test", function(req, res) {
 app.get("/neumorphism", function(req, res) {
     res.render("./partials/neumorphism/neumorphism");
 });
-app.get("/bgpattern", function(req, res) {
+app.get("/pattern", function(req, res) {
     res.render("./partials/bgPattern/bgPattern");
 });
 app.get("/colorpalette", function(req, res) {
