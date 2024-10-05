@@ -8,6 +8,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const compression = require('compression');
+const cron = require('node-cron');
+const axios = require('axios');
+
 // const apiRoute = require('./api/routes/uigeneratorkit.routes');
 const LinearGradientColor = require('./api/models/lineargradient.model');
 const SocialMediaColors = require('./api/models/socialmedia.model');
@@ -16,34 +19,25 @@ const port = process.env.PORT || 3000;
 
 // const connectDB= require("./libs/db");
 const multer = require("multer");
+
+
+
+// Schedule a task to run every 14 minutes
+cron.schedule('*/14 * * * *', () => {
+  console.log('Calling uigenkit API every 14 minutes...');
+
+  axios.get('https://uigenkit.in/api/test')
+    .then(response => {
+      // console.log('API response:', response.data);
+    })
+    .catch(error => {
+      console.error('Error calling the API:', error);
+    });
+});
+
+console.log('Cron job started');
+
 // const sharp = require("sharp");
-
-// const uri = "mongodb+srv://admin:Password@cluster0.zt42g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-
-// const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
-
-// async function run() {
-//   try {
-//     // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
-//     await mongoose.connect(uri, clientOptions);
-//     await mongoose.connection.db.admin().command({ ping: 1 });
-//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-//   } finally {
-//     // Ensures that the client will close when you finish/error
-//     await mongoose.disconnect();
-//   }
-// }
-// run().catch(console.dir);
-// Connect DB
-// const connectDB = async () => {
-//   try {
-//     await mongoose.connect(process.env.MONGODB_URI);
-//     consoog("MongoDB Connected...");
-//   } catch (error) {
-//     console.error(error.message);
-//     process.exit(1);
-//   }
-// };
 
 const mongooseSets={
     keepAlive: true,
@@ -190,8 +184,8 @@ app.get("/home", function(req, res) {
 app.get("/imageoptimizer", function(req, res) {
     res.render("./partials/imageoptimizer/imageoptimizer");
 });
-app.get("/test", function(req, res) {
-    res.send("test".repeat(100000));
+app.get("/api/test", function(req, res) {
+    res.send("test ".repeat(100));
 });
 
 app.get("/neumorphism", function(req, res) {
