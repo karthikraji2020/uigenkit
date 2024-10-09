@@ -1,0 +1,11 @@
+# Allow all crawlers access to the entire site
+User-agent: *
+Disallow:/api/
+
+# Prevent crawlers from accessing specific directories (uncomment if needed)
+# Disallow: /private/
+# Disallow: /temp/
+# Disallow: /api/
+
+# Sitemap location (optional)
+Sitemap: https://uigenkit.in/sitemap.xml
