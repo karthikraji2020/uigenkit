@@ -184,6 +184,10 @@ app.get("/home", function(req, res) {
 app.get("/imageoptimizer", function(req, res) {
     res.render("./partials/imageoptimizer/imageoptimizer");
 });
+
+app.get("/glassmorphism", function(req, res) {
+    res.render("./partials/glassmorphism/glassmorphism");
+});
 app.get("/api/test", function(req, res) {
     res.send("test ".repeat(100));
 });

@@ -1,0 +1,134 @@
+<link rel="stylesheet" href="/css/neumorphism.css">
+
+<div class="neumorphism">
+    <div class="inner-header flex">
+        <div class="container home-banner shadow-lg">
+        <h2 class="headerTitle">Glassmorphism</h2>
+        <div class="container" id="content-wrapper">
+            <div class="wrpper-grid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="control-box">   
+                            <form>
+                               
+                                <div class="form-group row display-none">
+                                    <label for="sizeRange" class="col-4 col-form-label">Pick a Color </label>
+                                    <div class="col-2">
+                                      <div class="color-picker"></div>
+                                        <input id="bgColorOne" hidden  onchange="changeBgColor(this.value)">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" id="colorCodeInHex" class="form-control" value="#292892" onchange="changeBgColor(this.value)">
+                                    </div>
+                                </div>
+                            
+                                <!-- sizeRange -->
+                                <div class="form-group row">
+                                    <label for="sizeRange" class="col-2 col-form-label">Size </label>
+                                    <div class=" col-8">
+                                     <input type="range" min="300" max="380" value="300" id="sizeRange">
+                                    </div>
+                                    <div class="col-1">
+                                        <span id="sizeRangeValue"></span><span>px</span>
+                                    </div>
+                                </div>
+                                <!-- radiusRange -->
+                                <div class="form-group row display-none">
+                                    <label for="radiusRange" class="col-2 col-form-label">Radius </label>
+                                    <div class=" col-8">
+                                       <input type="range" min="10" max="205" value="50" id="radiusRange">
+                                    </div>
+                                    <div class="col-1">
+                                        <span id="radiusRangeValue"></span><span>px</span>
+                                    </div>
+                                </div>
+                                <!-- radiusRange -->
+                                <div class="form-group row display-none">
+                                    <label for="distanceRange" class="col-2 col-form-label">Distance </label>
+                                    <div class=" col-8">
+                                       <input type="range" min="5" max="50" value="25" id="distanceRange">
+                                    </div>
+                                    <div class="col-1">
+                                        <span id="distanceRangeValue"></span><span>px</span>
+                                    </div>
+                                </div>
+                                <!-- blurRange -->
+                                <div class="form-group row display-none">
+                                    <label for="blurRange" class="col-2 col-form-label">Blur </label>
+                                    <div class=" col-8">
+                                       <input type="range" min="10" max="100" value="60" id="blurRange">
+                                    </div>
+                                    <div class="col-1">
+                                        <span id="blurRangeValue"></span><span>px</span>
+                                    </div>
+                                </div>
+                                <!--BlurfilterRange -->
+                                <div class="form-group row">
+                                    <label for="intensityRange" class="col-2 col-form-label">blur filter:</label>
+                                    <div class=" col-8">
+                                       <input type="range" min="0" max="20" value="1" id="intensityRange">
+                                    </div>
+                                    <div class="col-1">
+                                        <span id="intensityRangeValue"></span><span>px</span>
+                                    </div>
+                                </div>
+                                <!--BlurfilterRange -->
+                                <div class="form-group row display-none">
+                                    <label for="radiusRange" class="col-2 col-form-label">Types </label>
+                                    <div class="col-8">
+                                   <button class="btn btn-dark" type="button" id="shapeType" onclick="toggleInset(this)">Inset</button>
+                                    </div>
+                                </div>
+                       
+                            </form>
+                            <div class="row">
+                                <div class="col-10">
+                                    <pre class="copy-css" tooltip="Copy to clipboard">
+                                    </pre>
+                                </div>
+                                <div class="col-2">
+                                    <br>
+                                    <button  type="button" id="copy">
+                                        copy
+                                    </button>
+                                </div>
+                            </div>
+                               
+                        </div>
+                      
+                    </div>
+                    <div class="col-sm-6 image-background">
+                        <div class="position-wrapper">
+                            <div class="top-left active" onclick="changePositionTo('145deg',this)" title="Light Source from (Top Left)">
+                                <i class='fa fa-lightbulb-o text-warning fa-2x'></i>
+                            </div>
+                            <div class="top-right" onclick="changePositionTo('45deg',this)" title="Light Source from (Top Right)"> 
+                                <i class='fa fa-lightbulb-o text-warning fa-2x'></i>
+                            </div>
+                            <div class="bottom-right" onclick="changePositionTo('315deg',this)" title="Light Source from (Bottom Right)">
+                                <i class='fa fa-lightbulb-o text-warning fa-2x'></i>
+                            </div>
+                            <div class="bottom-left" onclick="changePositionTo('225deg',this)" title="Light Source from (Bottom Left)">
+                                <i class='fa fa-lightbulb-o text-warning fa-2x'></i>
+                            </div>
+                            <div class="box-wrapper">
+                                <div class="box">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+ 
+            </div>
+          </div>
+         
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $('#bgColorOne').colorpicker({color:'#626262'});
+    }); 
+</script>
+<script src="/js/glassmorphism.js"></script>
+
