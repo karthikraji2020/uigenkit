@@ -106,7 +106,9 @@ pickr.on("change", (color, instance) => {
 const e = new Event("input");
 function addcopycss() {
   let boxShadowvalues = checkDirection();
-  (copyCssContent.innerText = `backdrop-filter: blur(${intensityRangeValue.innerHTML}px);\nborder-radius:${
+  (copyCssContent.innerText = `background-image: url('https://images.unsplash.com/photo-1581468818216-28608bc9d2ad?q=80&w=480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');\nbackground-repeat: no-repeat;
+background-position: center;
+backdrop-filter: blur(${intensityRangeValue.innerHTML}px);\nborder-radius:${
     radiusRangeValue.innerHTML
   }px;\nbox-shadow:${boxShadowvalues};`),
     (boxContent.style.boxShadow = `${boxShadowvalues}`),
