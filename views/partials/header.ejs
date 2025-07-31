@@ -1,69 +1,42 @@
 <head>
-  <meta charset="UTF-8">
+
+ <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UI Gen-kit | Develop a beautiful, modern ,User Interface Fast and Effectively.</title>
-  <meta name="title" content="UiGenKit: All-in-One Trending UI Generator Kit">
-  <meta name="description"
-    content="UiGenKit is a multi-featured tool for designers and developers to generate and copy CSS for color palettes, gradients, and Soft-UI. Discover fresh palettes daily and implement modern UI patterns with ease.">
 
+  <title><%= meta?.title || 'UiGenKit – Generate UI Fast and Beautifully' %></title>
+  <meta name="description" content="<%= meta?.description || 'Create your own modern background patterns, color palettes, gradients, and soft UI with UiGenKit.' %>">
+  <meta name="keywords" content="<%= meta?.keywords || 'UiGenKit, pattern generator, gradient generator, neumorphism, soft UI, frontend tools' %>">
+  <meta name="robots" content="<%= meta?.robots || 'index, follow' %>">
+  <meta name="author" content="karthikraji2020">
 
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://uigenkit.in">
-   <!-- meta for SEO -->
-   <meta name="description"
-   content=" ui genkit Create your Own, modern Background Pattern,Create a Fresh UI Color Palette  on your Own," />
- <meta name="keywords"
-   content="uigenkit ,palette generator, Background Pattern,Background Pattern generator,Neumorphism,soft ui,soft-ui, Linear Gradient ,Create a Fresh UI Color Palette , " />
- <meta name="keyphrase" content="uigenkit , Background Pattern, Linear Gradient ,Create a Fresh UI Color Palette ," />
- <meta name="abstract" content="uigenkit | Develop a beautiful, modern ,User Interface Fast and Effectively" />
- <meta name="description"
-   content="UiGenKit is a multi-featured tool for designers and developers to generate and copy CSS for color palettes, gradients, and Soft-UI. Discover fresh palettes daily and implement modern UI patterns with ease.">
+  <% if (ldJson) { %>
+  <script type="application/ld+json">
+    <%= JSON.stringify(ldJson, null, 2) %>
+  </script>
+  <% } %>
 
- <!-- Additional SEO Tags -->
- <meta name="keywords"
-   content="UiGenKit, UI Generator, Color Palette Generator, Linear Gradient Generator, Neumorphism, Soft-UI, CSS Copy, Node.js, MongoDB, Bootstrap, Web Design, UI Tools, Frontend Development, Design Trends">
- <meta name="author" content="karthikraji2020">
- <meta name="robots" content="index, follow">
+  <!-- Open Graph -->
+  <meta property="og:title" content="<%= meta?.ogTitle || meta?.title %>">
+  <meta property="og:description" content="<%= meta?.ogDescription || meta?.description %>">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="<%= meta?.url || 'https://uigenkit.in' %>">
+  <% if (meta?.ogImage) { %>
+    <meta property="og:image" content="<%= meta.ogImage %>">
+  <% } %>
 
- <!-- Canonical URL -->
- <link rel="canonical" href="https://uigenkit.in">
+  <!-- Canonical -->
+  <% if (meta?.canonical) { %>
+    <link rel="canonical" href="<%= meta.canonical %>" />
+  <% } %>
 
- <!-- Individual Pages -->
- <!-- Neumorphism/Soft UI Page -->
- <link rel="canonical" href="https://uigenkit.in/neumorphism">
- <meta property="og:url" content="https://uigenkit.in/neumorphism">
- <meta property="og:title" content="Neumorphism Generator - UiGenKit">
- <meta property="og:description"
-   content="Generate modern Soft-UI designs easily with UiGenKit. Copy CSS with one click.">
-
- <!-- Color Palette Page -->
- <link rel="canonical" href="https://uigenkit.in/colorpalette">
- <meta property="og:url" content="https://uigenkit.in/colorpalette">
- <meta property="og:title" content="Color Palette Generator - UiGenKit">
- <meta property="og:description"
-   content="Create or explore custom and random color palettes with UiGenKit. Copy CSS or download palettes as images.">
-
- <!-- Linear Gradient Page -->
- <link rel="canonical" href="https://uigenkit.in/lineargradient">
- <meta property="og:url" content="https://uigenkit.in/lineargradient">
- <meta property="og:title" content="Linear Gradient Generator - UiGenKit">
- <meta property="og:description"
-   content="Generate beautiful linear gradients and download them as images or copy CSS instantly with UiGenKit.">
-
- <!-- Pattern Generator Page -->
- <link rel="canonical" href="https://uigenkit.in/pattern">
- <meta property="og:url" content="https://uigenkit.in/pattern">
- <meta property="og:title" content="Pattern Generator - UiGenKit">
- <meta property="og:description"
-   content="Create stunning patterns for your UI design using UiGenKit's Pattern Generator. Copy CSS or download images for your designs.">
-
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/images/ui-gen-kit_ico.ico" type="image/x-icon">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js'></script>
-  <link rel="shortcut icon" href="/images/ui-gen-kit_ico.ico" type="image/x-icon">
  
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

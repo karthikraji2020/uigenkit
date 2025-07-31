@@ -15,6 +15,11 @@ const axios = require('axios');
 const LinearGradientColor = require('./api/models/lineargradient.model');
 const SocialMediaColors = require('./api/models/socialmedia.model');
 const UiGeneratorkitPalette = require('./api/models/uigeneratorkit.model');
+const BASE_URL = "https://uigenkit.in";
+const metaDefaults = require('./api/middleware/metaDefaults')(BASE_URL);
+const seoMeta = require('./api/meta/seoMeta');
+const structuredData = require('./api/meta/structuredData');
+const generateSitemap = require('./api/meta/siteMap');
 const port = process.env.PORT || 3000;
 
 // const connectDB= require("./libs/db");
@@ -26,7 +31,7 @@ const multer = require("multer");
 cron.schedule('*/14 * * * *', () => {
   console.log('Calling uigenkit API every 14 minutes...');
 
-  axios.get('https://uigenkit.in/api/test')
+  axios.get(`${BASE_URL}/api/test`)
     .then(response => {
       // console.log('API response:', response.data);
     })
@@ -101,7 +106,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
+app.use(metaDefaults);
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -174,39 +179,68 @@ const storage = multer.diskStorage({
   
   
 app.get("/", function(req, res) {
-    res.render("./partials/home");
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+    res.render("./partials/home", {
+    meta: seoMeta.home,
+    ldJson: structuredData.home
+  });
 });
 
 app.get("/home", function(req, res) {
-    // res.setHeader('Cache-Control', 'public, max-age=86400');
-    res.render("./partials/home");
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+    res.render("./partials/home", {
+    meta: seoMeta.home,
+    ldJson: structuredData.home
+  });
 });
+
 app.get("/imageoptimizer", function(req, res) {
     res.render("./partials/imageoptimizer/imageoptimizer");
 });
 
 app.get("/glassmorphism", function(req, res) {
-    res.render("./partials/glassmorphism/glassmorphism");
+    res.render("./partials/glassmorphism/glassmorphism",{
+    meta: seoMeta.glassmorphism,
+    ldJson: structuredData.glassmorphism
+  });
 });
 app.get("/api/test", function(req, res) {
     res.send("test ".repeat(100));
 });
 
 app.get("/neumorphism", function(req, res) {
-    res.render("./partials/neumorphism/neumorphism");
+   res.render("./partials/neumorphism/neumorphism", {
+    meta: seoMeta.neumorphism,
+    ldJson: structuredData.neumorphism
+  });
 });
+
 app.get("/pattern", function(req, res) {
-    res.render("./partials/bgPattern/bgPattern");
+    res.render("./partials/bgPattern/bgPattern",{
+    meta: seoMeta.pattern,
+    ldJson: structuredData.pattern
+  });
 });
+
 app.get("/colorpalette", function(req, res) {
-    res.render("./partials/colorPalette/colorPalette");
+    res.render("./partials/colorPalette/colorPalette", {
+    meta: seoMeta.colorpalette,
+    ldJson: structuredData.colorpalette
+  });
 });
+
 app.get("/lineargradient", function(req, res) {
-    res.render("./partials/linearGradient/linearGradient");
+    res.render("./partials/linearGradient/linearGradient", {
+    meta: seoMeta.lineargradient,
+    ldJson: structuredData.lineargradient
+  });
 });
 
 app.get("/about", function(req, res) {
-    res.render("./partials/about/about");
+    res.render("./partials/about/about",{
+    meta: seoMeta.about,
+    ldJson: structuredData.about  
+  });
 });
 
 app.get("/api/custompalette", function(req, res) {
@@ -239,6 +273,19 @@ app.get("/api/lineargradientcolors", function(req, res) {
             message: err.message || "Some error occurred while retrieving the gradients."
         });
     });
+});
+
+
+app.get('/sitemap.xml', async (req, res) => {
+  try {
+    const sitemap = await generateSitemap();
+
+    res.header('Content-Type', 'application/xml');
+    console.log(sitemap)
+    res.send(sitemap);
+  } catch (e) {
+    res.status(500).send('Could not generate sitemap');
+  }
 });
 
  // UPDATE

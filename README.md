@@ -7,7 +7,7 @@ UiGenKit brings together the essential tools for modern UI development in one pl
 
 ---
 ## Overview
-**UiGenKit** is a multi-featured application designed for designers and developers. It simplifies the process of generating and copying CSS code for color palettes, gradients, and modern UI patterns like Soft-UI (Neumorphism). With a vast collection of fresh, user-generated palettes, UiGenKit empowers creators with the latest design tools for their projects.
+**UiGenKit** is a multi-featured application designed for designers and developers. It simplifies the process of generating and copying CSS code for color palettes, gradients, and modern UI patterns like Soft UI (Neumorphism). With a vast collection of fresh, user-generated palettes, UiGenKit empowers creators with the latest design tools for their projects.
 
 ---
 ## :film_projector: DEMO
