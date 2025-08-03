@@ -4,7 +4,7 @@
 <body>
     <%- include('partials/navbar') -%>
     <div style="z-index:10000;position:Fixed;height:100vh;" id="loadingDiv">
-        <img src="/images/loader.png" class="loader" alt="loader"/>
+        <img loading="eager" src="/images/loader.png" class="loader" alt="loader"/>
     </div>
         <div class="toasterBst">
             <div class="alert alert-light text-primary shadow border-primary alert-dismissible fade show" id="myAlert">
@@ -12,6 +12,7 @@
                 <strong class="color-code"> </strong> Copied !!
               </div>
         </div>
+        <a href="https://www.buymeacoffee.com/karthikraji" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" loading="eager" style="position: fixed;bottom: 10%;right: 0%;z-index: 999999;height: 50px !important;width: 150px !important;" ></a>
     <%- body %>
     <%- include('partials/footer') -%>
 </body>

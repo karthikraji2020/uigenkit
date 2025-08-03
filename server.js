@@ -205,7 +205,7 @@ app.get("/glassmorphism", function(req, res) {
   });
 });
 app.get("/api/test", function(req, res) {
-    res.send("test ".repeat(100));
+    res.send("test ".repeat(10));
 });
 
 app.get("/neumorphism", function(req, res) {
@@ -281,7 +281,6 @@ app.get('/sitemap.xml', async (req, res) => {
     const sitemap = await generateSitemap();
 
     res.header('Content-Type', 'application/xml');
-    console.log(sitemap)
     res.send(sitemap);
   } catch (e) {
     res.status(500).send('Could not generate sitemap');
