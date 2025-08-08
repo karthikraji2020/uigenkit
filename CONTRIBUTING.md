@@ -20,7 +20,7 @@ Run the environment locally or in Docker by following the instructions at [Runni
 
 ### Creating a template
 
-TODO(karthikraji2020): Per issue https://github.com/karthikraji2020/resume-builder/issues/1, add instructions for how to create a template.
+TODO(karthikraji2020): Per issue https://github.com/karthikraji2020/uigenkit/issues/1, add instructions for how to create a template.
 
 ---
 
