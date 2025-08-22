@@ -57,6 +57,6 @@ TODO(karthikraji2020): Per issue https://github.com/karthikraji2020/uigenkit/iss
       ```
       $ git push origin BRANCH_NAME
       ```
-   1. Make a [pull request](https://github.com/git-guides/git-pull) (PR). Ensure you send the PR to the `main` branch
+   1. Make a [pull request](https://github.com/git-guides/git-pull) (PR). Ensure you send the PR to the `master` branch
 
-   Once done, our developer will review the changes and merge to `main` branch.
+   Once done, our developer will review the changes and merge to `master` branch.
